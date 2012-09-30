@@ -1,0 +1,19 @@
+---
+layout: post
+title: "Hello, World!"
+date: 2012-09-30 15:03
+comments: true
+categories: 
+---
+
+Here I am...
+
+### Quick reference on operating [Octopress](http://octopress.org):
+	rake new_post["New blog post title"]
+Or
+	rake new_page["About me"]
+To publish:
+	rake generate
+	rake publish
+
+**Don't forget to commit!**
