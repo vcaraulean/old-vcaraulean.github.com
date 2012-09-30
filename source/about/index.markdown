@@ -6,5 +6,6 @@ comments: true
 sharing: true
 footer: true
 ---
-
+{% img left ../images/me.png 150 %}
 ... is comming soon. 
+

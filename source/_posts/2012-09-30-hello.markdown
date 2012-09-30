@@ -8,15 +8,20 @@ categories:
 
 Here I am...
 
-### Quick reference on operating [Octopress](http://octopress.org):
+### Quick guide on operating [Octopress](http://octopress.org):
+Create:
 	rake new_post["New blog post title"]
-Or
 	rake new_page["About me"]
-To publish:
+Publish:
 	rake generate
 	rake publish
-
 **Don't forget to commit!**
+
+### Images
+Syntax:
+	{{ "{% img [class names] /path/to/image [width] [height] [title text [alt text]]" }} %}
+Real usage, for local images:
+	{{ "{% img left ../images/image_name.png 150" }} %}
 
 ### References
 - [Octopress documentation](http://octopress.org/docs/)
