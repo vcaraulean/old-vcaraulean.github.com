@@ -14,7 +14,7 @@ Create:
 	rake new_page["About me"]
 Publish:
 	rake generate
-	rake publish
+	rake deploy
 **Don't forget to commit!**
 
 ### Images
