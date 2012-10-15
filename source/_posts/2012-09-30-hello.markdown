@@ -16,12 +16,37 @@ Publish:
 	rake generate
 	rake deploy
 **Don't forget to commit!**
+<!-- more -->
 
 ### Images
 Syntax:
 	{{ "{% img [class names] /path/to/image [width] [height] [title text [alt text]]" }} %}
 Real usage, for local images:
 	{{ "{% img left ../images/image_name.png 150" }} %}
+
+###Configuring existing blog on new computer
+
+- Install [yari](https://github.com/scottmuc/yari)
+- Install ruby 1.9.3 (`yari 1.9.3`)
+- Checkout sources:
+```
+$ git clone git@github.com:username/username.github.com.git
+$ cd username.github.com
+username.github.com$ git checkout source
+username.github.com$ mkdir _deploy
+username.github.com$ cd _deploy
+username.github.com/_deploy$ git init
+username.github.com/_deploy$ git remote add origin git@github.com:username/username.github.com.git
+username.github.com/_deploy$ git pull origin master
+username.github.com/_deploy$ cd ..
+username.github.com$
+```
+- Configure required tools:
+```
+	gem install bundler
+	bundle install
+```
+You should be set!
 
 ### References
 - [Octopress documentation](http://octopress.org/docs/)
