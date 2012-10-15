@@ -1,2 +1,33 @@
 // This File is imported last, and will override other styles in the cascade
 // Add styles here to make changes without digging in too much
+
+$border-ep: #E0E0E0;
+
+html 
+{
+    background: $page-bg;
+}
+
+  #main
+  {
+  border-left: 1px solid $border-ep;
+  border-right: 1px solid $border-ep;
+  border-bottom: 1px solid $border-ep;
+  }
+
+  body > footer
+  {
+    background: $page-bg;
+  }
+
+
+body {
+  > div {
+    background: $sidebar-bg;
+    border-bottom: 1px solid $page-border-bottom;
+    > div {
+      background: $main-bg;
+      border-right: 1px solid $sidebar-border;
+    }
+  }
+}
