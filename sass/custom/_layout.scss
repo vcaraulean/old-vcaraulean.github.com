@@ -6,7 +6,6 @@
 //$header-padding-bottom: 1.5em;
 
 //$max-width: 1350px;
-$indented-lists: true;
 
 // Padding used for layout margins
 //$pad-min: 18px;
@@ -20,4 +19,10 @@ $indented-lists: true;
 //$sidebar-pad-wide: 20px;
 //$sidebar-width-wide: 300px;
 
-span.toggle-sidebar{display: none !important;}
+$max-width: 1000px;
+
+$indented-lists: true;
+
+span.toggle-sidebar {
+	display: none !important;
+}
