@@ -14,40 +14,11 @@ html
   border-bottom: 1px solid $border-ep;
 }
 
-.sans { font-family: $sans; }
-
-body {
-  line-height: 1.5em;
-  color: $text-color;
-  font-size: 1em;
-  @extend .sans;
-}
-
-h1 {
-  font-size: 1.8em;
-  line-height: 1.2em;
-}
-
-h1.external{
-  font-style: italic;
-}
-
-h1 span{
-  font-weight: normal;
-  font-style: normal;
-  color: #E0841B;
-}
-
-@media only screen and (min-width: 992px) {
-  body { font-size: 1em; }
-  h1 { font-size: 1.8em; line-height: 1.2em; }
-}
-
 body > footer {
   background: $page-bg;
 }
 
-
+// Removing "noise" background
 body {
   > div {
     background: $sidebar-bg;
