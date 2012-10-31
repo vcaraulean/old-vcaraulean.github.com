@@ -7,5 +7,6 @@ sharing: true
 footer: true
 ---
 {% img left ../images/me.png 150 %}
-... is comming soon. 
+This is a personal site and blog.
 
+Disclaimer: The posts on this site are my own and don't necessarily represent my employer's positions, strategies, or opinions.

@@ -28,6 +28,7 @@ Real usage, for local images:
 
 - Install [yari](https://github.com/scottmuc/yari)
 - Install ruby 1.9.3 (`yari 1.9.3`)
+- Add ruby to PATH variable in %USERPROFILE%
 - Checkout sources:
 ```
 $ git clone git@github.com:username/username.github.com.git
