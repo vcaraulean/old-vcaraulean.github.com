@@ -26,6 +26,7 @@ body > header {
   }
   div#logoText{
     color: $title-color;
+    margin: 0px 4px
   }
   div#logoLeft, #logoRight{
     color: #1b88ff;
@@ -33,6 +34,7 @@ body > header {
   }
   h2 {
     @extend .sans;
+    margin-bottom: 0em;
     font-size: 0.6em;
     color: $subtitle-color;
     font-weight: normal;
