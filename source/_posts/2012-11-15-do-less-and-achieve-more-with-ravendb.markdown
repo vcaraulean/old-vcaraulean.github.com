@@ -62,13 +62,16 @@ Now take all this stuff and throw it away. Using RavenDb's client API you can su
 
 #### Versioning/Audit
 
-With [Versioning Bundle](http://ravendb.net/docs/server/bundles/versioning) RavenDb will keep the history of changes made to a document. With the audit trail you'll be able to find who changed what and when. Depending on your architecture it may be very simple to implement basic audit infrastructure. But it's a much more challenging task to keep arround modifications and with relational model is very hard to revert changes when your records were stored in database. With Versioning Bundle it's easy to plug in and know everything. 
+With [Versioning Bundle](http://ravendb.net/docs/server/bundles/versioning) RavenDb will keep the history of changes made to a document. With the audit trail you'll be able to find who changed what and when. Depending on your architecture it may be very simple to implement basic audit infrastructure. But it's a much more challenging task to keep around modifications and with relational model is very hard to revert changes when your records were stored in database. With Versioning Bundle it's easy to plug in and know everything.
 
 ---
 
 To refrain: all this stuff is code. Code to be written, tested, maintained.
 
-I've highlighted only some of typical parts of a reasonably complex software system. There is more, of course. By using RavenDb you already have it ready for integration and use. Even if you have already some of these subsystems in place and are using "typical" architecture with a service layer, ORM and relational database, you should seriously consider RavenDb while it's still possible or you have resources for it.  
+And one more thing. All this components are written by the authors of RavenDb. While I'm confident in my skills, I know my limits. I wouldn't be able to do a better job integrating with a third-party system than the people who conceived it.
 
-Because with RavenDb you'll have to do less but achieve more by focusing on things that really matter: your domain model, business knowledge and that bizarre wrapper around it, called User Interface.
+I've highlighted only some of typical parts of a reasonably complex software system but there are more, of course. With RavenDb you already have functional blocks ready for integration and use. This is a point to consider when time-to-marked is critical or you care about your product. And less of a concern when you're only after your monthly paycheck.
 
+Even if you have already some of these subsystems in place and are using "typical" architecture with a service layer, ORM and relational database, you should seriously consider RavenDb while you're at early stages of your product. 
+
+Because with RavenDb you can do less but achieve more by focusing on things that really matter: your domain model, business knowledge and that bizarre wrapper around it, called User Interface.
