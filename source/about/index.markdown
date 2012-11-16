@@ -6,7 +6,14 @@ comments: true
 sharing: true
 footer: true
 ---
-{% img left ../images/me.png 150 %}
+{% img right ../images/me.png 150 %}
 This is a personal site and blog.
 
-Disclaimer: The posts on this site are my own and don't necessarily represent my employer's positions, strategies, or opinions.
+My online presence:
+
+- [@vcaraulean in Twitter](http://twitter.com/vcaraulean)
+- [GitHub profile](http://github.com/vcaraulean)
+- [LinkedIn profile](http://ch.linkedin.com/in/vcaraulean)
+- [My old blog](http://blog.caraulean.com) (hosted on Wordpress.com)
+
+**Disclaimer:** Thought and opinions expressed on this site are my own and don't represent in any way my employer's positions, strategies, or opinions.

@@ -68,7 +68,7 @@ With [Versioning Bundle](http://ravendb.net/docs/server/bundles/versioning) Rave
 
 To refrain: all this stuff is code. Code to be written, tested, maintained.
 
-And one more thing. All this components are written by the authors of RavenDb. While I'm confident in my skills, I know my limits. I wouldn't be able to do a better job integrating with a third-party system than the people who conceived it.
+And one more thing. All this components are written by the authors of RavenDb. While I'm confident in my skills, I know my limits. I wouldn't be able to do a better job integrating with a third-party system than the people who wrote it from scratch.
 
 I've highlighted only some of typical parts of a reasonably complex software system but there are more, of course. With RavenDb you already have functional blocks ready for integration and use. This is a point to consider when time-to-marked is critical or you care about your product. And less of a concern when you're only after your monthly paycheck.
 

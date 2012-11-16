@@ -30,5 +30,3 @@ I've jumped straight to the [Chapter 4, Concurrency](http://www.introtorx.com/Co
 ----
 
 And by the way, on author's blog I've found another interesting series of articles: [Responsive UIs in WPF - Dispatchers to Concurrency to testability](http://leecampbell.blogspot.co.uk/2009/01/responsive-uis-in-wpf-dispatchers-to.html). That's something I'd be reading after sorting out concurrency issues from my code.
-
-You know, concurrency is hard...
