@@ -53,3 +53,4 @@ You should be set!
 - [Octopress documentation](http://octopress.org/docs/)
 - [Markdown syntax](http://daringfireball.net/projects/markdown/syntax)
 - [Nice Octopress Cheat Sheet](http://dreamrunner.org/wiki/public_html/docs/Web/octopress.html)
+- [Few nice improvements to Octopress](http://www.ewal.net/2012/09/08/octopress-customizations/)

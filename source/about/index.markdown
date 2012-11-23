@@ -7,7 +7,16 @@ sharing: true
 footer: true
 ---
 {% img right ../images/me.png 150 %}
-This is a personal site and blog.
+
+Hi there! My name is Valeriu Caraulean and this is my personal site and blog.
+
+I've been in software development for more than 10 years and I still loving it. Having a passion for technology and programming, I'm very lucky to be able to do it for a living. 
+
+My main expertise is mostly around C# and "everything .NET". But lately I found myself learning things that are outside of my comfort area - functional programming with F# and Haskell, Ruby & Web development.
+
+When I'm not writing code I spend my time with my wife and two beautiful girls. And when they let me go, I often find myself lost in the mountains riding my bike.
+
+When I've started this blog the goal was to practice writing in English. Then it grew into something bigger, more interesting and, definitely, challenging. Now it's a place where I write about some of my thoughts on technology and software development, share my experience or just rambling about things...
 
 My online presence:
 
@@ -15,5 +24,7 @@ My online presence:
 - [GitHub profile](http://github.com/vcaraulean)
 - [LinkedIn profile](http://ch.linkedin.com/in/vcaraulean)
 - [My old blog](http://blog.caraulean.com) (hosted on Wordpress.com)
+
+If you want to contact me, [write me](mailto:caraulean@gmail.com) an email.
 
 **Disclaimer:** Thought and opinions expressed on this site are my own and don't represent in any way my employer's positions, strategies, or opinions.
