@@ -1,14 +1,14 @@
 ---
 layout: post
-title: "Hello, World!"
+title: "Hello, new blog!"
 date: 2012-09-30 15:03
 comments: true
 categories: 
 ---
 
-Here I am...
+Here I am, running [Octopress](http://octopress.org)...
 
-### Quick guide on operating [Octopress](http://octopress.org):
+### Quick guide for myself on operating Octopress:
 Create:
 	rake new_post["New blog post title"]
 	rake new_page["About me"]
