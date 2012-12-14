@@ -3,7 +3,7 @@ layout: post
 title: "Do less and achieve more with RavenDb"
 date: 2012-11-15 09:40
 comments: true
-categories: [RavenDb]
+categories: [ravendb]
 ---
 
 If you're after a document database for a .NET application it's hard to miss the buzz around [RavenDb](www.ravendb.net). Although there are many other NoSQL databases that are getting much more attention and popularity, RavenDb distinguishes itself by being a native in .NET ecosystem while still offering great value as a generic, technology agnostic data store.

@@ -3,6 +3,7 @@
 
 html {
   background: $page-bg;
+  border-top: solid 12px $accent-color;
 }
 
 #main {
@@ -25,8 +26,4 @@ body {
       border-right: 1px solid $sidebar-border;
     }
   }
-}
-
-body > header h1 {
-  text-shadow: none;
 }

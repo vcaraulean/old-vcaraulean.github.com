@@ -3,7 +3,7 @@ layout: post
 title: "Visual Studio 2012 dark theme tip - light up your UserControl in XAML designer"
 date: 2012-08-30 23:35
 comments: true
-categories: [WPF]
+categories: [wpf]
 ---
 I really like the new Visual Studio 2012. And the dark theme looks cool and is so much easier for the eyes.
 
