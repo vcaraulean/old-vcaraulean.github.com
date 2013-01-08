@@ -1,12 +1,12 @@
 ---
 comments: true
-date: 2011-06-05 22:51:45
+date: 2011-06-05 20:51:45
 layout: post
 title: Integration of Caliburn.Micro and Telerik's Silverlight controls
 categories: [community, silverlight, tools]
 ---
 
-I’ve wrote already about how to [use Telerik’s RadTabControl with Caliburn.Micro](http://blog.caraulean.com/2010/12/11/teleriks-radtabcontrol-and-caliburn-micro/) and profit from Caliburn’s conventions. That post is still getting considerable attention in my blog and also there are people are asking in Caliburn’s discussion list about such kind of integration. So, I’ve decided to spend some of my time and provide a more coherent experience in this domain. Rob Eisenberg [suggested to create a dedicated project](http://caliburnmicro.codeplex.com/discussions/256418) for it and, why not, to create a NuGet package. That sounded very interesting for me as it would allow me to scratch another itch – the [NuGet](http://nuget.org) package manager. We’ve been using it in our projects with great success but I have never explored the part with creation and publication of packages.
+I’ve wrote already about how to [use Telerik’s RadTabControl with Caliburn.Micro](/blog/2010/12/11/teleriks-radtabcontrol-and-caliburn-micro/) and profit from Caliburn’s conventions. That post is still getting considerable attention in my blog and also there are people are asking in Caliburn’s discussion list about such kind of integration. So, I’ve decided to spend some of my time and provide a more coherent experience in this domain. Rob Eisenberg [suggested to create a dedicated project](http://caliburnmicro.codeplex.com/discussions/256418) for it and, why not, to create a NuGet package. That sounded very interesting for me as it would allow me to scratch another itch – the [NuGet](http://nuget.org) package manager. We’ve been using it in our projects with great success but I have never explored the part with creation and publication of packages.
 
 ### How do you get it
 

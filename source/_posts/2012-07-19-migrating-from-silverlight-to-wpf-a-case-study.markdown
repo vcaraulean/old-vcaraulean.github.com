@@ -8,9 +8,9 @@ categories: [silverlight, wpf]
 
 #### A case study on porting an application that uses [Caliburn.Micro](http://caliburnmicro.codeplex.com/) and [Telerik’s visual components](http://www.telerik.com/) from Silverlight to WPF
 
-I wrote that [nobody should fear an eventual migration from Silverlight to WPF](http://blog.caraulean.com/2012/07/18/fearing-about-silverlights-future-dont/). But I wanted as well to work on a “proof of concept” and try to find what difficulties may arise in a such migration and how easy is to actually do it. And, preferable, do it in a small project before taking on big targets.
+I wrote that [nobody should fear an eventual migration from Silverlight to WPF](/blog/2012/07/18/fearing-about-silverlights-future-dont/). But I wanted as well to work on a “proof of concept” and try to find what difficulties may arise in a such migration and how easy is to actually do it. And, preferable, do it in a small project before taking on big targets.
 
-I’ll use [Caliburn.Micro.Telerik](https://github.com/vcaraulean/Caliburn.Micro.Telerik) as my test ground. It’s a library aimed to [integrate Caliburn.Micro and Telerik’s component suite for Silverlight](http://blog.caraulean.com/2011/06/05/integration-of-caliburn-micro-and-teleriks-silverlight-controls/). And as I’ve been getting requests to port conventions and few helpers to WPF I’ll use it as my playground.
+I’ll use [Caliburn.Micro.Telerik](https://github.com/vcaraulean/Caliburn.Micro.Telerik) as my test ground. It’s a library aimed to [integrate Caliburn.Micro and Telerik’s component suite for Silverlight](/blog/2011/06/05/integration-of-caliburn-micro-and-teleriks-silverlight-controls/). And as I’ve been getting requests to port conventions and few helpers to WPF I’ll use it as my playground.
 
 Silverlight solution contains a Silverlight library and two Silverlight applications to test conventions and other stuff. Both applications together contains more than 10 views with corresponding view models, so it should provide a fairly relevant impression about how easy is to migrate from Silverlight to WPF.
 

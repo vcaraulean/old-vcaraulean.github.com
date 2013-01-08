@@ -6,9 +6,9 @@ title: Flirting with Java community
 categories: [community]
 ---
 
-Despite my [enthusiasm about finding and participating](http://blog.caraulean.com/2009/11/26/alt-net-swiss-community-its-running/) in a regional .NET user group, the [Alt.NET Suisse](http://www.altnetfr.org/lausanne/) haven’t got enough traction to keep on rolling and now it’s actually not functioning.
+Despite my [enthusiasm about finding and participating](/blog/2009/11/26/alt-net-swiss-community-its-running/) in a regional .NET user group, the [Alt.NET Suisse](http://www.altnetfr.org/lausanne/) haven’t got enough traction to keep on rolling and now it’s actually not functioning.
 
-So, to keep my community-and-knowledge-hungry spirit quiet, I [keep visiting regional Java User Groups](http://blog.caraulean.com/2010/01/31/have-been-in-the-aliens-camp-twice/). The last two session I’ve took part where on some emerging topics, not strictly related to Java. For me, a .NET developer, that is a ticket to visit these meetings.
+So, to keep my community-and-knowledge-hungry spirit quiet, I [keep visiting regional Java User Groups](/blog/2010/01/31/have-been-in-the-aliens-camp-twice/). The last two session I’ve took part where on some emerging topics, not strictly related to Java. For me, a .NET developer, that is a ticket to visit these meetings.
 
 The “**Not only SQL (NoSQL)**” session at [JUG Lausanne](http://jugl.ch/) on September 9, was interesting not by presentation about NoSQL and the hype around it, but by half-way discussion that hijacked permanently the presentation. But at the end, it was not a bad thing. It was very interesting to hear how people are planning to use or already using NoSQL in real world projects. 
 

@@ -16,7 +16,7 @@ First one - inability to install on the phone an application that I have just wr
 
 The second thing that worries me it’s “phone” focus. Look at the enormous success of Apple’s iPad, sold in millions last months. Tens of Android based tablets announced this fall. If Microsoft is **limiting Windows Phone 7 only for smart phones, it’s a fail**. Well, in a half of the year MS can announce new “tablet” platform, but it will be too late. Everyone interested will own already a iPad or an “Android pad”. Even me. At this moment I find it more practical to own a basic phone device and a 10” tablet. It just makes more sense…
 
-[In my experience](http://blog.caraulean.com/2010/04/14/microsoft-techdays-2010-geneva-day-1/), Windows 7 is not a player in tablet market nor in any other touch oriented devices. In same way how it happened with iOS and Android, Windows Phone 7 can be a good platform for a 10” tablet. But I think MS either decided do not participate, or came later. If the latter, it already lost the battle.
+[In my experience](/blog/2010/04/14/microsoft-techdays-2010-geneva-day-1/), Windows 7 is not a player in tablet market nor in any other touch oriented devices. In same way how it happened with iOS and Android, Windows Phone 7 can be a good platform for a 10” tablet. But I think MS either decided do not participate, or came later. If the latter, it already lost the battle.
 
 As for my “develop for a mobile/tablet device” dreams, there are few viable choices: learn new platform or try a surrogate, like [MonoDroid](http://www.go-mono.com/monodroid/) or [Moonlight](http://www.mono-project.com/Moonlight).
 

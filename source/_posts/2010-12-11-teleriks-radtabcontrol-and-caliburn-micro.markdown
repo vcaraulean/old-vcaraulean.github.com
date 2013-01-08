@@ -6,7 +6,7 @@ title: Telerik's RadTabControl and Caliburn.Micro
 categories: [silverlight, tools]
 ---
 
-**NOTE:** A more complete solution is available in [this blog post](http://blog.caraulean.com/2011/06/05/integration-of-caliburn-micro-and-teleriks-silverlight-controls/). It contains code, examples and a NuGet package
+**NOTE:** A more complete solution is available in [this blog post](/blog/2011/06/05/integration-of-caliburn-micro-and-teleriks-silverlight-controls/). It contains code, examples and a NuGet package
 
 Well, again a story about having a problem, searching for a solution and finally sharing it :)
 

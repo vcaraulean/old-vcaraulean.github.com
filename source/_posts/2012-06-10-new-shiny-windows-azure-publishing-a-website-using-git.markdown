@@ -6,7 +6,7 @@ title: 'New & shiny Windows Azure: publishing a website using Git'
 categories: [tools]
 ---
 
-After [taking the tour](http://blog.caraulean.com/2012/06/08/new-shiny-windows-azure-taking-the-tour/) of Windows Azure, the first thing I wanted to try is the [Web Site hosting in Azure](https://www.windowsazure.com/en-us/home/scenarios/web-sites/). As Microsoft is offering a free trial for 90 days and a free extension to 12 months after the trial, you can host up to 10 small web sites for free for more than 1 year! With various options for publishing it makes Azure a no-brainer to host small personal sites and experimental stuff.
+After [taking the tour](/blog/2012/06/08/new-shiny-windows-azure-taking-the-tour/) of Windows Azure, the first thing I wanted to try is the [Web Site hosting in Azure](https://www.windowsazure.com/en-us/home/scenarios/web-sites/). As Microsoft is offering a free trial for 90 days and a free extension to 12 months after the trial, you can host up to 10 small web sites for free for more than 1 year! With various options for publishing it makes Azure a no-brainer to host small personal sites and experimental stuff.
 
 ### Publishing a web site to Azure using Git
 
