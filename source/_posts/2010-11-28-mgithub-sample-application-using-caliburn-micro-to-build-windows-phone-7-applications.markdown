@@ -8,7 +8,7 @@ categories: [community, development, silverlight, windows-phone]
 
 #### [mGitHub.SampleApp on GitHub](https://github.com/vcaraulean/mGitHub.SampleApp)
 
-#### [mGitHub - the real app - is available in Marketplace](http://caraulean.com/mgithub)
+#### [mGitHub - the real app - is available in Marketplace](http://gitstation.com)
 
 #### The story
 

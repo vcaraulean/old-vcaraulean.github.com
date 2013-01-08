@@ -6,7 +6,7 @@ comments: true
 categories: [ravendb]
 ---
 
-If you're after a document database for a .NET application it's hard to miss the buzz around [RavenDb](www.ravendb.net). Although there are many other NoSQL databases that are getting much more attention and popularity, RavenDb distinguishes itself by being a native in .NET ecosystem while still offering great value as a generic, technology agnostic data store.
+If you're after a document database for a .NET application it's hard to miss the buzz around [RavenDb](http://ravendb.net). Although there are many other NoSQL databases that are getting much more attention and popularity, RavenDb distinguishes itself by being a native in .NET ecosystem while still offering great value as a generic, technology agnostic data store.
 
 Dealing with Relational Databases, SQL and Object-Relational Mapping are probably the most omnipresent skills in any developer's career. But take a .NET dev with a good background in modern database technologies and let him play few hours with RavenDb and I guarantee that he'll come back impressed.
 
