@@ -1,6 +1,6 @@
 ---
 comments: true
-date: 2011-07-03 22:54:31
+date: 2011-07-03 21:54:31
 layout: post
 title: Why Java always feels unnatural to Windows?
 categories: [general]

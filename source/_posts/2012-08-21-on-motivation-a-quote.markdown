@@ -1,6 +1,6 @@
 ---
 comments: true
-date: 2012-08-21 22:59:50
+date: 2012-08-21 21:59:50
 layout: post
 title: On motivation, a quote...
 ---

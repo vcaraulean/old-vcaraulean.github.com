@@ -1,6 +1,6 @@
 ---
 comments: true
-date: 2011-04-12 23:57:06
+date: 2011-04-12 21:57:06
 layout: post
 title: MIX11's first day keynote on Web Platform. My impressions...
 categories: [general]

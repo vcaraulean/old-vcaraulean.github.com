@@ -1,6 +1,6 @@
 ---
 comments: true
-date: 2011-09-13 22:43:00
+date: 2011-09-13 21:43:00
 layout: post
 title: How to make Caliburn.Micro and Silverlight resources in MergedDictionaries play nicely together
 categories: [development, silverlight]

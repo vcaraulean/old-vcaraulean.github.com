@@ -1,6 +1,6 @@
 ---
 comments: true
-date: 2010-11-14 23:36:56
+date: 2010-11-14 21:36:56
 layout: post
 title: If your Windows Phone 7 application suddenly stopped working in emulator...
 categories: [wp7]

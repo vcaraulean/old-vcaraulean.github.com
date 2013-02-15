@@ -1,6 +1,6 @@
 ---
 comments: true
-date: 2010-11-20 23:13:21
+date: 2010-11-20 21:13:21
 layout: post
 title: Perceived performance
 categories: [design, development, wp7]

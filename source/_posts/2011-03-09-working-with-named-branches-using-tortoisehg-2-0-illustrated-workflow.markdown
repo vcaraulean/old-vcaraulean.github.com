@@ -1,6 +1,6 @@
 ---
 comments: true
-date: 2011-03-09 23:54:47
+date: 2011-03-09 21:54:47
 layout: post
 title: Working with named branches using TortoiseHg 2.0. An illustrated workflow
 categories: [tools]

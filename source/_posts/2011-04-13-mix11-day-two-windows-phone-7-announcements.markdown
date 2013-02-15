@@ -1,6 +1,6 @@
 ---
 comments: true
-date: 2011-04-13 22:51:13
+date: 2011-04-13 21:51:13
 layout: post
 title: MIX11 day two, Windows Phone 7 announcements
 categories: [general, windows-phone]

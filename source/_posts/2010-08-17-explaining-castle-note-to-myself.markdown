@@ -1,6 +1,6 @@
 ---
 comments: true
-date: 2010-08-17 22:15:51
+date: 2010-08-17 21:15:51
 layout: post
 title: Explaining Castle (note to myself)
 ---
