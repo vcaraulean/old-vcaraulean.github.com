@@ -1,0 +1,887 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[valeriu caraulean]]></title>
+  <link href="http://caraulean.com/atom.xml" rel="self"/>
+  <link href="http://caraulean.com/"/>
+  <updated>2013-03-08T23:23:44+01:00</updated>
+  <id>http://caraulean.com/</id>
+  <author>
+    <name><![CDATA[Valeriu Caraulean]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Book review - NoSQL Distilled]]></title>
+    <link href="http://caraulean.com/blog/2012/12/14/book-review-nosql-distilled/"/>
+    <updated>2012-12-14T09:38:00+01:00</updated>
+    <id>http://caraulean.com/blog/2012/12/14/book-review-nosql-distilled</id>
+    <content type="html"><![CDATA[<p><a href="http://www.amazon.com/NoSQL-Distilled-Emerging-Persistence-ebook/dp/B0090J3SYW">NoSQL Distilled: A Brief Guide to the Emerging World of Polyglot Persistence</a> by Martin Fowler and Pramod J. Sadalage.</p>
+
+<p>For some time already I&#8217;ve been keeping an eye on rising popularity of NoSQL. From reading articles and blog posts about various aspects and flavors, I adventured myself and dived more deeply into RavenDb, a NoSQL Document Database. Still, the picture I had in my mind was somewhat blurry and had few areas where I wasn&#8217;t sure that I understand some basic things.</p>
+
+<p>This book is a very good starting point into NoSQL world. It starts with explaining the rise of popularity of NoSQL solutions for multiple domains and modern data storage requirements. Then it explains important concepts around NoSQL data stores like aggregation and distribution models, consistency, versioning and Map-Reduce. The second part of the book takes a look at each family of NoSQL flavors and analyzes their features, data modeling challenges and applicability of concrete database in various domains. Key-Value databases are presented by <a href="http://basho.com/products/riak-overview/">Riak</a>, Document Databases by <a href="http://www.mongodb.org/">MongoDB</a> with few mentions of <a href="http://ravendb.net/">RavenDb</a>, <a href="http://cassandra.apache.org/">Cassandra</a> represents the Column-Family store type, and, final group, the Graph databases are explained using <a href="http://www.neo4j.org/">Neo4J</a>. Last chapters of the book talk about schema migrations, data storage options outside of NoSQL area and what you should consider when choosing a database.</p>
+
+<p>One of the ideas frequently discussed trough the whole book is why people are choosing NoSQL solutions:</p>
+
+<blockquote><p>There are two primary reasons for considering NoSQL. One is to handle data access with sizes and performance that demand a cluster; the other is to improve the productivity of application development by using a more convenient data interaction style.</p></blockquote>
+
+
+<p>Most often when you speak about NoSQL with somebody the reaction looks like &#8220;ah, that thing that Google and Amazon runs on thousands of servers&#8221;. And nobody who only have heard of NoSQL is sensing the second great advantage of these systems: improving productivity and flexibility of your development team and make the life of application developer easier.</p>
+
+<p>NoSQL doesn&#8217;t means a complete schema-less data storage. Instead of having rigid definitions of schema and relationships as in the world of Relational Database, the shape of data is defined by application itself. That is, application is defining how it wants to store and access the data. No more you have to fight the impedance mismatch between relational model and in-memory data structures. Forget the performance penalization of an ORM, limitations of relational model in querying, aggregating and shaping data. Instead, your application defines the aggregate model and naturally persist it. Then it has reach options to slice and dice stored data, perform flexible Map-Reduce transformations and offers reach analytical capabilities. This allows development teams to be more flexible and productive when building complex systems. When your data storage is a simple commodity, easy to access and manipulate, you will have much more time to work on your domain, business logic or User Interface.</p>
+
+<p>Each kind of NoSQL implementation offers it&#8217;s own advantages and has it&#8217;s weak points. For me the most interesting are the Document Databases like MongoDB and RavenDb. They will suit a very broad range of applications because of the notion of a Document - something with properties and values aggregated in one entity stored as a simple JSON document. This will give you ability to index documents, write rich document based queries and much more.</p>
+
+<h3>Summary</h3>
+
+<p>A great overview of existent NoSQL technologies, their characteristics and applicability of each of them in various domains. The book is short as it was really meant as an overview, not a deep dive in these technologies.</p>
+
+<p>At the moment when I write this review Amazon places this book as #1 in Databases category and #2 in Databases/SQL, it has 15 reviews with an overall score of 4.5.</p>
+
+<p>Highly recommended.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Do less and achieve more with RavenDb]]></title>
+    <link href="http://caraulean.com/blog/2012/11/15/do-less-and-achieve-more-with-ravendb/"/>
+    <updated>2012-11-15T09:40:00+01:00</updated>
+    <id>http://caraulean.com/blog/2012/11/15/do-less-and-achieve-more-with-ravendb</id>
+    <content type="html"><![CDATA[<p>If you&#8217;re after a document database for a .NET application it&#8217;s hard to miss the buzz around <a href="http://ravendb.net">RavenDb</a>. Although there are many other NoSQL databases that are getting much more attention and popularity, RavenDb distinguishes itself by being a native in .NET ecosystem while still offering great value as a generic, technology agnostic data store.</p>
+
+<p>Dealing with Relational Databases, SQL and Object-Relational Mapping are probably the most omnipresent skills in any developer&#8217;s career. But take a .NET dev with a good background in modern database technologies and let him play few hours with RavenDb and I guarantee that he&#8217;ll come back impressed.</p>
+
+<p>And there is a good reason for that. One of the most impressive things is how easy it to define a class, fill it with data then just throw it in the store. Then load it back an put it on the screen or send over the wires. All this without any object-to-database mappings, no transformations, no base classes; with only few lines of configuration and initialization code. It&#8217;s fascinating when you&#8217;re an ORM veteran and experience it for the first time&#8230;</p>
+
+<p>I won&#8217;t go over all of the features of RavenDb. I will just touch few points that, in my opinion, can drastically reduce the amount of infrastructure code of almost any application, be it a client-server &#8220;enterprise-grade&#8221; system, web site / service or even a rich desktop application.</p>
+
+<p>Disclaimer: YMMV. I&#8217;m writing about things I&#8217;ve seen or experienced myself.</p>
+
+<h2>Reduce your mapping layers</h2>
+
+<p>Things you probably (or certainly) will not need with RavenDb:</p>
+
+<ul>
+<li>Maintain a mapping layer to fit your domain model in a relational database with it&#8217;s rules and constraints</li>
+<li>Keep on the eternal fight with lazy relations</li>
+<li>Map your domain to DTOs and backwards when you&#8217;re talking over the wires (especially using WCF)</li>
+<li>Map the DTOs to client side models and view models</li>
+</ul>
+
+
+<p>All this stuff is code. Code to be written, tested and maintained. Take this code and throw it away. Feel better now? I&#8217;m glad for you&#8230;</p>
+
+<p>Of course you&#8217;ll have some mapping code. As example you&#8217;ll probably have to shape your documents to display them on the screen or create static indexes. But I&#8217;d consider it as a business/domain concern and not just plumbing code to please your communication layer or mapping framework.</p>
+
+<h2>Cut through your infrastructure</h2>
+
+<p>What I love in RavenDb is that it&#8217;s not a mere data store. It comes with a bunch of features and bundles that aren&#8217;t directly related to persist and query data, but are much more like functional or business components for your application covering real feature requirements. Examples?</p>
+
+<h4>Search</h4>
+
+<p>Any reasonably sized and feature rich application that is manipulating data records is incomplete without an embedded search feature. In .NET world the choice is extremely limited. You&#8217;ll probably choose the Lucene.NET, write code to sync your search indexes with database/domain changes, then, run scary with the hope to never have to touch that code again. If you&#8217;ve worked with Lucene.NET, you know what I&#8217;m talking about&#8230;</p>
+
+<p>Much of the RavenDb powers are based on Lucene.NET. But you&#8217;ll barely observe it hidden behind a friendly API and the &#8220;usual suspect&#8221;, LINQ.</p>
+
+<h4>Security</h4>
+
+<p>You never meet a stakeholder or client obsessed about security? Move on to the next point&#8230;</p>
+
+<p>Authorization is hard: Users, Roles, Operations, Permissions. Then add row level security. Oh my, it&#8217;s really hard. And it&#8217;s even harder to get it working properly and with minimal penalization on performance. I think because it&#8217;s a tough challenge there aren&#8217;t many generic solutions for this problem.</p>
+
+<p>RavenDb comes with <a href="http://ravendb.net/docs/server/bundles/authorization">Authorization Bundle</a>. The only thing you have to do is to define your rules and (when required) add additional checks for constraints in your business or domain logic.</p>
+
+<h4>Client notifications</h4>
+
+<p>It&#8217;s called <a href="http://ayende.com/blog/157121/awesome-feature-of-the-day-ravendb-changes-api">Changes API</a>, it let&#8217;s your client know when a document changes on the server. I&#8217;ve been there, done that:</p>
+
+<ul>
+<li>Whenever NHibernate detects a change, send a message about it to a queue.</li>
+<li>Have a service listening to that queue.</li>
+<li>When there&#8217;s a message, notify all interested subscribers about it.</li>
+<li>Over WCF. Duplex channel. Silverlight&#8230;</li>
+</ul>
+
+
+<p>And I still have known bugs in that subsystem.</p>
+
+<p>Now take all this stuff and throw it away. Using RavenDb&#8217;s client API you can subscribe to change events of a single document, a document type or index. An the awesome part - it implements IObservable from <a href="http://www.introtorx.com/">Reactive Extensions</a>. Ditto.</p>
+
+<h4>Versioning/Audit</h4>
+
+<p>With <a href="http://ravendb.net/docs/server/bundles/versioning">Versioning Bundle</a> RavenDb will keep the history of changes made to a document. With the audit trail you&#8217;ll be able to find who changed what and when. Depending on your architecture it may be very simple to implement basic audit infrastructure. But it&#8217;s a much more challenging task to keep around modifications and with relational model is very hard to revert changes when your records were stored in database. With Versioning Bundle it&#8217;s easy to plug in and know everything.</p>
+
+<hr />
+
+<p>To refrain: all this stuff is code. Code to be written, tested, maintained.</p>
+
+<p>And one more thing. All this components are written by the authors of RavenDb. While I&#8217;m confident in my skills, I know my limits. I wouldn&#8217;t be able to do a better job integrating with a third-party system than the people who wrote it from scratch.</p>
+
+<p>I&#8217;ve highlighted only some of typical parts of a reasonably complex software system but there are more, of course. With RavenDb you already have functional blocks ready for integration and use. This is a point to consider when time-to-marked is critical or you care about your product. And less of a concern when you&#8217;re only after your monthly paycheck.</p>
+
+<p>Even if you have already some of these subsystems in place and are using &#8220;typical&#8221; architecture with a service layer, ORM and relational database, you should seriously consider RavenDb while you&#8217;re at early stages of your product.</p>
+
+<p>Because with RavenDb you can do less but achieve more by focusing on things that really matter: your domain model, business knowledge and that bizarre wrapper around it, called User Interface.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Diving deeper in Reactive Extensions, concurrency]]></title>
+    <link href="http://caraulean.com/blog/2012/10/09/diving-deeper-in-reactive-extensions/"/>
+    <updated>2012-10-09T22:04:00+02:00</updated>
+    <id>http://caraulean.com/blog/2012/10/09/diving-deeper-in-reactive-extensions</id>
+    <content type="html"><![CDATA[<p>I&#8217;ve started using <a href="http://msdn.microsoft.com/en-us/data/gg577609.aspx">Reactive Extensions, Rx</a> library without digging too much in it&#8217;s internals. Had a case where I wanted to filter a stream of events and decided I&#8217;d try something new for me, Rx. But as it always happens with powerful and flexible tools, starting with few superficial articles and examples from the Web without diving deeper in the concepts is a pretty bad idea.</p>
+
+<p>This time I&#8217;ve been bitten by <em>concurrency</em> issues.</p>
+
+<p>And the best resource I&#8217;ve found so far is the <a href="http://www.introtorx.com/">Introduction to Rx</a> ebook by <a href="http://leecampbell.blogspot.co.uk/">Lee Campbell</a>. It costs only around a buck on Amazon and it&#8217;s available for free from the site.</p>
+
+<p>I&#8217;ve jumped straight to the <a href="http://www.introtorx.com/Content/v1.0.10621.0/15_SchedulingAndThreading.html">Chapter 4, Concurrency</a> and for surely will pass without a hurry over the rest of the book. This chapter has an nice check list about best threading options for some scenarios:</p>
+
+<h3>UI Applications</h3>
+
+<ul>
+<li>The final subscriber is normally the presentation layer and should control the scheduling.</li>
+<li>Observe on the DispatcherScheduler to allow updating of ViewModels</li>
+<li>Subscribe on a background thread to prevent the UI from becoming unresponsive
+
+<ul>
+<li>If the subscription will not block for more than 50ms then
+
+<ul>
+<li>Use the TaskPoolScheduler if available, or</li>
+<li>Use the ThreadPoolScheduler</li>
+</ul>
+</li>
+<li>If any part of the subscription could block for longer than 50ms, then you should use the NewThreadScheduler.</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>Service layer</h3>
+
+<ul>
+<li>If your service is reading data from a queue of some sort, consider using a dedicated EventLoopScheduler. This way, you can preserve order of events</li>
+<li>If processing an item is expensive (>50ms or requires I/O), then consider using a NewThreadScheduler</li>
+<li>If you just need the scheduler for a timer, e.g. for Observable.Interval or Observable.Timer, then favor the TaskPool. Use the ThreadPool if the TaskPool is not available for your platform.</li>
+</ul>
+
+
+<hr />
+
+<p>And by the way, on author&#8217;s blog I&#8217;ve found another interesting series of articles: <a href="http://leecampbell.blogspot.co.uk/2009/01/responsive-uis-in-wpf-dispatchers-to.html">Responsive UIs in WPF - Dispatchers to Concurrency to testability</a>. That&#8217;s something I&#8217;d be reading after sorting out concurrency issues from my code.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Hello, new blog!]]></title>
+    <link href="http://caraulean.com/blog/2012/09/30/hello/"/>
+    <updated>2012-09-30T15:03:00+02:00</updated>
+    <id>http://caraulean.com/blog/2012/09/30/hello</id>
+    <content type="html"><![CDATA[<p>Here I am, running <a href="http://octopress.org">Octopress</a>&#8230;</p>
+
+<h3>Quick guide for myself on operating Octopress:</h3>
+
+<p>Create:</p>
+
+<pre><code>rake new_post["New blog post title"]
+rake new_page["About me"]
+</code></pre>
+
+<p>Publish:</p>
+
+<pre><code>rake generate
+rake deploy
+</code></pre>
+
+<p><strong>Don&#8217;t forget to commit!</strong></p>
+
+<!-- more -->
+
+
+<h3>Images</h3>
+
+<p>Syntax:</p>
+
+<pre><code>{% img [class names] /path/to/image [width] [height] [title text [alt text]] %}
+</code></pre>
+
+<p>Real usage, for local images:</p>
+
+<pre><code>{% img left ../images/image_name.png 150 %}
+</code></pre>
+
+<h3>Configuring existing blog on new computer</h3>
+
+<ul>
+<li>Install <a href="https://github.com/scottmuc/yari">yari</a></li>
+<li>Install ruby 1.9.3 (<code>yari 1.9.3</code>)</li>
+<li>Add ruby to PATH variable in %USERPROFILE%</li>
+<li>Checkout sources:</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git clone git@github.com:username/username.github.com.git
+</span><span class='line'>$ cd username.github.com
+</span><span class='line'>username.github.com$ git checkout source
+</span><span class='line'>username.github.com$ mkdir _deploy
+</span><span class='line'>username.github.com$ cd _deploy
+</span><span class='line'>username.github.com/_deploy$ git init
+</span><span class='line'>username.github.com/_deploy$ git remote add origin git@github.com:username/username.github.com.git
+</span><span class='line'>username.github.com/_deploy$ git pull origin master
+</span><span class='line'>username.github.com/_deploy$ cd ..
+</span><span class='line'>username.github.com$</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>Configure required tools:</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>gem install bundler
+</span><span class='line'>bundle install</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You should be set!</p>
+
+<h3>References</h3>
+
+<ul>
+<li><a href="http://octopress.org/docs/">Octopress documentation</a></li>
+<li><a href="http://daringfireball.net/projects/markdown/syntax">Markdown syntax</a></li>
+<li><a href="http://dreamrunner.org/wiki/public_html/docs/Web/octopress.html">Nice Octopress Cheat Sheet</a></li>
+<li><a href="http://www.ewal.net/2012/09/08/octopress-customizations/">Few nice improvements to Octopress</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Visual Studio 2012 dark theme tip - light up your UserControl in XAML designer]]></title>
+    <link href="http://caraulean.com/blog/2012/08/30/visual-studio-2012-dark-theme-tip/"/>
+    <updated>2012-08-30T23:35:00+02:00</updated>
+    <id>http://caraulean.com/blog/2012/08/30/visual-studio-2012-dark-theme-tip</id>
+    <content type="html"><![CDATA[<p>I really like the new Visual Studio 2012. And the dark theme looks cool and is so much easier for the eyes.</p>
+
+<p>But there is a real problem when you’re working with User Controls in designer. And we have lots of them. What is the problem then? Look at the picture:</p>
+
+<p><img class="center" src="../../../../../images/2012/vs-dark-1.png"></p>
+
+<p>Yup, that is a UserControl with few elements on it. With a default transparent background it’s is hardly visible on design surface. In runtime, when put on a parent (usually a Window) it will take background of the parent and all elements will be visible.</p>
+
+<p>Looking trough the VS2012 settings I’ve seen options to customize Windows Form Designer, Workflow and HTML Designers but nothing about customizing the XAML designer. Pretty bad, Microsoft.</p>
+
+<p>In this case Styling comes to the rescue! With some styling and by using a trigger to enable the style only for Design Time, we’ll get this:</p>
+
+<p><img class="center" src="../../../../../images/2012/vs-dark-2.png"></p>
+
+<p>Much better now! To achieve it you have to put a small XAML fragment in your Generic.xaml or App.xaml and you should be done:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;Style TargetType="{x:Type UserControl}"&gt;
+</span><span class='line'>    &lt;Style.Triggers&gt;
+</span><span class='line'>        &lt;Trigger Property="ComponentModel:DesignerProperties.IsInDesignMode"
+</span><span class='line'>                 Value="true"&gt;
+</span><span class='line'>            &lt;Setter Property="Background"
+</span><span class='line'>                    Value="White" /&gt;
+</span><span class='line'>        &lt;/Trigger&gt;
+</span><span class='line'>    &lt;/Style.Triggers&gt;
+</span><span class='line'>&lt;/Style&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>That’s how you’ll have your views well visible (and actually, design-able) in dark theme.</p>
+
+<h3>Update:</h3>
+
+<p>I&#8217;ve looked again if there are any options in Visual Studio 2012 to lighten a bit the dark background in designer. And found an <a href="http://connect.microsoft.com/VisualStudio/feedback/details/758745/wpf-designer-unusable-in-dark-theme">issue reported on Microsoft Connect</a> about this very problem. Unfortunately, this is &#8220;by design&#8221; and cannot be customized, at least yet:</p>
+
+<blockquote><p>Yes, this is an unfortunately limitation in Visual Studio 2012 RTM. We would have loved to have the ability to change the default background color of the design surface, but could not get around to it (we have it on our backlog).</p></blockquote>
+
+
+<p>And a user has even posted a workaround that is mostly the same as above&#8230;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Evening time, time for fun]]></title>
+    <link href="http://caraulean.com/blog/2012/08/28/evening-time-time-for-fun/"/>
+    <updated>2012-08-28T23:07:18+02:00</updated>
+    <id>http://caraulean.com/blog/2012/08/28/evening-time-time-for-fun</id>
+    <content type="html"><![CDATA[<p>Or for whatever keeps you entertained&#8230;</p>
+
+<p>This evening it started when I looked how to make Windows Live Writer store drafts in my SkyDrive. As usual, started with googling it. Found a <a href="http://lehsys.blogspot.ch/2011/04/how-to-change-drafts-and-recent-posts.html">trick with a registry key</a> that should point WLW to any folder I want. Nice trick, except it was not working on my PC.</p>
+
+<p>Why a trick that works for other people isn’t working in my machine?! This hooked me up and it ended badly. In about 2 hours I’ve:</p>
+
+<ul>
+<li>Poked around WLW’s registry settings</li>
+<li>Run <a href="http://technet.microsoft.com/en-US/sysinternals">procmon &amp; procexp</a> on WindowsLiveWriter.exe</li>
+<li>Decompiled Windows Live Writer using <a href="http://www.jetbrains.com/decompiler/">dotPeek</a></li>
+<li>Got a rough picture of WLW’s code structure and some knowledge of it’s initialization procedure</li>
+<li>Found the code that handles custom folder and seen that it should work as the trick described</li>
+<li>Learned from code that WLW can run in portable code and <a href="http://www.christophdebaene.com/blog/2011/08/20/windows-live-writer-2011-tips/">how to do it</a></li>
+<li>Learned how to use Just-In-Time Debugger to <a href="http://msdn.microsoft.com/en-us/library/a329t4ed.aspx">launch an .exe file and attach the Visual Studio’s debugger</a> from application’s start</li>
+<li>Failed to make WLW crash so I can break in debugger</li>
+<li>Learned about <a href="http://msdn.microsoft.com/en-us/library/15d1wtaf.aspx">setting a function breakpoint</a>, and that’s useless without symbols</li>
+<li>Gave up&#8230;</li>
+</ul>
+
+
+<p>Then I had a glass of Talisker and before giving up completely tried again the trick with registry key&#8230;</p>
+
+<p><strong>It. Worked.</strong></p>
+
+<p>Moral of the story – stupid, evident errors happen all the time. And, sadly, it takes time to recover. You’re lucky if you’re not under pressure, running to deadline or doing a demo. And you’re really lucky if you can learn new things on the way and keep yourself entertained :)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[On motivation, a quote...]]></title>
+    <link href="http://caraulean.com/blog/2012/08/21/on-motivation-a-quote/"/>
+    <updated>2012-08-21T23:59:50+02:00</updated>
+    <id>http://caraulean.com/blog/2012/08/21/on-motivation-a-quote</id>
+    <content type="html"><![CDATA[<p>From “<a href="http://www.amazon.com/Will-Measure-Your-Life-ebook/dp/B006ID0CH4/">How will you measure your life?</a>”:</p>
+
+<blockquote><p>The theory of motivation suggests you need to ask yourself a different set of questions than most of us are used to asking. Is this work meaningful to me? Is this job going to give me a chance to develop? Am I going to learn new things? Will I have an opportunity for recognition and achievement? Am I going to be given responsibility? These are the things that will truly motivate you. Once you get this right, the more measurable aspects of your job will fade in importance.</p></blockquote>
+
+<p>After starting reading this book I find myself divided. Sometimes I’m eager to go read it in one go up to the late night. Next day I’m closing it after a chapter or just a paragraph that I want to “process”. A very strange feeling.</p>
+
+<p>But a really great reading&#8230;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Migrating from Silverlight to WPF, a case study]]></title>
+    <link href="http://caraulean.com/blog/2012/07/19/migrating-from-silverlight-to-wpf-a-case-study/"/>
+    <updated>2012-07-19T19:06:48+02:00</updated>
+    <id>http://caraulean.com/blog/2012/07/19/migrating-from-silverlight-to-wpf-a-case-study</id>
+    <content type="html"><![CDATA[<h4>A case study on porting an application that uses <a href="http://caliburnmicro.codeplex.com/">Caliburn.Micro</a> and <a href="http://www.telerik.com/">Telerik’s visual components</a> from Silverlight to WPF</h4>
+
+<p>I wrote that <a href="http://caraulean.com/blog/2012/07/18/fearing-about-silverlights-future-dont/">nobody should fear an eventual migration from Silverlight to WPF</a>. But I wanted as well to work on a “proof of concept” and try to find what difficulties may arise in a such migration and how easy is to actually do it. And, preferable, do it in a small project before taking on big targets.</p>
+
+<p>I’ll use <a href="https://github.com/vcaraulean/Caliburn.Micro.Telerik">Caliburn.Micro.Telerik</a> as my test ground. It’s a library aimed to <a href="http://caraulean.com/blog/2011/06/05/integration-of-caliburn-micro-and-teleriks-silverlight-controls/">integrate Caliburn.Micro and Telerik’s component suite for Silverlight</a>. And as I’ve been getting requests to port conventions and few helpers to WPF I’ll use it as my playground.</p>
+
+<p>Silverlight solution contains a Silverlight library and two Silverlight applications to test conventions and other stuff. Both applications together contains more than 10 views with corresponding view models, so it should provide a fairly relevant impression about how easy is to migrate from Silverlight to WPF.</p>
+
+<h3>Step 1</h3>
+
+<p>Restructure solution to allow cohabitation of two different versions. In this case, I want to keep both versions, so I’ll be copying files from one project to another. Duplication, but at this moment I don’t want the overhead of keeping two target frameworks with a common codebase.</p>
+
+<h3>Step 2</h3>
+
+<p>Creating the destination point – a .NET library or WPF application:</p>
+
+<ul>
+<li>Create new Class Library targeting .NET 4 framework or WPF Application with .NET 4 Client profile.</li>
+<li>Add Caliburn.Micro using Nuget</li>
+<li>If it’s a class library, add references to WPF’s assemblies: PresentationCore, PresentationFramework, System.Xaml &amp; WindowsBase</li>
+<li>Add references to Telerik’s assemblies. I’ve picked ones with same names as in corresponding Silverlight project.</li>
+</ul>
+
+
+<h3>Step 3</h3>
+
+<p>Getting the application canvas and infrastructure code right. This includes Caliburn’s bootstrapper, the main view &amp; all stuff to get application running. There is one difference, the main view in WPF should be a Window, while in Silverlight it was a simple UserControl.</p>
+
+<h3>Step 4</h3>
+
+<p>Migrating your views &amp; view models. In the case of Caliburn.Micro.Telerik examples project I’ve had to just copy the files from Silverlight to WPF project. Then it compiled and run just fine.</p>
+
+<h3>Step 5</h3>
+
+<p>Cleanup.</p>
+
+<h3>Conclusions</h3>
+
+<p>Telerik have done a pretty good job on keeping their Silverlight and WPF components in a very similar shape and at a very high compatibility level between both platforms. I hope that it doesn’t diminishes any of advantages/facilities/features of either platform.</p>
+
+<p>Migrating a Caliburn.Micro application from SL to WPF is a piece of cake. Despite few minor differences in infrastructure code between WPF &amp; Silverlight versions of WPF, you’re pretty much left with move files, cleanup namespaces and Run. View models are ported without any issues, however you may encounter few with the views.</p>
+
+<p>As this was a small project, porting is very straightforward and relatively simple. In a real application with lots of stuff and moving pieces you will have some more work to do. Particularly when you have some Silverlight specific code or where you’re working around platform’s limitations. Take for example mouse events. To get a “double click” you have to write custom code. Middle click doesn’t exist in Silverlight. Printing is different, file system interactions too. Communication layer (WCF &amp; service references) will need a review. There’s are no RIA services in WPF (I may be wrong here). The list may go on further, but I’ll stop here. I hope to have much more info to share about migration process as I’ll probably will take part in moving a much larger application from Silverlight to WPF.</p>
+
+<p>That’s all. I hope my experience will help someone else to go over the fear and burden of porting a Silverlight application to WPF.</p>
+
+<p>PS: you can have a look at final result, get sources and compare both versions on <a href="http://github.com/vcaraulean/Caliburn.Micro.Telerik">GitHub</a>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Fearing about Silverlight's future? Don't...]]></title>
+    <link href="http://caraulean.com/blog/2012/07/18/fearing-about-silverlights-future-dont/"/>
+    <updated>2012-07-18T13:26:29+02:00</updated>
+    <id>http://caraulean.com/blog/2012/07/18/fearing-about-silverlights-future-dont</id>
+    <content type="html"><![CDATA[<p>Just accept the facts, prepare &amp; migrate to WPF when ready.</p>
+
+<p>When you have something worrying you, the best way to tackle it is to cut it straight and act on it. That&#8217;s the way to get it out of your head. If not, you&#8217;re left on the mercy of external factors that may change the circumstances and the problem will go away.</p>
+
+<blockquote><p>“If you wait by the river long enough, the bodies of your enemies will float by.”
+- Sun Tzu</p></blockquote>
+
+<p>For some time I have a strange feeling about Silverlight. Few years ago it was &#8220;the solution&#8221; for cross-platform Rich Internet Applications. It was Microsoft&#8217;s &#8220;offre du jour&#8221; for Enterprise Software development, offering ease of deployment &amp; update, run anywhere premise and offering a (part of) common development platform for Windows: XAML &amp; .NET.</p>
+
+<h4>Times are changing</h4>
+
+<p>The rapid rise of HTML5 &amp; CSS3 have had a huge impact on client side application development. Reach features of &#8220;next web&#8221; markup &amp; styling together with explosion of JavaScript popularity (adoption &amp; tooling) makes Web Applications an extremely viable &#8220;Rich Client&#8221; solution even for Enterprise Software. And sometimes it works nicely for mobile applications too.</p>
+
+<p>Then there is Microsoft&#8217;s focus on Windows 8 &amp; WinRT. All bets are on the new and shiny Windows 8, Office 2013, Windows Phone 8 &amp; Surface. WinRT is &#8220;the new Silverlight&#8221;, this time without the goal to run on multiple platforms but with a lot of aspirations to support Microsoft&#8217;s moves in tablet and mobile markets.</p>
+
+<h4>And now</h4>
+
+<p>Looking back at my experience as a Silverlight developer, there is a sensible level of deception and frustration. Missing features, cut-off or half-backed functionality, leaking resources and a failed promise to offer a viable way to develop cross-platform applications. And the worst of all, I think we&#8217;ve lost time working around various limitations of Silverlight in order to get it working properly and comply with our requirements (somewhere between 10 to 15 %%).</p>
+
+<p>The current version of Silverlight is 5. Microsoft is quiet about his future - current releases will be supported, but absolute no information about next versions. Instead, there are plenty of rumors that there will be no Silverlight 6. Microsoft is too busy pushing the Windows 8 and the Silverlight&#8217;s incarnation on this platform, the WinRT.</p>
+
+<h4>What do you have to loose? Not too much&#8230;</h4>
+
+<p>More important is what you can gain by migrating your current Silverlight application to WPF:</p>
+
+<ul>
+<li>A normal Windows application, running on all versions of Windows from XP to 8.</li>
+<li>The power of WPF &amp; full .NET framework.</li>
+<li>Full integration with OS: printing, scanning, file system, services.</li>
+<li>Better integration with other applications. MS Office, Reporting tools, you name it.</li>
+<li>Touch &amp; Multi-Touch support. You can create applications for Windows 8 that aren&#8217;t Metro, but are touch friendly.</li>
+</ul>
+
+
+<p>The main thing you’d probably miss is the ability to run application directly in your browser, without installing it. But if it’s an Silverlight OOB application, you probably need some features not available in his sandboxed environment and running in browser is already out of question.</p>
+
+<h4>Would it be hard to migrate to WPF? It depends&#8230;</h4>
+
+<p>If you have a well structured application that follows good practices, it shouldn’t be a hard task to complete. Major steps to migrate a Silverlight application to WPF will be:</p>
+
+<ul>
+<li><strong>Libraries &amp; frameworks</strong>. If you were careful picking those, it now should be a pretty simple task of switching assemblies. Should it be the MVVM framework (Caliburn.Micro or MVVMLight), IoC container (Castle.Windsor) or third-party visual component library (Telerik, DevExpress) - usually they have versions for Silverlight and WPF. In ideal case you will end up just swapping assemblies.</li>
+<li><strong>Porting the source code</strong>. Again, depending on how you&#8217;ve approached development process it may be not so hard to do. It most cases it will be just &#8220;copy files&#8221; over. But some parts would need to be rewritten, often to simplify or throw away things. I estimate that volume of code to be reviewed/rewritten will be around 15% of overall client side code. Resharper &amp; good old Find-Replace are your friends here.</li>
+<li><strong>Installer &amp; application updates</strong>. Up until now you relied on Silverlight to install &amp; update the application. This part should be redone. ClickOnce is a viable solution, it will serve well your initial requirements to install and update the application. It would take 2-3 days to build, test &amp; make available a decent solution for this problem.</li>
+<li><strong>Rigorous testing after migration</strong>. May be most difficult and time consuming one if you have a large application as there is no tooling support to help with it.</li>
+</ul>
+
+
+<p>I&#8217;m not advocating blindly for immediate migration of every Silverlight application to WPF. If your application have reached his first release, doesn&#8217;t have a long lifespan and current users are happy - you&#8217;ll probably be fine sticking with Silverlight. But if you&#8217;re still in active development or the application is a part of company&#8217;s strategic products &amp; directions, you should very seriously consider the move.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Packed for vacation...]]></title>
+    <link href="http://caraulean.com/blog/2012/07/02/packed-for-vacation/"/>
+    <updated>2012-07-02T16:28:07+02:00</updated>
+    <id>http://caraulean.com/blog/2012/07/02/packed-for-vacation</id>
+    <content type="html"><![CDATA[<p>It’s that happy time again, a (well deserved I think) vacation. Beach, sea, great food &amp; drinks and, of course, lot’s of time to spend with family.</p>
+
+<p>This year, along the phones, iPad &amp; notebook I’ve took a Nook Simple Touch to go trough my ever growing reading list. The first advantage of an ebook reader is that you’re sure that nobody will try to claim the device you’re reading on for playing piano, draw, do puzzles or smash those bad pigs - Nook is genuinely un-interesting for my daughters. As for reading, I enjoy very much the device. E-Ink screen is very easy for the eyes, it’s readable on direct sun and you don’t think about running out of batteries. The other advantage is that it doesn’t have the distractions of the iPad - no twitter, email &amp; browser makes reading sessions much longer and the focus stays longer on content and thinking&#8230;</p>
+
+<h3>Reading list</h3>
+
+<ul>
+<li><a href="http://www.amazon.com/Steve-Jobs-Walter-Isaacson/dp/1451648537/">Steve Jobs by Walter Isaacson</a></li>
+<li><a href="http://www.amazon.com/Dont-Make-Me-Think-Usability/dp/0321344758/">Don&#8217;t Make Me Think: A Common Sense Approach to Web Usability by Steve Krug</a></li>
+<li><a href="http://www.amazon.com/Design-Everyday-Things-Donald-Norman/dp/0465067107/">The Design of Everyday Things by Donald A. Norman</a></li>
+<li>Selected chapters from <a href="http://www.aosabook.org/en/index.html">The Architecture of Open Source Applications</a>.</li>
+</ul>
+
+
+<p>And will be sharing with my wife some novels in French to improve a bit my (still bad in my opinion) French language skills.</p>
+
+<h3>Videos</h3>
+
+<p>Downloaded the torrent with <a href="http://www.ndcoslo.com/Article/News/2012video">videos of all sessions from NDC 2012</a>. 25 GB of goodness, that should keep my entertained some time. Watching videos is much more time consuming action than reading a book (and, usually, less dense in information &amp; message they convey), so I’d be picking only a handful of sessions to go trough&#8230;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[New & shiny Windows Azure: publishing a website using Git]]></title>
+    <link href="http://caraulean.com/blog/2012/06/10/new-shiny-windows-azure-publishing-a-website-using-git/"/>
+    <updated>2012-06-10T18:02:33+02:00</updated>
+    <id>http://caraulean.com/blog/2012/06/10/new-shiny-windows-azure-publishing-a-website-using-git</id>
+    <content type="html"><![CDATA[<p>After <a href="http://caraulean.com/blog/2012/06/08/new-shiny-windows-azure-taking-the-tour/">taking the tour</a> of Windows Azure, the first thing I wanted to try is the <a href="https://www.windowsazure.com/en-us/home/scenarios/web-sites/">Web Site hosting in Azure</a>. As Microsoft is offering a free trial for 90 days and a free extension to 12 months after the trial, you can host up to 10 small web sites for free for more than 1 year! With various options for publishing it makes Azure a no-brainer to host small personal sites and experimental stuff.</p>
+
+<h3>Publishing a web site to Azure using Git</h3>
+
+<p>Here are the steps required to configure &amp; publish your local repository to Azure.</p>
+
+<h4>Configure Git publishing on Azure.</h4>
+
+<p>It’s one time operation where you need to provide a username and password for your git repositories. You’ll be asked for it for it when you’ll try to configure Git for your first site.</p>
+
+<h4>Create your web site in Azure</h4>
+
+<p><img src="http://caraulean.com/../../../../../images/2012/azure-git-1.png" alt="alt screenshot" /></p>
+
+<p>Provide a name for your site, then I’ll take few seconds to create an instance for it.</p>
+
+<h4>Configure the Git repository for your site</h4>
+
+<ul>
+<li>Click on the name of your site to open it’s management console</li>
+<li>Click on “Set up Git publishing”</li>
+</ul>
+
+
+<p><img src="http://caraulean.com/../../../../../images/2012/azure-git-2.png" alt="alt screenshot" /></p>
+
+<p>In a few seconds your site will have a git repository provisioned.</p>
+
+<h4>Add new remote to your local Git repository</h4>
+
+<p>Open the folder with your local git repository in a command line/PowerShell window and type:</p>
+
+<pre><code>git remote add azure https://vcaraulean@helloworld-test.scm.azurewebsites.net/helloworld-test.git
+</code></pre>
+
+<p>Here the “azure” is the name of your remote repository and the link is the address of your repository hosted in Azure.</p>
+
+<h4>Push your website to newly added remote in Azure</h4>
+
+<pre><code>git push azure master
+</code></pre>
+
+<p>In a few seconds your files will be published to Azure and your site will be available online.</p>
+
+<p>As we see, <strong>configuration process is very straightforward</strong> and simple. After setting it up it takes<strong> one command to publish</strong> last version of your site to Azure and in a few seconds it will be available online.</p>
+
+<hr />
+
+<p>PS: Deploying a website/application using Git is far from being a ground breaking feature as many companies are allowing similar scenarios. Important is who does it – Microsoft. The revamped Azure with all his new features, ongoing involvements in Open Source, the new wave of Developer Tools shows clearly that Microsoft isn’t only serving to “The Enterprise” but also listening carefully to latest tech &amp; software development trends. And even his moves aren’t really innovative, keeping up with new stuff and improving constantly the old products it’s a very good strategy.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[New & shiny Windows Azure: taking the Tour]]></title>
+    <link href="http://caraulean.com/blog/2012/06/08/new-shiny-windows-azure-taking-the-tour/"/>
+    <updated>2012-06-08T20:00:00+02:00</updated>
+    <id>http://caraulean.com/blog/2012/06/08/new-shiny-windows-azure-taking-the-tour</id>
+    <content type="html"><![CDATA[<p>How there is a lot of buzz in last few days about <a href="http://windowsazure.com">revamped Windows Azure</a>, I cannot resist anymore and I’m giving it a try.</p>
+
+<p>I’ve read few blog posts about new features, Metro style UI &amp; improved tooling. But I was surprised by what I have seen when I logged in and tried to open the “Manage” part: the<strong> Windows Azure Tour</strong> application.</p>
+
+<p><img src="http://caraulean.com/../../../../../images/2012/azure-tour-1.png" alt="alt screenshot" /></p>
+
+<p>Instead of throwing the newcomer directly into Management panel, it offers you to take a tour and get some concepts of application and how to interact with it.</p>
+
+<p>The idea itself is not new. <a href="http://en.wikipedia.org/wiki/Office_Assistant">Clippy the Office Assistant</a> is the (annoying) forgotten hero born to help people dig into Office applications. More often other companies are offering a video introduction for their products or a series of “text + screenshots” slides to quickly explain usage of the product to new users.</p>
+
+<p>The approach Microsoft took with Windows Azure Tour is a bit different:</p>
+
+<ul>
+<li>It runs “within” application itself, giving impression of having the main application in background</li>
+<li>It gradually exposes application’s features in the same window</li>
+<li>Features are shown in exact same place where they are in application</li>
+<li>It looks &amp; works great</li>
+</ul>
+
+
+<p>And I quite like their Wizard-like walkthrough dialog. Smooth and subtle animations, clear visual indication of steps and current position, a bold exposure of Metro/Windows 8 style. I’m very tempted to try reproduce it in XAML&#8230;</p>
+
+<p>Few more screenshots:</p>
+
+<p><img src="http://caraulean.com/../../../../../images/2012/azure-tour-2.png" alt="alt screenshot" /></p>
+
+<p><img src="http://caraulean.com/../../../../../images/2012/azure-tour-3.png" alt="alt screenshot" /></p>
+
+<p>Finishing the Tour will take you to the main application screen:</p>
+
+<p><img src="http://caraulean.com/../../../../../images/2012/azure-tour-4.png" alt="alt screenshot" /></p>
+
+<p>That’s just my first impression about Azure. And most often is the one that counts the most. I think Microsoft have done a great job for presenting the new Azure. Let’s see now how it will be in real usage&#8230;</p>
+
+<p>PS: If you haven’t seen the previous Azure portal, here is a screenshot:</p>
+
+<p><img src="http://caraulean.com/../../../../../images/2012/azure-tour-5.png" alt="alt screenshot" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Greatest feature of TortoiseHg and GitHub for Windows is still missing it]]></title>
+    <link href="http://caraulean.com/blog/2012/05/30/greatest-feature-of-tortoisehg-and-github-for-windows-is-missing-it-so-far/"/>
+    <updated>2012-05-30T18:20:30+02:00</updated>
+    <id>http://caraulean.com/blog/2012/05/30/greatest-feature-of-tortoisehg-and-github-for-windows-is-missing-it-so-far</id>
+    <content type="html"><![CDATA[<p><a href="http://windows.github.com/">GitHub for Windows</a> was released recently and it’s a huge advancement in usability of <a href="http://git-scm.com/">Git SCM</a> in Windows. Until not so far existent tooling has been giving you the command line integration and hopefully some (crappy) basic UI . <a href="http://code.google.com/p/gitextensions/">Git Extensions</a> has made lately great progress but I still preferred the command line for routine tasks.</p>
+
+<p>This lack of good tooling around Git was the reason why I’ve promoted Mercurial in my company when we’ve migrated some of our projects to DVCS. <a href="http://tortoisehg.bitbucket.org/">TortoiseHg</a> is great for working with Mercurial repositories and is evolving steadily adding new features &amp; improving stability.</p>
+
+<p>There is one killer feature that I absolutely love in TortoiseHg and I’m using it daily. I do most of source-control operations from the command line/PowerShell. But whenever I want I can launch the TortoiseHg’s UI using simple commands that would bring me right where I need to:</p>
+
+<ul>
+<li><strong>thg</strong> or <strong>thg log</strong>: the log window</li>
+<li><strong>thg ci</strong>: commit dialog</li>
+<li><strong>thg shelve</strong>: shelve dialog</li>
+</ul>
+
+
+<p>So, with a couple of keystrokes I can launch (almost any) dialog for a Mercurial repository in current folder, do quickly the job and close it away to be back to my lovely Console. That’s a true time saver and integrates very well in my workflow.</p>
+
+<p>This is the feature I miss in GitHub for Windows: launch it from command line, accept command line parameters and show me the screen I’ve asked for. Isn’t it a great idea?</p>
+
+<p>Probably it’s not easy to add this feature as for now GHfW is deployed using ClickOnce and it has enough quirks and limitations. But who knows what the future brings&#8230;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Hitting the limits...]]></title>
+    <link href="http://caraulean.com/blog/2011/12/19/hitting-the-limits/"/>
+    <updated>2011-12-19T22:36:34+01:00</updated>
+    <id>http://caraulean.com/blog/2011/12/19/hitting-the-limits</id>
+    <content type="html"><![CDATA[<blockquote><p>When you continuously seek out the limit, you’ll realize that it’s often much higher than you expected. Yes, you can make that screen even simpler than the bare-boned version you’re looking at. Yes, you can trust your employees much more than you imagined. Yes, you can launch without a billing system.</p><p>Once you train yourself to seek out the limit in all endeavors, you’ll get better and faster at correcting the inevitable oversteps, and hit that peak performance.</p><p>But if you never dare venture close to the limit, you’ll find that it’s shrinking all the time. There will be even more people you could possibly offend, even more bells that need whistling, ever more realities of the real world you cannot change.</p></blockquote>
+
+
+<p>From <a href="http://37signals.com/svn/posts/3058-seven-degrees-of-slip">Seven degrees of slip</a>.</p>
+
+<p>Lately one of the limits I’ve hit were advanced threading concepts in .NET. It’s an area where I haven’t stepped much aside from some rather simple use cases &amp; basic usage. But recently I had to solve few (non trivial for me) threading puzzles/exercises and today I’ve been hit by IIS showing ‘Deadlock detected’ for one of our Server components. It hurts&#8230;</p>
+
+<p>In the same time it clearly shows a limit in my knowledge and experience. So, let’s hit it with an action plan: dig dipper in Threading. Then review those threading puzzles and sort out the deadlock out of the system.</p>
+
+<p>Resources:</p>
+
+<ul>
+<li><a href="http://www.albahari.com/threading/">Threading in C# by Joseph Albahari</a>. It’s a book available online for free</li>
+<li><a href="http://www.amazon.com/dp/032143482X/">Concurrent Programming on Windows by Joe Duffy</a>. Paper book and Kindle from Amazon</li>
+</ul>
+
+
+<p>Both are well recommended on StackOverflow&#8230;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[So, are you going to release?..]]></title>
+    <link href="http://caraulean.com/blog/2011/12/19/so-are-you-going-to-release/"/>
+    <updated>2011-12-19T13:00:00+01:00</updated>
+    <id>http://caraulean.com/blog/2011/12/19/so-are-you-going-to-release</id>
+    <content type="html"><![CDATA[<p><a href="http://lostechies.com/jimmybogard/2011/12/16/duke-nukem-unhappy-marriages-and-the-anna-karenina-principle">A good story</a> (not the main for that article):</p>
+
+<blockquote><p>&#8230; the keynote speaker shared a story about a failed project. He joined the project a couple of years into the development, and the team had yet to release anything to production. He went on to detail that he was on the project another year and a half, with no production release in sight, and left the project.</p>
+
+<p>This project was one of those legacy re-writes, given pretty much unlimited budget and resources, in hopes that this would produce the best possible replacement for the existing product. The project had budget, resources, executive backing and visibility, technical leadership, support from domain experts etc. etc. Yet the <strong>project was still a colossal failure</strong>. Why? <strong>It never released</strong>!</p></blockquote>
+
+<p>There are many reasons why you should release as soon as possible. But the main are to get a feedback from your target audience and validate your technical decisions. Both of them are extremely important at early development stage in order to confirm that you’re building what people will buy and you’re doing it right.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Using WP7's Secondary Tiles with Caliburn.Micro]]></title>
+    <link href="http://caraulean.com/blog/2011/12/13/using-wp7s-secondary-tiles-with-caliburn-micro/"/>
+    <updated>2011-12-13T01:04:22+01:00</updated>
+    <id>http://caraulean.com/blog/2011/12/13/using-wp7s-secondary-tiles-with-caliburn-micro</id>
+    <content type="html"><![CDATA[<p>There’s good guide on <a href="http://msdn.microsoft.com/en-us/library/hh202979(v=vs.92">how to manage WP7’s Secondary tiles</a>.aspx) on MSDN.</p>
+
+<p>So, how are you doing it with Caliburn.Micro? Take same way, it just works!</p>
+
+<p>However, there’s a small touch of Caliburn.Micro goodness you can add to your code to make it more maintainable. When you’re setting the URI for your Tile, use the INavigationService.UriFor&lt;>() extension method. This will make your code a little more friendly for an eventual refactoring and for sure will save you from few nasty bugs.</p>
+
+<p>Sample code:</p>
+
+<pre><code>var newTileData = new StandardTileData
+{
+    Title = "my tile",
+    BackTitle = "my tile details",
+    BackContent = "description",
+};
+
+ShellTile.Create(navigationService.UriFor&lt;MyViewModel&gt;()
+                     .WithParam(x =&gt; x.ViewModelParameter, "some value")
+                     .BuildUri(),
+                 newTileData);
+</code></pre>
+
+<p>Piece of cake!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Using WP7's ProgressIndicator with Caliburn.Micro]]></title>
+    <link href="http://caraulean.com/blog/2011/12/09/using-wp7s-progressindicator-with-caliburn-micro/"/>
+    <updated>2011-12-09T01:45:10+01:00</updated>
+    <id>http://caraulean.com/blog/2011/12/09/using-wp7s-progressindicator-with-caliburn-micro</id>
+    <content type="html"><![CDATA[<p>The Windows Phone SDK 7.1 introduced a new control to show the progress of long operations or interactions, ProgressIndicator. As I love much the <a href="http://caliburnmicro.codeplex.com">Caliburn.Micro</a> framework I got some time to integrate neatly ProgressIndicator with the rest of application and services using Caliburn’s container.</p>
+
+<p>First of all, let’s define our application facing progress service:</p>
+
+<pre><code>public interface IProgressService {
+    void Show();
+    void Show(string text);
+    void Hide();
+}
+</code></pre>
+
+<p>Pretty simple, yes&#8230;</p>
+
+<p>The implementation was partly inspired by <a href="http://www.jeff.wilcox.name/2011/07/creating-a-global-progressindicator-experience-using-the-windows-phone-7-1-sdk-beta-2/">Jeff Wilcox’s article about creating a global ProgressIndicator</a>.</p>
+
+<p>It’s pretty simple and straightforward: we’re getting the Root Application Frame and hooking up to the Navigated event. His arguments contain the page being navigated to. Then we’re attaching our instance of ProgressIndicator to that page. And the service uses Show/Hide methods to manipulate the state of indicator. The code:</p>
+
+<pre><code>public class ProgressService : IProgressService {
+    const string DefaultIndicatorText = "Loading...";
+    private readonly ProgressIndicator progressIndicator;
+
+    public ProgressService(PhoneApplicationFrame rootFrame)
+    {
+        progressIndicator = new ProgressIndicator {Text = DefaultIndicatorText};
+
+        rootFrame.Navigated += RootFrameOnNavigated;
+    }
+
+    private void RootFrameOnNavigated(object sender, NavigationEventArgs args)
+    {
+        var content = args.Content;
+        var page = content as PhoneApplicationPage;
+        if (page == null)
+            return;
+
+        page.SetValue(SystemTray.ProgressIndicatorProperty, progressIndicator);
+    }
+
+    public void Show()
+    {
+        Show(DefaultIndicatorText);
+    }
+
+    public void Show(string text)
+    {
+        progressIndicator.Text = text;
+        progressIndicator.IsIndeterminate = true;
+        progressIndicator.IsVisible = true;
+    }
+
+    public void Hide()
+    {
+        progressIndicator.IsIndeterminate = false;
+        progressIndicator.IsVisible = false;
+    }
+}
+</code></pre>
+
+<p>The last piece of this mini-puzzle is wiring up the service to container and made it available to the rest of application:</p>
+
+<pre><code>public class AppBootstrapper : PhoneBootstrapper {
+    private PhoneContainer container;
+
+    protected override void Configure()
+    {
+        container = new PhoneContainer(RootFrame);
+        container.Instance&lt;IProgressService&gt;(new ProgressService(RootFrame));
+</code></pre>
+
+<p>That’s all. Now declare a dependency on IProgressService whenever you need it and show/hide to give a nice feedback to the User when your application is doing something long. You never forget that User is the ultimate chief and judge in our business, right?..</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Using WCF without configuration files]]></title>
+    <link href="http://caraulean.com/blog/2011/11/16/using-wcf-without-configuration-files/"/>
+    <updated>2011-11-16T01:14:59+01:00</updated>
+    <id>http://caraulean.com/blog/2011/11/16/using-wcf-without-configuration-files</id>
+    <content type="html"><![CDATA[<p>I have recently published new project on GitHub, <a href="http://github.com/vcaraulean/WcfWithoutConfigFile">WcfWithoutConfigFile</a>. This post is intended as a ‘readme’ file for this repository.</p>
+
+<p>It’s just a collection of simple projects that I’ve put together when a coworker asked me to show how he can use WCF without configuration files. He got feed up working with XML in web.config and wanted a cleaner and more understandable way to configure Windows Communication Foundation.</p>
+
+<p>What’s in:</p>
+
+<ul>
+<li>How to use WCF in your unit tests (<a href="http://github.com/vcaraulean/WcfWithoutConfigFile/tree/master/WcfWithoutConfigFile.Tests">WcfWithoutConfigFile.Tests</a> project). Sometimes you want to get your code tested at service boundaries and you want to involve also WCF. It contains, among a simple unit test, a base class for your tests so the test cases are clean and don’t contain plumbing code.</li>
+<li>Hosting WCF services in IIS (<a href="http://github.com/vcaraulean/WcfWithoutConfigFile/tree/master/WcfWithoutConfigFile.WebHost">WcfWithoutConfigFile.WebHost</a> project). Defining the service in .svc files and all required infrastructure to instantiate the service via code-only configuration.</li>
+<li><strong>My favorite</strong> – hosting WCF service in IIS using Castle’s <a href="http://www.castleproject.org/container/facilities/trunk/wcf/index.html">WcfIntegration facility</a> (<a href="https://github.com/vcaraulean/WcfWithoutConfigFile/tree/master/WcfWithoutConfigFile.WebHost.Castle">WcfWithoutConfigFile.WebHost.Castle</a> project). It leverages Castle Windsor container and WcfFacility to easily host/run/consume your WCF services. It also configures the service to use Windows authentication and shows how to retrieve client’s WindowsIdentity in the service. There is also a client project, <a href="https://github.com/vcaraulean/WcfWithoutConfigFile/tree/master/WcfWithoutConfigFile.WebHost.Castle-Client">WcfWithoutConfigFile.WebHost.Castle-Client</a> that connects to service and does some operations.</li>
+</ul>
+
+
+<p><a href="https://github.com/vcaraulean/WcfWithoutConfigFile/tree/master/WcfWithoutConfigFile.WebHost.Castle">WcfWithoutConfigFile.WebHost.Castle</a> requires some configuration to get it working properly. Be sure to:</p>
+
+<ul>
+<li>Run it in IIS Express</li>
+<li>Enable Windows Authentication in project properties</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[The Life After Silverlight 5]]></title>
+    <link href="http://caraulean.com/blog/2011/11/15/the-life-after-silverlight-5/"/>
+    <updated>2011-11-15T13:28:07+01:00</updated>
+    <id>http://caraulean.com/blog/2011/11/15/the-life-after-silverlight-5</id>
+    <content type="html"><![CDATA[<p>There is a lot of panic in Microsoft eco-system caused by some <a href="http://www.zdnet.com/blog/microsoft/will-there-be-a-silverlight-6-and-does-it-matter/11180">rumors that Silverlight 5 will be the last of the family</a>. Developers are crying about skills being buried and managers fearing about the future of in-house enterprise apps.</p>
+
+<p>And everyone is guessing what will be Microsoft pushing in the segment currently occupied by Silverlight. Now we have two available options, the new guy in the block - the HTML 5, and the good old and trusty WPF. Won’t mention Windows 8 here as it’s way to the Enterprise is too long to be considered as an option.</p>
+
+<p>So, everyone is watching the next move of Microsoft as there is not a clear winner – HTML 5 is too young to be considered seriously and WPF is too old to be considered as a long-time investment. When Silverlight was a competitor <a href="http://www.scottlogic.co.uk/blog/colin/2011/05/flex-silverlight-html5-time-to-decide/">the choice was rather easy</a>, now <a href="http://www.scottlogic.co.uk/blog/colin/2011/11/the-untimely-demise-of-the-plugin-and-how-lob-developments-will-suffer/">picture is much more blurred</a>.</p>
+
+<h2>In my view</h2>
+
+<p>XAML &amp; .NET will stay with us. Will it be WPF, Metro or anything MS will roll out for Desktop and LOB applications it will be based on those two pillars. At least for 7-10 years we’re assured.</p>
+
+<p>I’ll make few guesses, what MS’s steps will be after Silverlight end will be announced (it will be interesting to read it in a year or two):</p>
+
+<ul>
+<li>A promise that Silverlight 5 will be supported for next 3-4 years</li>
+<li>Actively encouraging developers to migrate Silverlight apps to WPF</li>
+<li>Newer versions of WPF will promote features previously hyped as Silverlight’s exclusives (in-browser apps, sandboxing, web deployment &amp; updates and others) minus the ability to run in browsers on various platforms.</li>
+</ul>
+
+
+<p>As for companies struggling with the choice right now (and it will probably true for near future), you’ll have to decide:</p>
+
+<ul>
+<li>Interaction and Data intensive applications, Rich User Experience, Resource Intensive application, deep OS integration – embrace the WPF and be happy (if you don’t mind to lock yourself to MS and Windows).</li>
+<li>Platform independent, high user base, moderately interactive UIs, presentation and manipulation of small amounts of data – your best bet is the Web: HTML5, CSS3 and JavaScript will be your tools.</li>
+</ul>
+
+
+<p>And if you still struggle with the choice the best thing you can do next is to look at your current development team. If they are more experienced and efficient with Web technologies you’re set. If they are mostly Desktop specialists then you’d want to explore their productivity to the max and get the release date closer. You’re sorted.</p>
+
+<p><strong>And the last word</strong>: don’t be a mono-disciplinary developer. Don’t lock yourself exclusively in Desktop or Web, Microsoft or LAMP or whatever. The day you’ll fail to pick, learn and use efficiently a new tool/framework will mean your career as a Professional Software Developer is done. Be open. Look around, there are so many amazing things in Software Development industry. Just pick something new and learn. It will be one of the best investments you can do in your future. You can do it right now&#8230;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Cultural differences...]]></title>
+    <link href="http://caraulean.com/blog/2011/09/21/cultural-differences/"/>
+    <updated>2011-09-21T19:13:10+02:00</updated>
+    <id>http://caraulean.com/blog/2011/09/21/cultural-differences</id>
+    <content type="html"><![CDATA[<p>Today I’ve been helping a coworker to bootstrap new project. Nothing fancy: ASP.NET site hosting WCF services, few POCOs and Entity Framework in Code First mode to persist them all.</p>
+
+<p>Interesting moment came when he wanted to see if his service actually works. He quickly created another project (Windows Forms) to try connect to newly created service. When I’ve seen that I’ve suggested that a unit test project would be easier and more useful, he preferred to go his route and added buttons, large text block and some plumbing code to take service’s response to the screen.</p>
+
+<p>I’m not blaming here (as he is rather new to .NET platform), but his approach has few disadvantages versus verifying a service using unit tests:</p>
+
+<ul>
+<li>it’s slower to create a minimally meaningful solution: a crappy screen with a button “connect” and large text box to see results? I’d prefer a test with an assertion and may be some console output</li>
+<li>it’s slower to analyze results: you have to scan the screen to see/analyze replies. I’d prefer that a test assertion would take care of that.</li>
+<li>it’s error prone: you have to rely on human input to test it. I’d prefer an automated approach.</li>
+<li>it’s not repeatable nor scalable: what if you have second service? 10 methods in service?. I’d create new test fixture and refactor existing code, not UI.</li>
+<li>&#8230;</li>
+</ul>
+
+
+<p>&#8230; lot’s of things that are wrong with this approach.</p>
+
+<p>Even if it’s a short living spike, new project, new feature – whatever needs a proof of code in working state – <strong>I’d prefer to write a test for it</strong>. And I’m not talking here about rigorous Test-Driven-Development approach. It’s more like <strong>acceptance testing at service or component boundaries</strong>, only to be sure that it works as expected. And creating an UI just to see that a service works – it sounds wrong to me. But those are “cultural differences”, I think&#8230;</p>
+
+<p>PS: By “cultural differences” I mean past experience, habits, education, professional environment and so on&#8230;</p>
+]]></content>
+  </entry>
+  
+</feed>

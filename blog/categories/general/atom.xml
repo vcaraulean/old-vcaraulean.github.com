@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: general | valeriu caraulean]]></title>
+  <link href="http://caraulean.com/blog/categories/general/atom.xml" rel="self"/>
+  <link href="http://caraulean.com/"/>
+  <updated>2013-03-08T23:23:44+01:00</updated>
+  <id>http://caraulean.com/</id>
+  <author>
+    <name><![CDATA[Valeriu Caraulean]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Evening time, time for fun]]></title>
+    <link href="http://caraulean.com/blog/2012/08/28/evening-time-time-for-fun/"/>
+    <updated>2012-08-28T23:07:18+02:00</updated>
+    <id>http://caraulean.com/blog/2012/08/28/evening-time-time-for-fun</id>
+    <content type="html"><![CDATA[<p>Or for whatever keeps you entertained...</p>
+
+<p>This evening it started when I looked how to make Windows Live Writer store drafts in my SkyDrive. As usual, started with googling it. Found a <a href="http://lehsys.blogspot.ch/2011/04/how-to-change-drafts-and-recent-posts.html">trick with a registry key</a> that should point WLW to any folder I want. Nice trick, except it was not working on my PC.</p>
+
+<p>Why a trick that works for other people isn’t working in my machine?! This hooked me up and it ended badly. In about 2 hours I’ve:</p>
+
+<ul>
+<li>Poked around WLW’s registry settings</li>
+<li>Run <a href="http://technet.microsoft.com/en-US/sysinternals">procmon &amp; procexp</a> on WindowsLiveWriter.exe</li>
+<li>Decompiled Windows Live Writer using <a href="http://www.jetbrains.com/decompiler/">dotPeek</a></li>
+<li>Got a rough picture of WLW’s code structure and some knowledge of it’s initialization procedure</li>
+<li>Found the code that handles custom folder and seen that it should work as the trick described</li>
+<li>Learned from code that WLW can run in portable code and <a href="http://www.christophdebaene.com/blog/2011/08/20/windows-live-writer-2011-tips/">how to do it</a></li>
+<li>Learned how to use Just-In-Time Debugger to <a href="http://msdn.microsoft.com/en-us/library/a329t4ed.aspx">launch an .exe file and attach the Visual Studio’s debugger</a> from application’s start</li>
+<li>Failed to make WLW crash so I can break in debugger</li>
+<li>Learned about <a href="http://msdn.microsoft.com/en-us/library/15d1wtaf.aspx">setting a function breakpoint</a>, and that’s useless without symbols</li>
+<li>Gave up...</li>
+</ul>
+
+
+<p>Then I had a glass of Talisker and before giving up completely tried again the trick with registry key...</p>
+
+<p><strong>It. Worked.</strong></p>
+
+<p>Moral of the story – stupid, evident errors happen all the time. And, sadly, it takes time to recover. You’re lucky if you’re not under pressure, running to deadline or doing a demo. And you’re really lucky if you can learn new things on the way and keep yourself entertained :)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Packed for vacation...]]></title>
+    <link href="http://caraulean.com/blog/2012/07/02/packed-for-vacation/"/>
+    <updated>2012-07-02T16:28:07+02:00</updated>
+    <id>http://caraulean.com/blog/2012/07/02/packed-for-vacation</id>
+    <content type="html"><![CDATA[<p>It’s that happy time again, a (well deserved I think) vacation. Beach, sea, great food &amp; drinks and, of course, lot’s of time to spend with family.</p>
+
+<p>This year, along the phones, iPad &amp; notebook I’ve took a Nook Simple Touch to go trough my ever growing reading list. The first advantage of an ebook reader is that you’re sure that nobody will try to claim the device you’re reading on for playing piano, draw, do puzzles or smash those bad pigs - Nook is genuinely un-interesting for my daughters. As for reading, I enjoy very much the device. E-Ink screen is very easy for the eyes, it’s readable on direct sun and you don’t think about running out of batteries. The other advantage is that it doesn’t have the distractions of the iPad - no twitter, email &amp; browser makes reading sessions much longer and the focus stays longer on content and thinking...</p>
+
+<h3>Reading list</h3>
+
+<ul>
+<li><a href="http://www.amazon.com/Steve-Jobs-Walter-Isaacson/dp/1451648537/">Steve Jobs by Walter Isaacson</a></li>
+<li><a href="http://www.amazon.com/Dont-Make-Me-Think-Usability/dp/0321344758/">Don't Make Me Think: A Common Sense Approach to Web Usability by Steve Krug</a></li>
+<li><a href="http://www.amazon.com/Design-Everyday-Things-Donald-Norman/dp/0465067107/">The Design of Everyday Things by Donald A. Norman</a></li>
+<li>Selected chapters from <a href="http://www.aosabook.org/en/index.html">The Architecture of Open Source Applications</a>.</li>
+</ul>
+
+
+<p>And will be sharing with my wife some novels in French to improve a bit my (still bad in my opinion) French language skills.</p>
+
+<h3>Videos</h3>
+
+<p>Downloaded the torrent with <a href="http://www.ndcoslo.com/Article/News/2012video">videos of all sessions from NDC 2012</a>. 25 GB of goodness, that should keep my entertained some time. Watching videos is much more time consuming action than reading a book (and, usually, less dense in information &amp; message they convey), so I’d be picking only a handful of sessions to go trough...</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Hitting the limits...]]></title>
+    <link href="http://caraulean.com/blog/2011/12/19/hitting-the-limits/"/>
+    <updated>2011-12-19T22:36:34+01:00</updated>
+    <id>http://caraulean.com/blog/2011/12/19/hitting-the-limits</id>
+    <content type="html"><![CDATA[<p><blockquote><p>When you continuously seek out the limit, you’ll realize that it’s often much higher than you expected. Yes, you can make that screen even simpler than the bare-boned version you’re looking at. Yes, you can trust your employees much more than you imagined. Yes, you can launch without a billing system.</p></p><p><p>Once you train yourself to seek out the limit in all endeavors, you’ll get better and faster at correcting the inevitable oversteps, and hit that peak performance.</p></p><p><p>But if you never dare venture close to the limit, you’ll find that it’s shrinking all the time. There will be even more people you could possibly offend, even more bells that need whistling, ever more realities of the real world you cannot change.</p></blockquote></p>
+
+<p>From <a href="http://37signals.com/svn/posts/3058-seven-degrees-of-slip">Seven degrees of slip</a>.</p>
+
+<p>Lately one of the limits I’ve hit were advanced threading concepts in .NET. It’s an area where I haven’t stepped much aside from some rather simple use cases &amp; basic usage. But recently I had to solve few (non trivial for me) threading puzzles/exercises and today I’ve been hit by IIS showing ‘Deadlock detected’ for one of our Server components. It hurts...</p>
+
+<p>In the same time it clearly shows a limit in my knowledge and experience. So, let’s hit it with an action plan: dig dipper in Threading. Then review those threading puzzles and sort out the deadlock out of the system.</p>
+
+<p>Resources:</p>
+
+<ul>
+<li><a href="http://www.albahari.com/threading/">Threading in C# by Joseph Albahari</a>. It’s a book available online for free</li>
+<li><a href="http://www.amazon.com/dp/032143482X/">Concurrent Programming on Windows by Joe Duffy</a>. Paper book and Kindle from Amazon</li>
+</ul>
+
+
+<p>Both are well recommended on StackOverflow...</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[So, are you going to release?..]]></title>
+    <link href="http://caraulean.com/blog/2011/12/19/so-are-you-going-to-release/"/>
+    <updated>2011-12-19T13:00:00+01:00</updated>
+    <id>http://caraulean.com/blog/2011/12/19/so-are-you-going-to-release</id>
+    <content type="html"><![CDATA[<p><a href="http://lostechies.com/jimmybogard/2011/12/16/duke-nukem-unhappy-marriages-and-the-anna-karenina-principle">A good story</a> (not the main for that article):</p>
+
+<blockquote><p>... the keynote speaker shared a story about a failed project. He joined the project a couple of years into the development, and the team had yet to release anything to production. He went on to detail that he was on the project another year and a half, with no production release in sight, and left the project.</p>
+
+<p>This project was one of those legacy re-writes, given pretty much unlimited budget and resources, in hopes that this would produce the best possible replacement for the existing product. The project had budget, resources, executive backing and visibility, technical leadership, support from domain experts etc. etc. Yet the <strong>project was still a colossal failure</strong>. Why? <strong>It never released</strong>!</p></blockquote>
+
+<p>There are many reasons why you should release as soon as possible. But the main are to get a feedback from your target audience and validate your technical decisions. Both of them are extremely important at early development stage in order to confirm that you’re building what people will buy and you’re doing it right.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[The Life After Silverlight 5]]></title>
+    <link href="http://caraulean.com/blog/2011/11/15/the-life-after-silverlight-5/"/>
+    <updated>2011-11-15T13:28:07+01:00</updated>
+    <id>http://caraulean.com/blog/2011/11/15/the-life-after-silverlight-5</id>
+    <content type="html"><![CDATA[<p>There is a lot of panic in Microsoft eco-system caused by some <a href="http://www.zdnet.com/blog/microsoft/will-there-be-a-silverlight-6-and-does-it-matter/11180">rumors that Silverlight 5 will be the last of the family</a>. Developers are crying about skills being buried and managers fearing about the future of in-house enterprise apps.</p>
+
+<p>And everyone is guessing what will be Microsoft pushing in the segment currently occupied by Silverlight. Now we have two available options, the new guy in the block - the HTML 5, and the good old and trusty WPF. Won’t mention Windows 8 here as it’s way to the Enterprise is too long to be considered as an option.</p>
+
+<p>So, everyone is watching the next move of Microsoft as there is not a clear winner – HTML 5 is too young to be considered seriously and WPF is too old to be considered as a long-time investment. When Silverlight was a competitor <a href="http://www.scottlogic.co.uk/blog/colin/2011/05/flex-silverlight-html5-time-to-decide/">the choice was rather easy</a>, now <a href="http://www.scottlogic.co.uk/blog/colin/2011/11/the-untimely-demise-of-the-plugin-and-how-lob-developments-will-suffer/">picture is much more blurred</a>.</p>
+
+<h2>In my view</h2>
+
+<p>XAML &amp; .NET will stay with us. Will it be WPF, Metro or anything MS will roll out for Desktop and LOB applications it will be based on those two pillars. At least for 7-10 years we’re assured.</p>
+
+<p>I’ll make few guesses, what MS’s steps will be after Silverlight end will be announced (it will be interesting to read it in a year or two):</p>
+
+<ul>
+<li>A promise that Silverlight 5 will be supported for next 3-4 years</li>
+<li>Actively encouraging developers to migrate Silverlight apps to WPF</li>
+<li>Newer versions of WPF will promote features previously hyped as Silverlight’s exclusives (in-browser apps, sandboxing, web deployment &amp; updates and others) minus the ability to run in browsers on various platforms.</li>
+</ul>
+
+
+<p>As for companies struggling with the choice right now (and it will probably true for near future), you’ll have to decide:</p>
+
+<ul>
+<li>Interaction and Data intensive applications, Rich User Experience, Resource Intensive application, deep OS integration – embrace the WPF and be happy (if you don’t mind to lock yourself to MS and Windows).</li>
+<li>Platform independent, high user base, moderately interactive UIs, presentation and manipulation of small amounts of data – your best bet is the Web: HTML5, CSS3 and JavaScript will be your tools.</li>
+</ul>
+
+
+<p>And if you still struggle with the choice the best thing you can do next is to look at your current development team. If they are more experienced and efficient with Web technologies you’re set. If they are mostly Desktop specialists then you’d want to explore their productivity to the max and get the release date closer. You’re sorted.</p>
+
+<p><strong>And the last word</strong>: don’t be a mono-disciplinary developer. Don’t lock yourself exclusively in Desktop or Web, Microsoft or LAMP or whatever. The day you’ll fail to pick, learn and use efficiently a new tool/framework will mean your career as a Professional Software Developer is done. Be open. Look around, there are so many amazing things in Software Development industry. Just pick something new and learn. It will be one of the best investments you can do in your future. You can do it right now...</p>
+]]></content>
+  </entry>
+  
+</feed>

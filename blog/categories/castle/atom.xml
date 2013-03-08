@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: castle | valeriu caraulean]]></title>
+  <link href="http://caraulean.com/blog/categories/castle/atom.xml" rel="self"/>
+  <link href="http://caraulean.com/"/>
+  <updated>2013-03-08T23:23:44+01:00</updated>
+  <id>http://caraulean.com/</id>
+  <author>
+    <name><![CDATA[Valeriu Caraulean]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Multi-targeting with Project Linker by example: Castle.Core for Silverlight 4]]></title>
+    <link href="http://caraulean.com/blog/2010/10/13/multi-targeting-with-project-linker-by-example-castle-core-for-silverlight-4/"/>
+    <updated>2010-10-13T17:37:54+02:00</updated>
+    <id>http://caraulean.com/blog/2010/10/13/multi-targeting-with-project-linker-by-example-castle-core-for-silverlight-4</id>
+    <content type="html"><![CDATA[<p>In this post I would try to explore multi-targeting of a .NET project/solution using <a href="http://msdn.microsoft.com/en-us/library/ff921108(PandP.20">Project Linker</a>.aspx) tool. My main driver is desire to target one of our internal projects to Silverlight. I’ve picked <a href="http://github.com/castleproject/Castle.Core">Castle.Core</a> to serve as an example, since his Silverlight build is now broken and (from what I’ve seen) there is no convenient way to work with this project in Visual Studio while targeting Silverlight.</p>
+
+<p>For more details and screenshots of Project Linker, please refer to <a href="http://msdn.microsoft.com/en-us/library/ff921108(PandP.20">this MSDN article</a>.aspx).</p>
+
+<p>Let’s go, step by step instructions:</p>
+
+<ol>
+<li>Go to Extension Manager in VS 2010 and search for Project Linker.</li>
+<li>Install Project Linker extension</li>
+<li>Create new solution, say Castle.Core-SL</li>
+<li>Add to this solution the existent Castle.Core project (targeted for NET 4 Client Profile)</li>
+<li>Add to solution new Silverlight 4 project, named Castle.Core-SL</li>
+<li>Click on Castle.Core-SL project and from context menu choose “Add project link…”</li>
+<li>In “Select Source Project” dialog choose the Castle.Core project, click OK.</li>
+<li>To verify that projects are linked correctly, in VS Project menu choose “Edit links”: Source Project should be set to “Castle.Core”, and Target Project – “Castle.Core-SL”.</li>
+<li>In order to trigger real linking process (Project Linker is observing file changes in source project) I have a trick for you. Go to Castle.Core project, then select all folders containing source files (Components.DictionaryAdapter, Core and DynamicProxy) and click on “Exclude from project” in context menu. Then, after enabling “Show all files” options, add them back. Here Project Linker will kick in and will link all added source files to Target Project.</li>
+</ol>
+
+
+<p>Then, we can do the same for project containing unit tests.</p>
+
+<p>In case of Castle.Core there is another manual intervention required: filter out CastleBuild.snk file from being linked. To do that you have to open project file for your project and find an attribute in it called ProjectLinkerExcludeFilter. Add to the end of that value the string “;.snk”. After that you should “Ad As Link” the key file manually.</p>
+
+<p>If you want to “re-sync” both projects, you have to repeat only the 9th step.</p>
+
+<p>Now, you’ll have your Castle.Core targeted to Silverlight with all source files from original .NET project. You’re now should be confortable enough exploring the code in Visual Studio and, why not, contribute...</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Unit tests with Automatic Transaction Management]]></title>
+    <link href="http://caraulean.com/blog/2008/10/03/unit-tests-with-automatic-transaction-management/"/>
+    <updated>2008-10-03T18:18:43+02:00</updated>
+    <id>http://caraulean.com/blog/2008/10/03/unit-tests-with-automatic-transaction-management</id>
+    <content type="html"><![CDATA[<p>In our projects we're using Castle's Automatic Transaction Management facility (ATM). This facility allows to declaratively define transaction boundaries: by marking a method by a specific attribute the call to this method will be wrapped in a transaction, so that a transaction will be opened before calling the method and committed right after finishing method execution.</p>
+
+<p>In code, it looks like this:</p>
+
+<pre><code>[Transactional]
+public class Foo
+{
+    [Transaction]
+    public virtual void Bar()
+    {
+        // Do something in a transaction
+    }
+}
+</code></pre>
+
+<p>Let's suppose that later, we want to test this code. Say, we want to verify that code in Foo.Bar() method is executed in a transaction. Moreover, we want to assure that the marking attributes will not be deleted accidentally.</p>
+
+<p>We can test that within two aspects. First - an integration test: a real application part will be spawned and a call will be performed. After, we should verify that changes was committed by transaction. It takes time to run such a test (integration test usually runs slower) and effort to write &amp; verify such a test. Second way to test that - is to check presence or required attributes. This will be a fast unit test that will just check that attribute is still applied to a method.</p>
+
+<p>Those methods complements each other. Ideally, it should be both written.</p>
+
+<p>Let's see how we can verify that attributes required by ATM are applied to required methods.</p>
+
+<p>First, we've defined the API that we want to use to do our check:</p>
+
+<pre><code>CustomAssertions.ShouldUseATM&lt;Foo&gt;(foo =&gt; foo.Bar());
+</code></pre>
+
+<p>Yes, you see it right, we want to make it type save, refactor-able and nice looking.</p>
+
+<p>This helper class should verify next assumptions, all required by ATM:
+  * Tested class should be marked with TransactionalAttribute;
+  * Method should be marked by TransactionAttribute;
+  * Method should be virtual.</p>
+
+<p>Solution we came to this problem is the next class:</p>
+
+<pre><code>public static partial class CustomAssertions
+{
+    public static void ShouldUseATM&lt;T&gt;(Expression&lt;Action&lt;T&gt;&gt; methodExpression) where T : class 
+    {
+        ThrowIfTypeNotMarkedAsTransactional(typeof (T));
+
+        var methodInfo = ((MethodCallExpression) methodExpression.Body).Method;
+
+        ThrowIfMethodIsNotMarkedWithTransactionAttribute(methodInfo);
+        ThrowIfMethodMarkedWithTransactionAttributeIsVirtual(methodInfo);
+    }
+
+    private static void ThrowIfTypeNotMarkedAsTransactional(Type classType)
+    {
+        object[] foundAttributes = classType.GetCustomAttributes(typeof(TransactionalAttribute), false);
+        if  (foundAttributes.Length == 0)
+            Assert.Fail("The type '{0}' is not marked with [Transactional] attribute", classType.Name);
+    }
+
+    private static void ThrowIfMethodIsNotMarkedWithTransactionAttribute(MethodInfo info)
+    {
+        var found = info.GetCustomAttributes(typeof(TransactionAttribute), false);
+        if (found.Length == 0)
+            Assert.Fail("Method '{0}' from '{1}' type is not marked with [Transaction] attribute",
+                       info.Name,
+                       info.DeclaringType.Name);
+    }
+
+    private static void ThrowIfMethodMarkedWithTransactionAttributeIsVirtual(MethodBase methodInfo)
+    {
+        if  (methodInfo.IsVirtual &amp;&amp; !methodInfo.IsFinal)
+            return;
+
+        Assert.Fail("Method '{0}' from '{1}' type is marked with [Transaction] attribute, but is not declared as virtual.",
+                    methodInfo.Name,
+                    methodInfo.DeclaringType.Name);
+    }
+}
+</code></pre>
+
+<p>So far, we're pleased with how it works for us.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[What integration tests should you write first]]></title>
+    <link href="http://caraulean.com/blog/2008/06/18/what-integration-tests-should-you-write-first/"/>
+    <updated>2008-06-18T12:18:10+02:00</updated>
+    <id>http://caraulean.com/blog/2008/06/18/what-integration-tests-should-you-write-first</id>
+    <content type="html"><![CDATA[<p>Generally, the goal of integration tests is to verify that different application parts are glued well together and interacts as expected. Thus, they are a bit different thing from unit tests that tends to test how a small, separate part is acting. Below are two tests that I can't classify to be pure integration tests because they touch a sensible part of application/infrastructure configuration like Windsor's configuration files and NHibernate's mappings. These simple tests can save a lot of time at very initial development stage when application bits are changed frequently and later, as a guarantee that you've not broken something in a recent refactoring.</p>
+
+<h4>Can_resolve_all_services_in_container()</h4>
+
+<p><a href="http://weblogs.asp.net/bsimser/default.aspx">Bill Simser</a> wrote some time ago about <a href="http://weblogs.asp.net/bsimser/archive/2008/06/04/the-first-spec-you-should-write-when-using-castle.aspx">the first test to be written when using Castle's Windsor Container</a>. It's a real gem that let's you verify if any of services registered in container can be resolved (have all required dependencies). Here is it, a bit improved for skipping verification for generic types, since, at that moment, we don't know the generic argument for type to be constructed:</p>
+
+<pre><code>[Test]
+public void Can_resolve_all_services_in_container()
+{
+    var container = new WindsorContainer("container.xml");
+    foreach (IHandler handler in container.Kernel.GetAssignableHandlers(typeof(object)))
+    {
+        if (handler.ComponentModel.Service.IsGenericType)
+            continue;
+
+        container.Resolve(handler.ComponentModel.Service);
+    }
+}
+</code></pre>
+
+<h4>Can_compile_NHibernate_mapping_configuration()</h4>
+
+<p>This test was sitting for a long time in our codebase, but I've seen it recently in <a href="http://codebetter.com/blogs/david_laribee/archive/2008/06/17/test-your-nhibernate-mappings.aspx">this post</a> of <a href="http://codebetter.com/blogs/david_laribee/default.aspx">David Larebee</a>. I wrote it in times when writing our first mappings and the only one way to verify if you don't have any faults was to write one of CRUD operations and run the test. But that's a long process. Shorter response cycle is always better. Here it is:</p>
+
+<pre><code>[Test]
+public void Can_compile_NHibernate_mapping_configuration()
+{
+    ISessionFactory factory =
+        new Configuration()
+            .Configure()
+            .AddAssembly("MyApp.MyDomainAssembly")
+            .BuildSessionFactory();
+
+    Assert.IsNotNull(factory);
+}
+</code></pre>
+
+<p>This test suppose that you have HNibernate configuration in your app.config and tries to register all mappings from given assembly file.</p>
+]]></content>
+  </entry>
+  
+</feed>

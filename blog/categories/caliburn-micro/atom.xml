@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: caliburn-micro | valeriu caraulean]]></title>
+  <link href="http://caraulean.com/blog/categories/caliburn-micro/atom.xml" rel="self"/>
+  <link href="http://caraulean.com/"/>
+  <updated>2013-03-08T23:23:44+01:00</updated>
+  <id>http://caraulean.com/</id>
+  <author>
+    <name><![CDATA[Valeriu Caraulean]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Using WP7's Secondary Tiles with Caliburn.Micro]]></title>
+    <link href="http://caraulean.com/blog/2011/12/13/using-wp7s-secondary-tiles-with-caliburn-micro/"/>
+    <updated>2011-12-13T01:04:22+01:00</updated>
+    <id>http://caraulean.com/blog/2011/12/13/using-wp7s-secondary-tiles-with-caliburn-micro</id>
+    <content type="html"><![CDATA[<p>There’s good guide on <a href="http://msdn.microsoft.com/en-us/library/hh202979(v=vs.92">how to manage WP7’s Secondary tiles</a>.aspx) on MSDN.</p>
+
+<p>So, how are you doing it with Caliburn.Micro? Take same way, it just works!</p>
+
+<p>However, there’s a small touch of Caliburn.Micro goodness you can add to your code to make it more maintainable. When you’re setting the URI for your Tile, use the INavigationService.UriFor&lt;>() extension method. This will make your code a little more friendly for an eventual refactoring and for sure will save you from few nasty bugs.</p>
+
+<p>Sample code:</p>
+
+<pre><code>var newTileData = new StandardTileData
+{
+    Title = "my tile",
+    BackTitle = "my tile details",
+    BackContent = "description",
+};
+
+ShellTile.Create(navigationService.UriFor&lt;MyViewModel&gt;()
+                     .WithParam(x =&gt; x.ViewModelParameter, "some value")
+                     .BuildUri(),
+                 newTileData);
+</code></pre>
+
+<p>Piece of cake!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Using WP7's ProgressIndicator with Caliburn.Micro]]></title>
+    <link href="http://caraulean.com/blog/2011/12/09/using-wp7s-progressindicator-with-caliburn-micro/"/>
+    <updated>2011-12-09T01:45:10+01:00</updated>
+    <id>http://caraulean.com/blog/2011/12/09/using-wp7s-progressindicator-with-caliburn-micro</id>
+    <content type="html"><![CDATA[<p>The Windows Phone SDK 7.1 introduced a new control to show the progress of long operations or interactions, ProgressIndicator. As I love much the <a href="http://caliburnmicro.codeplex.com">Caliburn.Micro</a> framework I got some time to integrate neatly ProgressIndicator with the rest of application and services using Caliburn’s container.</p>
+
+<p>First of all, let’s define our application facing progress service:</p>
+
+<pre><code>public interface IProgressService {
+    void Show();
+    void Show(string text);
+    void Hide();
+}
+</code></pre>
+
+<p>Pretty simple, yes...</p>
+
+<p>The implementation was partly inspired by <a href="http://www.jeff.wilcox.name/2011/07/creating-a-global-progressindicator-experience-using-the-windows-phone-7-1-sdk-beta-2/">Jeff Wilcox’s article about creating a global ProgressIndicator</a>.</p>
+
+<p>It’s pretty simple and straightforward: we’re getting the Root Application Frame and hooking up to the Navigated event. His arguments contain the page being navigated to. Then we’re attaching our instance of ProgressIndicator to that page. And the service uses Show/Hide methods to manipulate the state of indicator. The code:</p>
+
+<pre><code>public class ProgressService : IProgressService {
+    const string DefaultIndicatorText = "Loading...";
+    private readonly ProgressIndicator progressIndicator;
+
+    public ProgressService(PhoneApplicationFrame rootFrame)
+    {
+        progressIndicator = new ProgressIndicator {Text = DefaultIndicatorText};
+
+        rootFrame.Navigated += RootFrameOnNavigated;
+    }
+
+    private void RootFrameOnNavigated(object sender, NavigationEventArgs args)
+    {
+        var content = args.Content;
+        var page = content as PhoneApplicationPage;
+        if (page == null)
+            return;
+
+        page.SetValue(SystemTray.ProgressIndicatorProperty, progressIndicator);
+    }
+
+    public void Show()
+    {
+        Show(DefaultIndicatorText);
+    }
+
+    public void Show(string text)
+    {
+        progressIndicator.Text = text;
+        progressIndicator.IsIndeterminate = true;
+        progressIndicator.IsVisible = true;
+    }
+
+    public void Hide()
+    {
+        progressIndicator.IsIndeterminate = false;
+        progressIndicator.IsVisible = false;
+    }
+}
+</code></pre>
+
+<p>The last piece of this mini-puzzle is wiring up the service to container and made it available to the rest of application:</p>
+
+<pre><code>public class AppBootstrapper : PhoneBootstrapper {
+    private PhoneContainer container;
+
+    protected override void Configure()
+    {
+        container = new PhoneContainer(RootFrame);
+        container.Instance&lt;IProgressService&gt;(new ProgressService(RootFrame));
+</code></pre>
+
+<p>That’s all. Now declare a dependency on IProgressService whenever you need it and show/hide to give a nice feedback to the User when your application is doing something long. You never forget that User is the ultimate chief and judge in our business, right?..</p>
+]]></content>
+  </entry>
+  
+</feed>

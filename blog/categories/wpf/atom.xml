@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: wpf | valeriu caraulean]]></title>
+  <link href="http://caraulean.com/blog/categories/wpf/atom.xml" rel="self"/>
+  <link href="http://caraulean.com/"/>
+  <updated>2013-03-08T23:23:44+01:00</updated>
+  <id>http://caraulean.com/</id>
+  <author>
+    <name><![CDATA[Valeriu Caraulean]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Diving deeper in Reactive Extensions, concurrency]]></title>
+    <link href="http://caraulean.com/blog/2012/10/09/diving-deeper-in-reactive-extensions/"/>
+    <updated>2012-10-09T22:04:00+02:00</updated>
+    <id>http://caraulean.com/blog/2012/10/09/diving-deeper-in-reactive-extensions</id>
+    <content type="html"><![CDATA[<p>I've started using <a href="http://msdn.microsoft.com/en-us/data/gg577609.aspx">Reactive Extensions, Rx</a> library without digging too much in it's internals. Had a case where I wanted to filter a stream of events and decided I'd try something new for me, Rx. But as it always happens with powerful and flexible tools, starting with few superficial articles and examples from the Web without diving deeper in the concepts is a pretty bad idea.</p>
+
+<p>This time I've been bitten by <em>concurrency</em> issues.</p>
+
+<p>And the best resource I've found so far is the <a href="http://www.introtorx.com/">Introduction to Rx</a> ebook by <a href="http://leecampbell.blogspot.co.uk/">Lee Campbell</a>. It costs only around a buck on Amazon and it's available for free from the site.</p>
+
+<p>I've jumped straight to the <a href="http://www.introtorx.com/Content/v1.0.10621.0/15_SchedulingAndThreading.html">Chapter 4, Concurrency</a> and for surely will pass without a hurry over the rest of the book. This chapter has an nice check list about best threading options for some scenarios:</p>
+
+<h3>UI Applications</h3>
+
+<ul>
+<li>The final subscriber is normally the presentation layer and should control the scheduling.</li>
+<li>Observe on the DispatcherScheduler to allow updating of ViewModels</li>
+<li>Subscribe on a background thread to prevent the UI from becoming unresponsive
+
+<ul>
+<li>If the subscription will not block for more than 50ms then
+
+<ul>
+<li>Use the TaskPoolScheduler if available, or</li>
+<li>Use the ThreadPoolScheduler</li>
+</ul>
+</li>
+<li>If any part of the subscription could block for longer than 50ms, then you should use the NewThreadScheduler.</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>Service layer</h3>
+
+<ul>
+<li>If your service is reading data from a queue of some sort, consider using a dedicated EventLoopScheduler. This way, you can preserve order of events</li>
+<li>If processing an item is expensive (>50ms or requires I/O), then consider using a NewThreadScheduler</li>
+<li>If you just need the scheduler for a timer, e.g. for Observable.Interval or Observable.Timer, then favor the TaskPool. Use the ThreadPool if the TaskPool is not available for your platform.</li>
+</ul>
+
+
+<hr />
+
+<p>And by the way, on author's blog I've found another interesting series of articles: <a href="http://leecampbell.blogspot.co.uk/2009/01/responsive-uis-in-wpf-dispatchers-to.html">Responsive UIs in WPF - Dispatchers to Concurrency to testability</a>. That's something I'd be reading after sorting out concurrency issues from my code.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Visual Studio 2012 dark theme tip - light up your UserControl in XAML designer]]></title>
+    <link href="http://caraulean.com/blog/2012/08/30/visual-studio-2012-dark-theme-tip/"/>
+    <updated>2012-08-30T23:35:00+02:00</updated>
+    <id>http://caraulean.com/blog/2012/08/30/visual-studio-2012-dark-theme-tip</id>
+    <content type="html"><![CDATA[<p>I really like the new Visual Studio 2012. And the dark theme looks cool and is so much easier for the eyes.</p>
+
+<p>But there is a real problem when you’re working with User Controls in designer. And we have lots of them. What is the problem then? Look at the picture:</p>
+
+<p><img class="center" src="../../../../../images/2012/vs-dark-1.png"></p>
+
+<p>Yup, that is a UserControl with few elements on it. With a default transparent background it’s is hardly visible on design surface. In runtime, when put on a parent (usually a Window) it will take background of the parent and all elements will be visible.</p>
+
+<p>Looking trough the VS2012 settings I’ve seen options to customize Windows Form Designer, Workflow and HTML Designers but nothing about customizing the XAML designer. Pretty bad, Microsoft.</p>
+
+<p>In this case Styling comes to the rescue! With some styling and by using a trigger to enable the style only for Design Time, we’ll get this:</p>
+
+<p><img class="center" src="../../../../../images/2012/vs-dark-2.png"></p>
+
+<p>Much better now! To achieve it you have to put a small XAML fragment in your Generic.xaml or App.xaml and you should be done:</p>
+
+<p>```</p>
+
+
+
+<p>```</p>
+
+<p>That’s how you’ll have your views well visible (and actually, design-able) in dark theme.</p>
+
+<h3>Update:</h3>
+
+<p>I've looked again if there are any options in Visual Studio 2012 to lighten a bit the dark background in designer. And found an <a href="http://connect.microsoft.com/VisualStudio/feedback/details/758745/wpf-designer-unusable-in-dark-theme">issue reported on Microsoft Connect</a> about this very problem. Unfortunately, this is "by design" and cannot be customized, at least yet:</p>
+
+<p><blockquote><p>Yes, this is an unfortunately limitation in Visual Studio 2012 RTM. We would have loved to have the ability to change the default background color of the design surface, but could not get around to it (we have it on our backlog).</p></blockquote></p>
+
+<p>And a user has even posted a workaround that is mostly the same as above...</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Migrating from Silverlight to WPF, a case study]]></title>
+    <link href="http://caraulean.com/blog/2012/07/19/migrating-from-silverlight-to-wpf-a-case-study/"/>
+    <updated>2012-07-19T19:06:48+02:00</updated>
+    <id>http://caraulean.com/blog/2012/07/19/migrating-from-silverlight-to-wpf-a-case-study</id>
+    <content type="html"><![CDATA[<h4>A case study on porting an application that uses <a href="http://caliburnmicro.codeplex.com/">Caliburn.Micro</a> and <a href="http://www.telerik.com/">Telerik’s visual components</a> from Silverlight to WPF</h4>
+
+<p>I wrote that <a href="/blog/2012/07/18/fearing-about-silverlights-future-dont/">nobody should fear an eventual migration from Silverlight to WPF</a>. But I wanted as well to work on a “proof of concept” and try to find what difficulties may arise in a such migration and how easy is to actually do it. And, preferable, do it in a small project before taking on big targets.</p>
+
+<p>I’ll use <a href="https://github.com/vcaraulean/Caliburn.Micro.Telerik">Caliburn.Micro.Telerik</a> as my test ground. It’s a library aimed to <a href="/blog/2011/06/05/integration-of-caliburn-micro-and-teleriks-silverlight-controls/">integrate Caliburn.Micro and Telerik’s component suite for Silverlight</a>. And as I’ve been getting requests to port conventions and few helpers to WPF I’ll use it as my playground.</p>
+
+<p>Silverlight solution contains a Silverlight library and two Silverlight applications to test conventions and other stuff. Both applications together contains more than 10 views with corresponding view models, so it should provide a fairly relevant impression about how easy is to migrate from Silverlight to WPF.</p>
+
+<h3>Step 1</h3>
+
+<p>Restructure solution to allow cohabitation of two different versions. In this case, I want to keep both versions, so I’ll be copying files from one project to another. Duplication, but at this moment I don’t want the overhead of keeping two target frameworks with a common codebase.</p>
+
+<h3>Step 2</h3>
+
+<p>Creating the destination point – a .NET library or WPF application:</p>
+
+<ul>
+<li>Create new Class Library targeting .NET 4 framework or WPF Application with .NET 4 Client profile.</li>
+<li>Add Caliburn.Micro using Nuget</li>
+<li>If it’s a class library, add references to WPF’s assemblies: PresentationCore, PresentationFramework, System.Xaml &amp; WindowsBase</li>
+<li>Add references to Telerik’s assemblies. I’ve picked ones with same names as in corresponding Silverlight project.</li>
+</ul>
+
+
+<h3>Step 3</h3>
+
+<p>Getting the application canvas and infrastructure code right. This includes Caliburn’s bootstrapper, the main view &amp; all stuff to get application running. There is one difference, the main view in WPF should be a Window, while in Silverlight it was a simple UserControl.</p>
+
+<h3>Step 4</h3>
+
+<p>Migrating your views &amp; view models. In the case of Caliburn.Micro.Telerik examples project I’ve had to just copy the files from Silverlight to WPF project. Then it compiled and run just fine.</p>
+
+<h3>Step 5</h3>
+
+<p>Cleanup.</p>
+
+<h3>Conclusions</h3>
+
+<p>Telerik have done a pretty good job on keeping their Silverlight and WPF components in a very similar shape and at a very high compatibility level between both platforms. I hope that it doesn’t diminishes any of advantages/facilities/features of either platform.</p>
+
+<p>Migrating a Caliburn.Micro application from SL to WPF is a piece of cake. Despite few minor differences in infrastructure code between WPF &amp; Silverlight versions of WPF, you’re pretty much left with move files, cleanup namespaces and Run. View models are ported without any issues, however you may encounter few with the views.</p>
+
+<p>As this was a small project, porting is very straightforward and relatively simple. In a real application with lots of stuff and moving pieces you will have some more work to do. Particularly when you have some Silverlight specific code or where you’re working around platform’s limitations. Take for example mouse events. To get a “double click” you have to write custom code. Middle click doesn’t exist in Silverlight. Printing is different, file system interactions too. Communication layer (WCF &amp; service references) will need a review. There’s are no RIA services in WPF (I may be wrong here). The list may go on further, but I’ll stop here. I hope to have much more info to share about migration process as I’ll probably will take part in moving a much larger application from Silverlight to WPF.</p>
+
+<p>That’s all. I hope my experience will help someone else to go over the fear and burden of porting a Silverlight application to WPF.</p>
+
+<p>PS: you can have a look at final result, get sources and compare both versions on <a href="http://github.com/vcaraulean/Caliburn.Micro.Telerik">GitHub</a>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Fearing about Silverlight's future? Don't...]]></title>
+    <link href="http://caraulean.com/blog/2012/07/18/fearing-about-silverlights-future-dont/"/>
+    <updated>2012-07-18T13:26:29+02:00</updated>
+    <id>http://caraulean.com/blog/2012/07/18/fearing-about-silverlights-future-dont</id>
+    <content type="html"><![CDATA[<p>Just accept the facts, prepare &amp; migrate to WPF when ready.</p>
+
+<p>When you have something worrying you, the best way to tackle it is to cut it straight and act on it. That's the way to get it out of your head. If not, you're left on the mercy of external factors that may change the circumstances and the problem will go away.</p>
+
+<blockquote><p>“If you wait by the river long enough, the bodies of your enemies will float by.”
+- Sun Tzu</p></blockquote>
+
+<p>For some time I have a strange feeling about Silverlight. Few years ago it was "the solution" for cross-platform Rich Internet Applications. It was Microsoft's "offre du jour" for Enterprise Software development, offering ease of deployment &amp; update, run anywhere premise and offering a (part of) common development platform for Windows: XAML &amp; .NET.</p>
+
+<h4>Times are changing</h4>
+
+<p>The rapid rise of HTML5 &amp; CSS3 have had a huge impact on client side application development. Reach features of "next web" markup &amp; styling together with explosion of JavaScript popularity (adoption &amp; tooling) makes Web Applications an extremely viable "Rich Client" solution even for Enterprise Software. And sometimes it works nicely for mobile applications too.</p>
+
+<p>Then there is Microsoft's focus on Windows 8 &amp; WinRT. All bets are on the new and shiny Windows 8, Office 2013, Windows Phone 8 &amp; Surface. WinRT is "the new Silverlight", this time without the goal to run on multiple platforms but with a lot of aspirations to support Microsoft's moves in tablet and mobile markets.</p>
+
+<h4>And now</h4>
+
+<p>Looking back at my experience as a Silverlight developer, there is a sensible level of deception and frustration. Missing features, cut-off or half-backed functionality, leaking resources and a failed promise to offer a viable way to develop cross-platform applications. And the worst of all, I think we've lost time working around various limitations of Silverlight in order to get it working properly and comply with our requirements (somewhere between 10 to 15 %%).</p>
+
+<p>The current version of Silverlight is 5. Microsoft is quiet about his future - current releases will be supported, but absolute no information about next versions. Instead, there are plenty of rumors that there will be no Silverlight 6. Microsoft is too busy pushing the Windows 8 and the Silverlight's incarnation on this platform, the WinRT.</p>
+
+<h4>What do you have to loose? Not too much...</h4>
+
+<p>More important is what you can gain by migrating your current Silverlight application to WPF:</p>
+
+<ul>
+<li>A normal Windows application, running on all versions of Windows from XP to 8.</li>
+<li>The power of WPF &amp; full .NET framework.</li>
+<li>Full integration with OS: printing, scanning, file system, services.</li>
+<li>Better integration with other applications. MS Office, Reporting tools, you name it.</li>
+<li>Touch &amp; Multi-Touch support. You can create applications for Windows 8 that aren't Metro, but are touch friendly.</li>
+</ul>
+
+
+<p>The main thing you’d probably miss is the ability to run application directly in your browser, without installing it. But if it’s an Silverlight OOB application, you probably need some features not available in his sandboxed environment and running in browser is already out of question.</p>
+
+<h4>Would it be hard to migrate to WPF? It depends...</h4>
+
+<p>If you have a well structured application that follows good practices, it shouldn’t be a hard task to complete. Major steps to migrate a Silverlight application to WPF will be:</p>
+
+<ul>
+<li><strong>Libraries &amp; frameworks</strong>. If you were careful picking those, it now should be a pretty simple task of switching assemblies. Should it be the MVVM framework (Caliburn.Micro or MVVMLight), IoC container (Castle.Windsor) or third-party visual component library (Telerik, DevExpress) - usually they have versions for Silverlight and WPF. In ideal case you will end up just swapping assemblies.</li>
+<li><strong>Porting the source code</strong>. Again, depending on how you've approached development process it may be not so hard to do. It most cases it will be just "copy files" over. But some parts would need to be rewritten, often to simplify or throw away things. I estimate that volume of code to be reviewed/rewritten will be around 15% of overall client side code. Resharper &amp; good old Find-Replace are your friends here.</li>
+<li><strong>Installer &amp; application updates</strong>. Up until now you relied on Silverlight to install &amp; update the application. This part should be redone. ClickOnce is a viable solution, it will serve well your initial requirements to install and update the application. It would take 2-3 days to build, test &amp; make available a decent solution for this problem.</li>
+<li><strong>Rigorous testing after migration</strong>. May be most difficult and time consuming one if you have a large application as there is no tooling support to help with it.</li>
+</ul>
+
+
+<p>I'm not advocating blindly for immediate migration of every Silverlight application to WPF. If your application have reached his first release, doesn't have a long lifespan and current users are happy - you'll probably be fine sticking with Silverlight. But if you're still in active development or the application is a part of company's strategic products &amp; directions, you should very seriously consider the move.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Fluent Ribbon and Prism]]></title>
+    <link href="http://caraulean.com/blog/2010/06/14/fluent-ribbon-and-prism/"/>
+    <updated>2010-06-14T16:59:53+02:00</updated>
+    <id>http://caraulean.com/blog/2010/06/14/fluent-ribbon-and-prism</id>
+    <content type="html"><![CDATA[<p>I would like to show an example of application that is about how to use <a href="http://fluent.codeplex.com">Fluent Ribbon</a> control together with <a href="http://compositewpf.codeplex.com">Prism (aka Composite WPF)</a>. Our team is using this combination for some time already; although, with various degrees of success: the Fluent Ribbon is not enough mature (but pretty stable) and my personal relation with Prism is kind of love/hate. The <a href="http://www.castleproject.org/container/">Castle Winsor</a> is starring as IoC Container of choice.</p>
+
+<p>The code is not something extraordinary by any means. You can find lots of similar samples for other controls in the net. It’s just a sample how to use these libraries together.</p>
+
+<p>In this example I’ve set next scenario: a module (or another part of application) wants to add new <strong>RibbonTabItem</strong> to existing <strong>Ribbon</strong> without having a direct reference to it. Also, application should support activation/deactivation and removing of Tabs.</p>
+
+<p>The basics are pretty straightforward: pick/write an IRegion, write an adapter to work as a mediator between it and control being extended, profit!..</p>
+
+<p>I’ve decided to use an existing Region to serve as host for tabs - <strong>SingleActiveRegion</strong>. It seems to fit well expected behavior.</p>
+
+<p>Two classes that I wrote are <strong><a href="http://github.com/vcaraulean/FluentRibbonAndPrism/blob/master/FluentRibbonAndPrism/Infrastructure/RibbonRegionAdapter.cs">RibbonRegionAdapter</a></strong> and <strong><a href="http://github.com/vcaraulean/FluentRibbonAndPrism/blob/master/FluentRibbonAndPrism/Infrastructure/RibbonRegionSyncBehavior.cs">RibbonRegionSyncBehavior</a></strong>. The behavior class is used to synchronize the Tabs collection of the Ribbon with Views and ActiveViews collections of the SingleActiveRegion. Adapter serves only to instantiate the region and attach the behavior.</p>
+
+<p>Also, this solution uses Castle Windsor to wire up all things. The <strong>WindsorBootstrapper</strong> class wires up an application based on Prism v2.2 and Castle.</p>
+
+<p>I’ll not publish the the code here, you can "git clone ..." it from <a href="http://github.com/vcaraulean/FluentRibbonAndPrism">repository on GitHub</a>. Or, from the same place, you have the option to <a href="http://github.com/vcaraulean/FluentRibbonAndPrism/archives/master">download sources</a>.</p>
+
+<p>Future plans include few more regions (Backstage, RibbonTabItem) and may be some tests.</p>
+
+<p>Solution specifics:</p>
+
+<ul>
+<li>Prism v2.2</li>
+<li>Fluent Ribbon rev. 51299</li>
+<li>Castle Windsor 2.1.1</li>
+<li>VS 2010 &amp; NET 4.0</li>
+</ul>
+
+
+<p>Disclaimer: code is provided “AS IS”. It may contain bugs and not be written in best possible way. I’m not a Prism specialist by any means. Any help is welcome if somebody can improve this code or wants to contribute for a more meaningful example...</p>
+]]></content>
+  </entry>
+  
+</feed>

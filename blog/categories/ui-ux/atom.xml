@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: ui-ux | valeriu caraulean]]></title>
+  <link href="http://caraulean.com/blog/categories/ui-ux/atom.xml" rel="self"/>
+  <link href="http://caraulean.com/"/>
+  <updated>2013-03-08T23:23:44+01:00</updated>
+  <id>http://caraulean.com/</id>
+  <author>
+    <name><![CDATA[Valeriu Caraulean]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[New & shiny Windows Azure: taking the Tour]]></title>
+    <link href="http://caraulean.com/blog/2012/06/08/new-shiny-windows-azure-taking-the-tour/"/>
+    <updated>2012-06-08T20:00:00+02:00</updated>
+    <id>http://caraulean.com/blog/2012/06/08/new-shiny-windows-azure-taking-the-tour</id>
+    <content type="html"><![CDATA[<p>How there is a lot of buzz in last few days about <a href="http://windowsazure.com">revamped Windows Azure</a>, I cannot resist anymore and I’m giving it a try.</p>
+
+<p>I’ve read few blog posts about new features, Metro style UI &amp; improved tooling. But I was surprised by what I have seen when I logged in and tried to open the “Manage” part: the<strong> Windows Azure Tour</strong> application.</p>
+
+<p><img src="/../../../../../images/2012/azure-tour-1.png" alt="alt screenshot" /></p>
+
+<p>Instead of throwing the newcomer directly into Management panel, it offers you to take a tour and get some concepts of application and how to interact with it.</p>
+
+<p>The idea itself is not new. <a href="http://en.wikipedia.org/wiki/Office_Assistant">Clippy the Office Assistant</a> is the (annoying) forgotten hero born to help people dig into Office applications. More often other companies are offering a video introduction for their products or a series of “text + screenshots” slides to quickly explain usage of the product to new users.</p>
+
+<p>The approach Microsoft took with Windows Azure Tour is a bit different:</p>
+
+<ul>
+<li>It runs “within” application itself, giving impression of having the main application in background</li>
+<li>It gradually exposes application’s features in the same window</li>
+<li>Features are shown in exact same place where they are in application</li>
+<li>It looks &amp; works great</li>
+</ul>
+
+
+<p>And I quite like their Wizard-like walkthrough dialog. Smooth and subtle animations, clear visual indication of steps and current position, a bold exposure of Metro/Windows 8 style. I’m very tempted to try reproduce it in XAML...</p>
+
+<p>Few more screenshots:</p>
+
+<p><img src="/../../../../../images/2012/azure-tour-2.png" alt="alt screenshot" /></p>
+
+<p><img src="/../../../../../images/2012/azure-tour-3.png" alt="alt screenshot" /></p>
+
+<p>Finishing the Tour will take you to the main application screen:</p>
+
+<p><img src="/../../../../../images/2012/azure-tour-4.png" alt="alt screenshot" /></p>
+
+<p>That’s just my first impression about Azure. And most often is the one that counts the most. I think Microsoft have done a great job for presenting the new Azure. Let’s see now how it will be in real usage...</p>
+
+<p>PS: If you haven’t seen the previous Azure portal, here is a screenshot:</p>
+
+<p><img src="/../../../../../images/2012/azure-tour-5.png" alt="alt screenshot" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Me developer - "I'm done"; me designer - "wait a minute..."]]></title>
+    <link href="http://caraulean.com/blog/2011/05/06/me-developerim-done-me-designerwait-a-minute/"/>
+    <updated>2011-05-06T16:29:07+02:00</updated>
+    <id>http://caraulean.com/blog/2011/05/06/me-developerim-done-me-designerwait-a-minute</id>
+    <content type="html"><![CDATA[<p>As most of developers working in a small teams or projects I have to work on UI. Should it be a new screen, complete feature with some UI interactions or just a fix of some font/alignment/style issues.</p>
+
+<p>When you’re in “developer mode” criteria for “done” is more or less precise: tests are green, code is OK and metrics (if you have some) are acceptable.</p>
+
+<p>Then I have to do some UI work and when I wear my Designer hat it gets difficult to define “done” criteria. We can easily appreciate “functional” quality of one particular screen. But it’s <strong>Design and Usability values are more difficult</strong> to formalize. You can check some UI Guidelines, you can show your work to a stakeholder or client. They both will say it’s OK. Then you’re improving it by grouping better screen’s content. They again say “it’s OK”. You’re checking alignments, highlight frequently used commands and do subtle color changes to application’s color set. And again, “it’s OK”.</p>
+
+<p>Is it better than before? Definitely. Is it done? Well ... If you’re at your “<strong>it’s good enough</strong>” point, you probably will stop. Until next time...</p>
+
+<p>To some degree, this tendency towards perfection it’s applicable to development too. A developer can (almost) infinitely polish, optimize &amp; refactor existing code. The code will be better. Will it be observable by final user? Less likely (unless it’s a performance issue). And this is the difference with designer’s work: <strong>any change will potentially be appreciated by end-user</strong>.</p>
+
+<p>That’s why I think that impact of Design and Usability on any software product is more important that it’s internal beauty.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How we get inspiration...]]></title>
+    <link href="http://caraulean.com/blog/2011/02/21/how-we-get-inspiration/"/>
+    <updated>2011-02-21T16:54:04+01:00</updated>
+    <id>http://caraulean.com/blog/2011/02/21/how-we-get-inspiration</id>
+    <content type="html"><![CDATA[<p>That’s interesting to observe how we’re getting influenced by things around us. How world we see and experience is determining <strong>what</strong> and <strong>how</strong> we do. Most of the time we’re not sensing the source of our actions and decisions. It’s very subtle. And often the “it feels right” moments are a sign that experience we’ve got, processed and incorporated is applied without realizing what exactly is done right...</p>
+
+<p>But not this case:</p>
+
+<p><img src="/../../../../../images/2011/metro-style-screen.png" alt="alt screenshot" /></p>
+
+<p>I’m working on Windows Phone 7 application (yes, <a href="http://mgithub.com/">mGitHub</a> and btw it’s already available in marketplace) in my spare time and weekends and I own a WP7 device which I really like. So, there was no surprise when I’ve seen that <strong>Metro UI</strong>, the visual style of Windows Phone 7 platform, influenced me and leaked in this screen that is part of a Silverlight application.</p>
+
+<p>Asked people what they think, got mostly positive appreciations. It would be interesting to see how this concept will evolve. It’s only an early sketch, done by a “more developer than designer”. How you like it?</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Traditional toolbars and Ribbon bar]]></title>
+    <link href="http://caraulean.com/blog/2010/09/25/traditional-toolbars-and-ribbon-bar/"/>
+    <updated>2010-09-25T23:42:14+02:00</updated>
+    <id>http://caraulean.com/blog/2010/09/25/traditional-toolbars-and-ribbon-bar</id>
+    <content type="html"><![CDATA[<p>Dmitry Fadeyev is writing about <a href="http://www.usabilitypost.com/2010/09/24/false-simplicity/">icons in UI and the false sense of simplicity</a> icons are giving us.</p>
+
+<p>While he is talking about it in the context of concrete application, it remembered me transition from “traditional” toolbars to Ribbon bar, particularly in Office apps. Still, lots of people didn’t get the sense of the Ribbon, but I consider it as an improvement. The biggest advantage is <strong>feature discoverability</strong>.</p>
+
+<p>Lets look at two screenshots. The first one:</p>
+
+<p><img src="/../../../../../images/2010/toolbars-traditional.png" alt="alt traditional toolbars" /></p>
+
+<p>First one is from Visual Studio 2010, a very traditional toolbar. Of course, there are other icons that being simple and intuitive give you enough confidence clicking them (think changing text alignment in Word). But to get a sense what will clicking on a unknown button will do you either will:</p>
+
+<ul>
+<li>get with mouse over it and read the tooltip (and you’re lucky if you have one, lots of application developers are not even bothering writing them)</li>
+<li>click the button and observe what happens</li>
+<li>forget the button and go to the menu and actually read trough menu items to find what are you looking for</li>
+</ul>
+
+
+<p>Hmm, of course, over time you get more confortable with clicking on the buttons that look familiarly or are used often. But finding the features are still a pain.</p>
+
+<p><img src="/../../../../../images/2010/toolbars-windows8.png" alt="alt windows 8 toolbars" /></p>
+
+<p>And then second screenshot showing a fragment of a Ribbon bar. We’re having here not only icons, but also a small label giving an instant hint for what the action will do. Then you even have an sense of the context, these actions are related to “Editing” the document. Click target is bigger than a 6x6 icon. And there are other advantages...</p>
+
+<p>Yet the first toolbar is looking simpler, takes less place and over time it is easy enough in use. But any time when I see a complex application with a considerable number of options and actions, I would prefer a Ribbon instead. It’s about <strong>discoverability</strong>. It’s about <strong>first impression your application is giving to a new user</strong>. If you screw that, you’ll miss the user too...</p>
+
+<p>Still, the Ribbon it’s not a panacea. It is not suitable for any kind of applications. Document oriented interfaces are genuinely fine for the Ribbon. But when you have data intensive apps, with lots of interactions, contextual actions, flexible layout and navigation – Ribbon may be not your choice...</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Intro to Usability]]></title>
+    <link href="http://caraulean.com/blog/2010/01/25/intro-to-usability/"/>
+    <updated>2010-01-25T22:52:21+01:00</updated>
+    <id>http://caraulean.com/blog/2010/01/25/intro-to-usability</id>
+    <content type="html"><![CDATA[<p>I just finished watching a <a href="http://blip.tv/file/1557737">video about basics of Usability</a>. Before, I’ve read few articles and blog posts on the topic , but this video gives a nice introduction in Usability basics and Usability Testing so that I’ll save it in the blog. The speaker is Steve Krug, author of “Don’t make me think”, book sitting in my “to be read” list and just moved higher in the queue.</p>
+
+<p>The thing I liked the most is how “cheap” are usability improvements. Change the caption of the button, remove that cryptic description, move important things higher and hide functions being rarely used.</p>
+
+<p>And test it. Iteratively. It’s agile on it’s better form – pick a user or two and just let them do something useful in your app. Notice errors, fix it.</p>
+
+<p>And test it, again...</p>
+]]></content>
+  </entry>
+  
+</feed>

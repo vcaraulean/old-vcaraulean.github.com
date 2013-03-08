@@ -1,0 +1,363 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Fearing about Silverlight's future? Don't... - valeriu caraulean</title>
+  <meta name="author" content="Valeriu Caraulean">
+
+  
+  <meta name="description" content="Just accept the facts, prepare &amp; migrate to WPF when ready. When you have something worrying you, the best way to tackle it is to cut it straight &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://caraulean.com/blog/2012/07/18/fearing-about-silverlights-future-dont/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="valeriu caraulean" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-21974825-3']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1>
+    <a href="/">
+      <div id="logoLeft">{</div>
+      <div id="logoText"> blog </div>
+      <div id="logoRight">}</div>
+      <div>valeriu caraulean</div>
+      <div class="clear"></div>
+    </a>
+  </h1>
+  
+    <h2>keep it simple, it will work...</h2>
+  
+  <div class="clear"></div>
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:caraulean.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/projects">Projects</a></li>
+  <li><a href="/about">About</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">Fearing About Silverlight's Future? Don't...</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-18T13:26:29+02:00" pubdate data-updated="true">Jul 18<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Just accept the facts, prepare &amp; migrate to WPF when ready.</p>
+
+<p>When you have something worrying you, the best way to tackle it is to cut it straight and act on it. That&#8217;s the way to get it out of your head. If not, you&#8217;re left on the mercy of external factors that may change the circumstances and the problem will go away.</p>
+
+<blockquote><p>“If you wait by the river long enough, the bodies of your enemies will float by.”
+- Sun Tzu</p></blockquote>
+
+<p>For some time I have a strange feeling about Silverlight. Few years ago it was &#8220;the solution&#8221; for cross-platform Rich Internet Applications. It was Microsoft&#8217;s &#8220;offre du jour&#8221; for Enterprise Software development, offering ease of deployment &amp; update, run anywhere premise and offering a (part of) common development platform for Windows: XAML &amp; .NET.</p>
+
+<h4>Times are changing</h4>
+
+<p>The rapid rise of HTML5 &amp; CSS3 have had a huge impact on client side application development. Reach features of &#8220;next web&#8221; markup &amp; styling together with explosion of JavaScript popularity (adoption &amp; tooling) makes Web Applications an extremely viable &#8220;Rich Client&#8221; solution even for Enterprise Software. And sometimes it works nicely for mobile applications too.</p>
+
+<p>Then there is Microsoft&#8217;s focus on Windows 8 &amp; WinRT. All bets are on the new and shiny Windows 8, Office 2013, Windows Phone 8 &amp; Surface. WinRT is &#8220;the new Silverlight&#8221;, this time without the goal to run on multiple platforms but with a lot of aspirations to support Microsoft&#8217;s moves in tablet and mobile markets.</p>
+
+<h4>And now</h4>
+
+<p>Looking back at my experience as a Silverlight developer, there is a sensible level of deception and frustration. Missing features, cut-off or half-backed functionality, leaking resources and a failed promise to offer a viable way to develop cross-platform applications. And the worst of all, I think we&#8217;ve lost time working around various limitations of Silverlight in order to get it working properly and comply with our requirements (somewhere between 10 to 15 %%).</p>
+
+<p>The current version of Silverlight is 5. Microsoft is quiet about his future - current releases will be supported, but absolute no information about next versions. Instead, there are plenty of rumors that there will be no Silverlight 6. Microsoft is too busy pushing the Windows 8 and the Silverlight&#8217;s incarnation on this platform, the WinRT.</p>
+
+<h4>What do you have to loose? Not too much&#8230;</h4>
+
+<p>More important is what you can gain by migrating your current Silverlight application to WPF:</p>
+
+<ul>
+<li>A normal Windows application, running on all versions of Windows from XP to 8.</li>
+<li>The power of WPF &amp; full .NET framework.</li>
+<li>Full integration with OS: printing, scanning, file system, services.</li>
+<li>Better integration with other applications. MS Office, Reporting tools, you name it.</li>
+<li>Touch &amp; Multi-Touch support. You can create applications for Windows 8 that aren&#8217;t Metro, but are touch friendly.</li>
+</ul>
+
+
+<p>The main thing you’d probably miss is the ability to run application directly in your browser, without installing it. But if it’s an Silverlight OOB application, you probably need some features not available in his sandboxed environment and running in browser is already out of question.</p>
+
+<h4>Would it be hard to migrate to WPF? It depends&#8230;</h4>
+
+<p>If you have a well structured application that follows good practices, it shouldn’t be a hard task to complete. Major steps to migrate a Silverlight application to WPF will be:</p>
+
+<ul>
+<li><strong>Libraries &amp; frameworks</strong>. If you were careful picking those, it now should be a pretty simple task of switching assemblies. Should it be the MVVM framework (Caliburn.Micro or MVVMLight), IoC container (Castle.Windsor) or third-party visual component library (Telerik, DevExpress) - usually they have versions for Silverlight and WPF. In ideal case you will end up just swapping assemblies.</li>
+<li><strong>Porting the source code</strong>. Again, depending on how you&#8217;ve approached development process it may be not so hard to do. It most cases it will be just &#8220;copy files&#8221; over. But some parts would need to be rewritten, often to simplify or throw away things. I estimate that volume of code to be reviewed/rewritten will be around 15% of overall client side code. Resharper &amp; good old Find-Replace are your friends here.</li>
+<li><strong>Installer &amp; application updates</strong>. Up until now you relied on Silverlight to install &amp; update the application. This part should be redone. ClickOnce is a viable solution, it will serve well your initial requirements to install and update the application. It would take 2-3 days to build, test &amp; make available a decent solution for this problem.</li>
+<li><strong>Rigorous testing after migration</strong>. May be most difficult and time consuming one if you have a large application as there is no tooling support to help with it.</li>
+</ul>
+
+
+<p>I&#8217;m not advocating blindly for immediate migration of every Silverlight application to WPF. If your application have reached his first release, doesn&#8217;t have a long lifespan and current users are happy - you&#8217;ll probably be fine sticking with Silverlight. But if you&#8217;re still in active development or the application is a part of company&#8217;s strategic products &amp; directions, you should very seriously consider the move.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Valeriu Caraulean</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-18T13:26:29+02:00" pubdate data-updated="true">Jul 18<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/development/'>development</a>, <a class='category' href='/blog/categories/silverlight/'>silverlight</a>, <a class='category' href='/blog/categories/wpf/'>wpf</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://caraulean.com/blog/2012/07/18/fearing-about-silverlights-future-dont/" data-via="vcaraulean" data-counturl="http://caraulean.com/blog/2012/07/18/fearing-about-silverlights-future-dont/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left articlenav" href="/blog/2012/07/02/packed-for-vacation/" title="Previous Post: Packed for vacation...">&laquo; Packed for vacation...</a>
+      
+      
+        <a class="basic-alignment right articlenav" href="/blog/2012/07/19/migrating-from-silverlight-to-wpf-a-case-study/" title="Next Post: Migrating from Silverlight to WPF, a case study">Migrating from Silverlight to WPF, a case study &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+	<h1>About</h1>
+	<p>I'm a passionate software developer living in Geneva, Switzerland</p>
+	<p><a href="/about">Read more ...</a></p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/12/14/book-review-nosql-distilled/">Book review - NoSQL Distilled</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/15/do-less-and-achieve-more-with-ravendb/">Do less and achieve more with RavenDb</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/09/diving-deeper-in-reactive-extensions/">Diving deeper in Reactive Extensions, concurrency</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/30/hello/">Hello, new blog!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/30/visual-studio-2012-dark-theme-tip/">Visual Studio 2012 dark theme tip - light up your UserControl in XAML designer</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/28/evening-time-time-for-fun/">Evening time, time for fun</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/21/on-motivation-a-quote/">On motivation, a quote...</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/19/migrating-from-silverlight-to-wpf-a-case-study/">Migrating from Silverlight to WPF, a case study</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/18/fearing-about-silverlights-future-dont/">Fearing about Silverlight's future? Don't...</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/02/packed-for-vacation/">Packed for vacation...</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("vcaraulean", 5, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/vcaraulean" class="twitter-follow-button" data-show-count="false">Follow @vcaraulean</a>
+  
+</section>
+
+
+
+<section class="googleplus googleplus-hidden">
+  <h1>
+    <a href="https://plus.google.com/108353347632139121774?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Valeriu Caraulean -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'caraulean';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://caraulean.com/blog/2012/07/18/fearing-about-silverlights-future-dont/';
+        var disqus_url = 'http://caraulean.com/blog/2012/07/18/fearing-about-silverlights-future-dont/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

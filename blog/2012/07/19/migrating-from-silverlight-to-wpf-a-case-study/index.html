@@ -1,0 +1,361 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Migrating from Silverlight to WPF, a case study - valeriu caraulean</title>
+  <meta name="author" content="Valeriu Caraulean">
+
+  
+  <meta name="description" content="A case study on porting an application that uses Caliburn.Micro and Telerik’s visual components from Silverlight to WPF I wrote that nobody should &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://caraulean.com/blog/2012/07/19/migrating-from-silverlight-to-wpf-a-case-study/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="valeriu caraulean" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-21974825-3']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1>
+    <a href="/">
+      <div id="logoLeft">{</div>
+      <div id="logoText"> blog </div>
+      <div id="logoRight">}</div>
+      <div>valeriu caraulean</div>
+      <div class="clear"></div>
+    </a>
+  </h1>
+  
+    <h2>keep it simple, it will work...</h2>
+  
+  <div class="clear"></div>
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:caraulean.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/projects">Projects</a></li>
+  <li><a href="/about">About</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">Migrating From Silverlight to WPF, a Case Study</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-19T19:06:48+02:00" pubdate data-updated="true">Jul 19<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h4>A case study on porting an application that uses <a href="http://caliburnmicro.codeplex.com/">Caliburn.Micro</a> and <a href="http://www.telerik.com/">Telerik’s visual components</a> from Silverlight to WPF</h4>
+
+<p>I wrote that <a href="/blog/2012/07/18/fearing-about-silverlights-future-dont/">nobody should fear an eventual migration from Silverlight to WPF</a>. But I wanted as well to work on a “proof of concept” and try to find what difficulties may arise in a such migration and how easy is to actually do it. And, preferable, do it in a small project before taking on big targets.</p>
+
+<p>I’ll use <a href="https://github.com/vcaraulean/Caliburn.Micro.Telerik">Caliburn.Micro.Telerik</a> as my test ground. It’s a library aimed to <a href="/blog/2011/06/05/integration-of-caliburn-micro-and-teleriks-silverlight-controls/">integrate Caliburn.Micro and Telerik’s component suite for Silverlight</a>. And as I’ve been getting requests to port conventions and few helpers to WPF I’ll use it as my playground.</p>
+
+<p>Silverlight solution contains a Silverlight library and two Silverlight applications to test conventions and other stuff. Both applications together contains more than 10 views with corresponding view models, so it should provide a fairly relevant impression about how easy is to migrate from Silverlight to WPF.</p>
+
+<h3>Step 1</h3>
+
+<p>Restructure solution to allow cohabitation of two different versions. In this case, I want to keep both versions, so I’ll be copying files from one project to another. Duplication, but at this moment I don’t want the overhead of keeping two target frameworks with a common codebase.</p>
+
+<h3>Step 2</h3>
+
+<p>Creating the destination point – a .NET library or WPF application:</p>
+
+<ul>
+<li>Create new Class Library targeting .NET 4 framework or WPF Application with .NET 4 Client profile.</li>
+<li>Add Caliburn.Micro using Nuget</li>
+<li>If it’s a class library, add references to WPF’s assemblies: PresentationCore, PresentationFramework, System.Xaml &amp; WindowsBase</li>
+<li>Add references to Telerik’s assemblies. I’ve picked ones with same names as in corresponding Silverlight project.</li>
+</ul>
+
+
+<h3>Step 3</h3>
+
+<p>Getting the application canvas and infrastructure code right. This includes Caliburn’s bootstrapper, the main view &amp; all stuff to get application running. There is one difference, the main view in WPF should be a Window, while in Silverlight it was a simple UserControl.</p>
+
+<h3>Step 4</h3>
+
+<p>Migrating your views &amp; view models. In the case of Caliburn.Micro.Telerik examples project I’ve had to just copy the files from Silverlight to WPF project. Then it compiled and run just fine.</p>
+
+<h3>Step 5</h3>
+
+<p>Cleanup.</p>
+
+<h3>Conclusions</h3>
+
+<p>Telerik have done a pretty good job on keeping their Silverlight and WPF components in a very similar shape and at a very high compatibility level between both platforms. I hope that it doesn’t diminishes any of advantages/facilities/features of either platform.</p>
+
+<p>Migrating a Caliburn.Micro application from SL to WPF is a piece of cake. Despite few minor differences in infrastructure code between WPF &amp; Silverlight versions of WPF, you’re pretty much left with move files, cleanup namespaces and Run. View models are ported without any issues, however you may encounter few with the views.</p>
+
+<p>As this was a small project, porting is very straightforward and relatively simple. In a real application with lots of stuff and moving pieces you will have some more work to do. Particularly when you have some Silverlight specific code or where you’re working around platform’s limitations. Take for example mouse events. To get a “double click” you have to write custom code. Middle click doesn’t exist in Silverlight. Printing is different, file system interactions too. Communication layer (WCF &amp; service references) will need a review. There’s are no RIA services in WPF (I may be wrong here). The list may go on further, but I’ll stop here. I hope to have much more info to share about migration process as I’ll probably will take part in moving a much larger application from Silverlight to WPF.</p>
+
+<p>That’s all. I hope my experience will help someone else to go over the fear and burden of porting a Silverlight application to WPF.</p>
+
+<p>PS: you can have a look at final result, get sources and compare both versions on <a href="http://github.com/vcaraulean/Caliburn.Micro.Telerik">GitHub</a>.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Valeriu Caraulean</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-19T19:06:48+02:00" pubdate data-updated="true">Jul 19<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/silverlight/'>silverlight</a>, <a class='category' href='/blog/categories/wpf/'>wpf</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://caraulean.com/blog/2012/07/19/migrating-from-silverlight-to-wpf-a-case-study/" data-via="vcaraulean" data-counturl="http://caraulean.com/blog/2012/07/19/migrating-from-silverlight-to-wpf-a-case-study/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left articlenav" href="/blog/2012/07/18/fearing-about-silverlights-future-dont/" title="Previous Post: Fearing about Silverlight's future? Don't...">&laquo; Fearing about Silverlight's future? Don't...</a>
+      
+      
+        <a class="basic-alignment right articlenav" href="/blog/2012/08/21/on-motivation-a-quote/" title="Next Post: On motivation, a quote...">On motivation, a quote... &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+	<h1>About</h1>
+	<p>I'm a passionate software developer living in Geneva, Switzerland</p>
+	<p><a href="/about">Read more ...</a></p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/12/14/book-review-nosql-distilled/">Book review - NoSQL Distilled</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/15/do-less-and-achieve-more-with-ravendb/">Do less and achieve more with RavenDb</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/09/diving-deeper-in-reactive-extensions/">Diving deeper in Reactive Extensions, concurrency</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/30/hello/">Hello, new blog!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/30/visual-studio-2012-dark-theme-tip/">Visual Studio 2012 dark theme tip - light up your UserControl in XAML designer</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/28/evening-time-time-for-fun/">Evening time, time for fun</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/21/on-motivation-a-quote/">On motivation, a quote...</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/19/migrating-from-silverlight-to-wpf-a-case-study/">Migrating from Silverlight to WPF, a case study</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/18/fearing-about-silverlights-future-dont/">Fearing about Silverlight's future? Don't...</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/02/packed-for-vacation/">Packed for vacation...</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("vcaraulean", 5, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/vcaraulean" class="twitter-follow-button" data-show-count="false">Follow @vcaraulean</a>
+  
+</section>
+
+
+
+<section class="googleplus googleplus-hidden">
+  <h1>
+    <a href="https://plus.google.com/108353347632139121774?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Valeriu Caraulean -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'caraulean';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://caraulean.com/blog/2012/07/19/migrating-from-silverlight-to-wpf-a-case-study/';
+        var disqus_url = 'http://caraulean.com/blog/2012/07/19/migrating-from-silverlight-to-wpf-a-case-study/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

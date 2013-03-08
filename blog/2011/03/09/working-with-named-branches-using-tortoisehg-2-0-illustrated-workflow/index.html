@@ -1,0 +1,435 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Working with named branches using TortoiseHg 2.0. An illustrated workflow - valeriu caraulean</title>
+  <meta name="author" content="Valeriu Caraulean">
+
+  
+  <meta name="description" content="Disclaimer: I’ve wrote this guide for my teammates that started diving in Mercurial. They came with Subversion background and after looking how &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://caraulean.com/blog/2011/03/09/working-with-named-branches-using-tortoisehg-2-0-illustrated-workflow/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="valeriu caraulean" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-21974825-3']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1>
+    <a href="/">
+      <div id="logoLeft">{</div>
+      <div id="logoText"> blog </div>
+      <div id="logoRight">}</div>
+      <div>valeriu caraulean</div>
+      <div class="clear"></div>
+    </a>
+  </h1>
+  
+    <h2>keep it simple, it will work...</h2>
+  
+  <div class="clear"></div>
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:caraulean.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/projects">Projects</a></li>
+  <li><a href="/about">About</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">Working With Named Branches Using TortoiseHg 2.0. An Illustrated Workflow</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-09T22:54:47+01:00" pubdate data-updated="true">Mar 9<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h5><strong>Disclaimer</strong>: I’ve wrote this guide for my teammates that started diving in Mercurial. They came with Subversion background and after looking how they are working with Mercurial I wanted to show them one of more flexible workflows. It’s not a definitive guide. Just <strong>one of the ways</strong> to manage multiple work items with Mercurial and TortoiseHg 2.0. Oh, and it’s illustrated&#8230;</h5>
+
+<h2>The Story, a real one&#8230;</h2>
+
+<p>One of the devs was working on a feature and wanted to push it to remote repository. Feature, being incomplete/not finished/full of bugs makes using some parts of the app awkward. And/or it’s keeping out other devs working in same source code area. Or the developer wants just push it and go fix an annoying bug he just spotted in other area&#8230;</p>
+
+<h4>What to do?</h4>
+
+<p>First of all, don’t keep it local! You should <strong>not try keep your modifications local</strong>. Mostly because your PC is not as reliable as our servers and also work you do isn’t visible to other team members.</p>
+
+<p>Let’s formulate the problem: <strong>have ability to manage few work items simultaneously</strong>.</p>
+
+<h4>When it’s useful?</h4>
+
+<ul>
+<li>A piece of work (issue/ticket/feature/bug) you’re tackling currently can take multiple days to implement. Even weeks.</li>
+<li>Multiple work items are useful when you have to quickly fix a bug in ‘default’ line when keep working on another feature</li>
+<li>You can share your unfinished work or ask an advice/review on it from your teammates</li>
+<li>You want to do something experimental, a crazy idea to try and then throw it to recycle bin.</li>
+</ul>
+
+
+<h4>Solution?</h4>
+
+<p>One of the options is use<strong> Mercurial named branches</strong>. I’ll describe a small workflow (with pictures, so you don’t get bored) describing how you can manage multiple work items at the same time.</p>
+
+<p>Here is the algorithm, to get you on the track. It’s command line log with commentaries:</p>
+
+<pre><code>hg branch ticket-17                        // creating branch ‘ticket-17’
+(do some changes)
+hg commit –m “my commit message”           // committing to the branch
+(more work, more commits)
+hg update default                          // switching to default line
+hg merge ticket-17                         // merging branch ‘ticket-17’ to default line
+hg commit                                  // committing your merge
+</code></pre>
+
+<p>And that’s all. I hope you’ve got the idea.</p>
+
+<h3>How to do it with Tortoise HG 2.0</h3>
+
+<h4>Configuration</h4>
+
+<p>To be able to push your branches to remote repository you have to configure TortoiseHg to allow new branches.</p>
+
+<p>The picture:</p>
+
+<p><img src="/../../../../../images/2011/tortoisehg-branches-1.jpg" alt="alt screenshot" /></p>
+
+<p>Steps:</p>
+
+<ol>
+<li>Click Synchronize</li>
+<li>Click Options</li>
+<li>Check “Allow push of a new branch”</li>
+</ol>
+
+
+<h4>Create new named branch</h4>
+
+<p>The picture:</p>
+
+<p><img src="/../../../../../images/2011/tortoisehg-branches-2.jpg" alt="alt screenshot" /></p>
+
+<p>Steps:</p>
+
+<ul>
+<li>Select the working directory in log view</li>
+<li>Click on button with name of current branch - “Branch: default”</li>
+<li>Select Open a new named branch and give it a name. Short and clean. Or long but anyway clean &amp; descriptive.</li>
+</ul>
+
+
+<p>When you’ll press OK your current branch button will change to “New branch: feature-1”</p>
+
+<h4>Get the work done and commit to your new branch</h4>
+
+<p>No pictures here as working with code is a very intimate process.</p>
+
+<p>Just be sure you’re committing to the right branch.</p>
+
+<h4>Update to default branch</h4>
+
+<p>Picture:</p>
+
+<p><img src="/../../../../../images/2011/tortoisehg-branches-3.jpg" alt="alt screenshot" /></p>
+
+<p>Steps:</p>
+
+<ol>
+<li>Select the “head” of default branch (the green label with name of the branch). Or, if you want to get creative, another branch where you want to integrate the “feature-1”.</li>
+<li>Click “Update&#8230;”</li>
+</ol>
+
+
+<h4>Merging changes from feature-1 to default</h4>
+
+<p>The picture:</p>
+
+<p><img src="/../../../../../images/2011/tortoisehg-branches-4.jpg" alt="alt screenshot" /></p>
+
+<p>Steps:</p>
+
+<ul>
+<li>Ensure your working directory is default branch.</li>
+<li>Click on the head of “feature-1” branch and choose “Merge with local&#8230;”</li>
+</ul>
+
+
+<p>A Merge dialog will open:</p>
+
+<ul>
+<li>Review one more time the what you’re about to do</li>
+<li>Click Merge</li>
+<li>You’ll be asked to commit your merge. Change message if you want and do commit.</li>
+</ul>
+
+
+<p>You’re done!</p>
+
+<p>Well, almost&#8230; Now when you’ll push to remote repository the “feature-1” branch will be also pushed and everyone will have access to it. And your work backed up on the server.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Valeriu Caraulean</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-09T22:54:47+01:00" pubdate data-updated="true">Mar 9<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/tools/'>tools</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://caraulean.com/blog/2011/03/09/working-with-named-branches-using-tortoisehg-2-0-illustrated-workflow/" data-via="vcaraulean" data-counturl="http://caraulean.com/blog/2011/03/09/working-with-named-branches-using-tortoisehg-2-0-illustrated-workflow/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left articlenav" href="/blog/2011/02/21/how-we-get-inspiration/" title="Previous Post: How we get inspiration...">&laquo; How we get inspiration...</a>
+      
+      
+        <a class="basic-alignment right articlenav" href="/blog/2011/04/12/mix11s-first-day-keynote-on-web-platform-my-impressions/" title="Next Post: MIX11's first day keynote on Web Platform. My impressions...">MIX11's first day keynote on Web Platform. My impressions... &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+	<h1>About</h1>
+	<p>I'm a passionate software developer living in Geneva, Switzerland</p>
+	<p><a href="/about">Read more ...</a></p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/12/14/book-review-nosql-distilled/">Book review - NoSQL Distilled</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/15/do-less-and-achieve-more-with-ravendb/">Do less and achieve more with RavenDb</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/09/diving-deeper-in-reactive-extensions/">Diving deeper in Reactive Extensions, concurrency</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/30/hello/">Hello, new blog!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/30/visual-studio-2012-dark-theme-tip/">Visual Studio 2012 dark theme tip - light up your UserControl in XAML designer</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/28/evening-time-time-for-fun/">Evening time, time for fun</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/21/on-motivation-a-quote/">On motivation, a quote...</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/19/migrating-from-silverlight-to-wpf-a-case-study/">Migrating from Silverlight to WPF, a case study</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/18/fearing-about-silverlights-future-dont/">Fearing about Silverlight's future? Don't...</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/02/packed-for-vacation/">Packed for vacation...</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("vcaraulean", 5, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/vcaraulean" class="twitter-follow-button" data-show-count="false">Follow @vcaraulean</a>
+  
+</section>
+
+
+
+<section class="googleplus googleplus-hidden">
+  <h1>
+    <a href="https://plus.google.com/108353347632139121774?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Valeriu Caraulean -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'caraulean';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://caraulean.com/blog/2011/03/09/working-with-named-branches-using-tortoisehg-2-0-illustrated-workflow/';
+        var disqus_url = 'http://caraulean.com/blog/2011/03/09/working-with-named-branches-using-tortoisehg-2-0-illustrated-workflow/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

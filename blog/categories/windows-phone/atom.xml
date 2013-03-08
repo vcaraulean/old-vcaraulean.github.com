@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: windows-phone | valeriu caraulean]]></title>
+  <link href="http://caraulean.com/blog/categories/windows-phone/atom.xml" rel="self"/>
+  <link href="http://caraulean.com/"/>
+  <updated>2013-03-08T23:23:44+01:00</updated>
+  <id>http://caraulean.com/</id>
+  <author>
+    <name><![CDATA[Valeriu Caraulean]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Using WP7's Secondary Tiles with Caliburn.Micro]]></title>
+    <link href="http://caraulean.com/blog/2011/12/13/using-wp7s-secondary-tiles-with-caliburn-micro/"/>
+    <updated>2011-12-13T01:04:22+01:00</updated>
+    <id>http://caraulean.com/blog/2011/12/13/using-wp7s-secondary-tiles-with-caliburn-micro</id>
+    <content type="html"><![CDATA[<p>There’s good guide on <a href="http://msdn.microsoft.com/en-us/library/hh202979(v=vs.92">how to manage WP7’s Secondary tiles</a>.aspx) on MSDN.</p>
+
+<p>So, how are you doing it with Caliburn.Micro? Take same way, it just works!</p>
+
+<p>However, there’s a small touch of Caliburn.Micro goodness you can add to your code to make it more maintainable. When you’re setting the URI for your Tile, use the INavigationService.UriFor&lt;>() extension method. This will make your code a little more friendly for an eventual refactoring and for sure will save you from few nasty bugs.</p>
+
+<p>Sample code:</p>
+
+<pre><code>var newTileData = new StandardTileData
+{
+    Title = "my tile",
+    BackTitle = "my tile details",
+    BackContent = "description",
+};
+
+ShellTile.Create(navigationService.UriFor&lt;MyViewModel&gt;()
+                     .WithParam(x =&gt; x.ViewModelParameter, "some value")
+                     .BuildUri(),
+                 newTileData);
+</code></pre>
+
+<p>Piece of cake!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Using WP7's ProgressIndicator with Caliburn.Micro]]></title>
+    <link href="http://caraulean.com/blog/2011/12/09/using-wp7s-progressindicator-with-caliburn-micro/"/>
+    <updated>2011-12-09T01:45:10+01:00</updated>
+    <id>http://caraulean.com/blog/2011/12/09/using-wp7s-progressindicator-with-caliburn-micro</id>
+    <content type="html"><![CDATA[<p>The Windows Phone SDK 7.1 introduced a new control to show the progress of long operations or interactions, ProgressIndicator. As I love much the <a href="http://caliburnmicro.codeplex.com">Caliburn.Micro</a> framework I got some time to integrate neatly ProgressIndicator with the rest of application and services using Caliburn’s container.</p>
+
+<p>First of all, let’s define our application facing progress service:</p>
+
+<pre><code>public interface IProgressService {
+    void Show();
+    void Show(string text);
+    void Hide();
+}
+</code></pre>
+
+<p>Pretty simple, yes...</p>
+
+<p>The implementation was partly inspired by <a href="http://www.jeff.wilcox.name/2011/07/creating-a-global-progressindicator-experience-using-the-windows-phone-7-1-sdk-beta-2/">Jeff Wilcox’s article about creating a global ProgressIndicator</a>.</p>
+
+<p>It’s pretty simple and straightforward: we’re getting the Root Application Frame and hooking up to the Navigated event. His arguments contain the page being navigated to. Then we’re attaching our instance of ProgressIndicator to that page. And the service uses Show/Hide methods to manipulate the state of indicator. The code:</p>
+
+<pre><code>public class ProgressService : IProgressService {
+    const string DefaultIndicatorText = "Loading...";
+    private readonly ProgressIndicator progressIndicator;
+
+    public ProgressService(PhoneApplicationFrame rootFrame)
+    {
+        progressIndicator = new ProgressIndicator {Text = DefaultIndicatorText};
+
+        rootFrame.Navigated += RootFrameOnNavigated;
+    }
+
+    private void RootFrameOnNavigated(object sender, NavigationEventArgs args)
+    {
+        var content = args.Content;
+        var page = content as PhoneApplicationPage;
+        if (page == null)
+            return;
+
+        page.SetValue(SystemTray.ProgressIndicatorProperty, progressIndicator);
+    }
+
+    public void Show()
+    {
+        Show(DefaultIndicatorText);
+    }
+
+    public void Show(string text)
+    {
+        progressIndicator.Text = text;
+        progressIndicator.IsIndeterminate = true;
+        progressIndicator.IsVisible = true;
+    }
+
+    public void Hide()
+    {
+        progressIndicator.IsIndeterminate = false;
+        progressIndicator.IsVisible = false;
+    }
+}
+</code></pre>
+
+<p>The last piece of this mini-puzzle is wiring up the service to container and made it available to the rest of application:</p>
+
+<pre><code>public class AppBootstrapper : PhoneBootstrapper {
+    private PhoneContainer container;
+
+    protected override void Configure()
+    {
+        container = new PhoneContainer(RootFrame);
+        container.Instance&lt;IProgressService&gt;(new ProgressService(RootFrame));
+</code></pre>
+
+<p>That’s all. Now declare a dependency on IProgressService whenever you need it and show/hide to give a nice feedback to the User when your application is doing something long. You never forget that User is the ultimate chief and judge in our business, right?..</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[New day, new adventures - Samsung Omnia 7 and 7392 update for WP7]]></title>
+    <link href="http://caraulean.com/blog/2011/05/18/new-day-new-adventures-samsung-omnia-7-and-7392-update-for-wp7/"/>
+    <updated>2011-05-18T12:35:23+02:00</updated>
+    <id>http://caraulean.com/blog/2011/05/18/new-day-new-adventures-samsung-omnia-7-and-7392-update-for-wp7</id>
+    <content type="html"><![CDATA[<p>I’ve been glad to see that Microsoft started again rolling out the 7392 update for Omnia 7. We, geeks, are loving updates. It gets us more stability and new features. And bugs, sometimes...</p>
+
+<p>The 7392 is a minor one, it should fix some issues with security certificates. It’s not critical, but you’ll have to install it in order to get all next updates.</p>
+
+<p>When MS <a href="http://windowsteamblog.com/windows_phone/b/windowsphone/archive/2011/05/17/updates-resume-to-omnia-7-phones.aspx">announced that he resumes rolling this update</a> they also mentioned that “a small number of people ... might have trouble ...”. By Murphy's law I’ve landed in that small group that’s having troubles. How it was:</p>
+
+<ul>
+<li>Zune said it <strong>has an update</strong> for my phone.</li>
+<li>Zune is <strong>trying</strong> to install update but can’t move past “rebooting” stage. No probs, Microsoft <a href="http://support.microsoft.com/kb/2547687">warned about it an provided a workaround</a>.</li>
+<li>Installed the tool from Samsung, following instructions how to enter the phone in Download Mode.</li>
+<li>The phone is <strong>not entering in Download Mode</strong>, so Samsung’s tool cannot update the firmware so then Zune can install 7392 update.</li>
+<li>The only option to be tried is, as suggested by the tool and MS’s guide, is to <strong>contact Samsung</strong> Service Center.</li>
+</ul>
+
+
+<p>After googling around I’ve found that Omnia 7 phones with bootloader version 4.10.1.9 cannot enter in Download Mode by pressing VOLUMEUP + CAMERA keys. It’s disabled in this version.</p>
+
+<p>Looking further I’ve found that I have 2 options to get this update (and, consequently all next updates that will be rolled from now on):</p>
+
+<ul>
+<li><strong>Contact Samsung’s Service Center</strong>. The recommended way. This probably will mean that you have to send your phone somewhere in order to get it serviced. Will call them to see how much time will take that, but looks it’s not an option for me.</li>
+<li><strong>Tweak the hardware to enter Download Mode</strong>. The phones that can’t enter this mode by with known key combination can be forced to to it using a special (modified) PC connection cable or a Mini-USB dongle attached to the phone. Search Ebay for “Samsung Galaxy S Download Mode USB jig”, you’ll get the idea. 8$ + shipping. Plugging in this dongle will set the phone to Download Mode and you’ll be able to run <a href="http://support.microsoft.com/kb/2547687">Samsung’s utility</a> to update the phone. Or you’ll be able to flash a new <a href="http://www.samfirmware.com">ROM for device</a>. See <a href="http://forum.xda-developers.com/wiki/index.php?title=Samsung_Omnia_7">Omnia 7 wiki on xds-developers</a> for details about phone and flashing.</li>
+</ul>
+
+
+<p>Second options isn’t a recommended way to do it. You can kill your phone. Do it at your own risk. But most probably that’s what I’ll be trying to do, because I don’t have any willing to send my phone to a service center even for few days let alone for few weeks.</p>
+
+<h3>Update 01/06/2011:</h3>
+
+<p>As I’ve received today the USB jig that I’ve mentioned earlier, this is the follow up.</p>
+
+<p>Switched phone off, plugged in the jig &amp; wait for Download Mode to appear on the screen, pulled it out then connected to the PC. Samsung’s tool detected the phone and offered to update my firmware. Less than a minute later it congratulates with a successful update and rebooted the phone.</p>
+
+<p>After reboot Zune started and offered to install the 7.0.7392 update. Accepted.</p>
+
+<p>It passed successfully the glorious “rebooting” stage and after doing the backup my phone <strong>was successfully updated</strong> to latest Windows Phone OS. Now waiting for Mango...</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[MIX11 day two, Windows Phone 7 announcements]]></title>
+    <link href="http://caraulean.com/blog/2011/04/13/mix11-day-two-windows-phone-7-announcements/"/>
+    <updated>2011-04-13T23:51:13+02:00</updated>
+    <id>http://caraulean.com/blog/2011/04/13/mix11-day-two-windows-phone-7-announcements</id>
+    <content type="html"><![CDATA[<p>I've bee watching <a href="http://channel9.msdn.com/Blogs/Windows-Phone-7/Windows-Phone-7-Announcements--Demos-from-MIX-11-with-Joe-Belfiore">Channel 9 with WP7 announcements</a> and there are very interesting things that are coming to the platform, both developer and end-user oriented. In no particular order, with my comments:</p>
+
+<ul>
+<li><strong>Jump list (on letters using LongListSelector) and app search directly in application list</strong>. It's a welcome change. When number of installed apps is past of 30-40, it's very hard to find quickly the right app. I've tried to imagine a solution for this problem and came to idea that MS will let user's create "folder" tiles to group apps, similarly to iOS. How will work solution from MS we'll see when Mango will be released.</li>
+<li><strong>Marketplace improvements and better search</strong>. Another much welcomed change. Whenever I had to find something in Marketplace I would rather fire up Zune if it's available. Same, Games Hub is nice addition.</li>
+<li><strong>Third party apps integrated in search</strong>.</li>
+<li><strong>Improved hardware interoperability</strong>. Camera, gyro, compass. I'm cool for this stuff.</li>
+<li><strong>Improved live tiles</strong>. You can "pin" part of your apps to a tile. Extremely powerful feature, if done right (by developer). Then you have animations and status updates on a tile, directly from the app and not a remote service.</li>
+<li><strong>MULTITASKING</strong>. I've been waiting for it. "Only back" navigation isn't the greatest experience when you're trying to do few things at the same time. App switching speed is very impressive. I've seen demos of Blackberry's PlayBook based on QNX and running few resource heavy games at once and I've beed astounded by how system manages that. I'm glad to see that WP7 offers similar experience.</li>
+<li><strong>Sockets &amp; low level network API</strong>. Skype is coming. Hope to see a decent IM app supporting ICQ &amp; GTalk soon. And a VoIP/Softphone client too...</li>
+<li><strong>SQL CE database</strong>. Good to have, may be useful for data intensive apps &amp; offline capabilities.</li>
+<li><strong>IE9 &amp; HTML5</strong>.</li>
+</ul>
+
+
+<p>So, Microsoft took a slow start strategy with Windows Phone 7. Got it out robust but low on features if compared with iOS &amp; Android. Made first update (the NoDo) to make small improvements and polish the update process itself. And Mango will be coming this year to put it on par with competitors. When you add to the game the power of Microsoft's marketing machine, strong partner relationships and Nokia deal, then forecasts about WP7 getting over iPhone by 2015 sound very realistic.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How we get inspiration...]]></title>
+    <link href="http://caraulean.com/blog/2011/02/21/how-we-get-inspiration/"/>
+    <updated>2011-02-21T16:54:04+01:00</updated>
+    <id>http://caraulean.com/blog/2011/02/21/how-we-get-inspiration</id>
+    <content type="html"><![CDATA[<p>That’s interesting to observe how we’re getting influenced by things around us. How world we see and experience is determining <strong>what</strong> and <strong>how</strong> we do. Most of the time we’re not sensing the source of our actions and decisions. It’s very subtle. And often the “it feels right” moments are a sign that experience we’ve got, processed and incorporated is applied without realizing what exactly is done right...</p>
+
+<p>But not this case:</p>
+
+<p><img src="/../../../../../images/2011/metro-style-screen.png" alt="alt screenshot" /></p>
+
+<p>I’m working on Windows Phone 7 application (yes, <a href="http://mgithub.com/">mGitHub</a> and btw it’s already available in marketplace) in my spare time and weekends and I own a WP7 device which I really like. So, there was no surprise when I’ve seen that <strong>Metro UI</strong>, the visual style of Windows Phone 7 platform, influenced me and leaked in this screen that is part of a Silverlight application.</p>
+
+<p>Asked people what they think, got mostly positive appreciations. It would be interesting to see how this concept will evolve. It’s only an early sketch, done by a “more developer than designer”. How you like it?</p>
+]]></content>
+  </entry>
+  
+</feed>

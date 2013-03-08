@@ -1,0 +1,871 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>valeriu caraulean</title>
+  <meta name="author" content="Valeriu Caraulean">
+
+  
+  <meta name="description" content="I’ve fixed an error in our codebase that prevented Caliburn’s bootstrapper and application resources to live happily together. That was &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://caraulean.com/blog/page/3/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="valeriu caraulean" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-21974825-3']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1>
+    <a href="/">
+      <div id="logoLeft">{</div>
+      <div id="logoText"> blog </div>
+      <div id="logoRight">}</div>
+      <div>valeriu caraulean</div>
+      <div class="clear"></div>
+    </a>
+  </h1>
+  
+    <h2>keep it simple, it will work...</h2>
+  
+  <div class="clear"></div>
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:caraulean.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/projects">Projects</a></li>
+  <li><a href="/about">About</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2011/09/13/how-to-make-caliburn-micro-and-silverlight-resources-in-mergeddictionaries-play-nicely-together/">How to Make Caliburn.Micro and Silverlight Resources in MergedDictionaries Play Nicely Together</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-13T23:43:00+02:00" pubdate data-updated="true">Sep 13<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I’ve fixed an error in our codebase that prevented Caliburn’s bootstrapper and application resources to live happily together. That was manifesting like warnings in xaml about missing resources and styles, no right styles in Visual Studio designer and so on.</p>
+
+<p>Now, to reproduce the problem we have to follow Caliburn’s guidelines then make few changes:</p>
+
+<ul>
+<li>Create new Silverlight 4 application</li>
+<li>Add Caliburn.Micro NuGet package</li>
+<li><a href="http://caliburnmicro.codeplex.com/wikipage?title=Nuget">Configure your application</a> to bootstrap Caliburn</li>
+<li>Add new Resource Dictionary to host your common styles/brushes/whatever</li>
+<li>Include your dictionary in MergedDictionaries section</li>
+<li>Add a fancy color brush and use it in ShellView.xaml by referencing it as a static resource</li>
+<li>Build your app</li>
+</ul>
+
+
+<p>Your application will compile and run fine. However, you can spot few <strong>issues</strong> with your code:</p>
+
+<ul>
+<li>ShellView.xaml:
+
+<ul>
+<li>Xaml editor displaying warning: “The resource could not be resolved”</li>
+<li>VS Designer will not use your resource on design surface</li>
+</ul>
+</li>
+<li>App.xaml
+
+<ul>
+<li>Xaml editor displaying warning: “The designer does not support loading dictionaries that mix &#8216;ResourceDictionary&#8217; items without a key and other items in the same collection. Please ensure that the &#8216;Resources&#8217; property does not contain &#8216;ResourceDictionary&#8217; items without a key, or that the &#8216;ResourceDictionary&#8217; item is the only element in the collection.”</li>
+</ul>
+</li>
+</ul>
+
+
+<p>To solve this problem you have to modify your App.xaml.</p>
+
+<p>The original App.xaml fragment, as by following recommendations:</p>
+
+<pre><code>&lt;Application.Resources&gt;
+    &lt;ResourceDictionary&gt;
+        &lt;ResourceDictionary.MergedDictionaries&gt;
+            &lt;ResourceDictionary Source="Themes/Generic.xaml" /&gt;
+        &lt;/ResourceDictionary.MergedDictionaries&gt;
+    &lt;/ResourceDictionary&gt;
+    &lt;local:AppBootstrapper x:Key="bootstrapper" /&gt;
+&lt;/Application.Resources&gt;
+</code></pre>
+
+<p>Now, the <strong>corrected version</strong> that removes all issues I’ve described earlier:</p>
+
+<pre><code>&lt;Application.Resources&gt;
+    &lt;ResourceDictionary&gt;
+        &lt;ResourceDictionary.MergedDictionaries&gt;
+            &lt;ResourceDictionary Source="Themes/Generic.xaml" /&gt;
+            &lt;ResourceDictionary&gt;
+                &lt;local:AppBootstrapper x:Key="bootstrapper" /&gt;
+            &lt;/ResourceDictionary&gt;
+        &lt;/ResourceDictionary.MergedDictionaries&gt;
+    &lt;/ResourceDictionary&gt;
+&lt;/Application.Resources&gt;
+</code></pre>
+
+<p>Actually, this fragment is the <strong>recommended way of instantiating boostrapper for WPF</strong> version of Caliburn.Micro. Why it isn’t recommended also for Silverlight? I don’t know. For our rather large project I haven’t seen any downgrades and issues using this approach. Just few annoying bugs were gone&#8230;</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2011/09/09/tortoisehg-and-jira-integrationthe-lightweight-option/">TortoiseHG and JIRA Integration - the Lightweight Option</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-09T12:29:08+02:00" pubdate data-updated="true">Sep 9<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>You can integrate JIRA and TortoiseHG Workbench at two levels:</p>
+
+<ul>
+<li>Only highlight the issue in your revision details and allow quickly open it in browser</li>
+<li>Connect to your JIRA and show the list of issues with all filters, view details and pick issues to include in your commit.</li>
+</ul>
+
+
+<p>Now we’ll focus on the easiest option to implement – displaying issue number in commit message and open it in browser.</p>
+
+<p>Required settings:</p>
+
+<ul>
+<li>Open <strong>Issue Tracking</strong> category in Settings dialog of TortoiseHG</li>
+<li>Set properties to
+
+<ul>
+<li><strong>Issue Regex</strong>: \b\w{3,7}-\d+\b</li>
+<li><strong>Issue Link</strong>: <a href="http://your.jira.server.com:8080/browse/{0}">http://your.jira.server.com:8080/browse/{0}</a></li>
+</ul>
+</li>
+<li>Ignore the rest of settings for now</li>
+</ul>
+
+
+<p>See the screenshot, it should look like this:</p>
+
+<p><img src="/../../../../../images/2011/tortoisehg-jira-1.png" alt="alt screenshot" /></p>
+
+<p>Now if your commit message in revision details will contain a code of an Issue (or what will be detected as code) it will be highlighted as a hyperlink and clicking it will open a browser with your Issue details in JIRA.</p>
+
+<p><img src="/../../../../../images/2011/tortoisehg-jira-2.png" alt="alt screenshot" /></p>
+
+<p>I’m trying to get a deeper integration working, unsuccessfully so far. When it will be done will publish a follow-up post&#8230;</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2011/07/03/why-java-always-feels-unnatural-to-windows/">Why Java Always Feels Unnatural to Windows?</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-03T23:54:31+02:00" pubdate data-updated="true">Jul 3<span>rd</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I’m looking now at Java’s update application that wants to offer me latest version of it:</p>
+
+<ul>
+<li>the progress dialog has fonts remembering about the times of Windows 95</li>
+<li>it’s impossible to move the dialog window</li>
+<li>clicking on close button has no effect on it neither</li>
+<li>after freezing 30 seconds or so it gives me a message box that I’ve cancelled operation and shows a URL with ~30 characters that I can’t click.</li>
+</ul>
+
+
+<p>Pathetic experience.</p>
+
+<p>I’m not about Java on servers and in the Enterprise, nor about the language. Why the Windows runtime/installers cannot be polished enough so that when it happens to meet the user face-to-face he wouldn’t run scared?</p>
+
+<p>I have had similar “unnatural” feelings when I’ve started using FreeMind, a mind mapping software. It’s the only Java application I remember on my PCs. It works and gets job done. But it looks awful.</p>
+
+<p>Anybody have a good example of any Java application that looks OK in Windows?</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2011/06/23/packing-for-vacation-kindle/">Packing for Vacation, Preparing Kindle</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-23T19:26:49+02:00" pubdate data-updated="true">Jun 23<span>rd</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Loaded fresh stuff from Amazon:</p>
+
+<ul>
+<li><a href="http://www.amazon.com/Rapid-Development-Taming-Software-Schedules/dp/1556159005">Rapid Development: Taming Wild Software Schedules</a></li>
+<li><a href="http://www.amazon.com/Zero-Day-Novel-Mark-Russinovich/dp/031261246X">Zero Day: A Novel</a></li>
+<li><a href="http://www.amazon.com/Intelligent-Investor-Definitive-Investing-Practical/dp/0060555661/">The Intelligent Investor: The Definitive Book on Value Investing. A Book of Practical Counsel</a></li>
+</ul>
+
+
+<p>Waiting in the queue, if previous items will be done or I’ll get bored by book about investments:</p>
+
+<ul>
+<li><a href="http://www.amazon.com/Outliers-Story-Success-Malcolm-Gladwell/dp/0316017930">Outliers: The Story of Success</a></li>
+<li><a href="http://www.amazon.com/Clean-Coder-Conduct-Professional-Programmers/dp/0137081073">The Clean Coder: A Code of Conduct for Professional Programmers</a></li>
+<li><a href="http://www.amazon.com/Negotiation-Genius-Obstacles-Brilliant-Bargaining/dp/0553384112">Negotiation Genius: How to Overcome Obstacles and Achieve Brilliant Results at the Bargaining Table and Beyond</a></li>
+</ul>
+
+
+<p>And have yet to finish the <a href="http://www.amazon.com/Leadership-Self-Deception-Getting-out-Box/dp/1576759776">Leadership and Self-Deception: Getting out of the Box</a>, a great reading so far&#8230;</p>
+
+<p>I hope it will be enough to keep myself entertained and get some new things to explore&#8230;</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2011/06/05/integration-of-caliburn-micro-and-teleriks-silverlight-controls/">Integration of Caliburn.Micro and Telerik&#8217;s Silverlight Controls</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-05T22:51:45+02:00" pubdate data-updated="true">Jun 5<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I’ve wrote already about how to <a href="/blog/2010/12/11/teleriks-radtabcontrol-and-caliburn-micro/">use Telerik’s RadTabControl with Caliburn.Micro</a> and profit from Caliburn’s conventions. That post is still getting considerable attention in my blog and also there are people are asking in Caliburn’s discussion list about such kind of integration. So, I’ve decided to spend some of my time and provide a more coherent experience in this domain. Rob Eisenberg <a href="http://caliburnmicro.codeplex.com/discussions/256418">suggested to create a dedicated project</a> for it and, why not, to create a NuGet package. That sounded very interesting for me as it would allow me to scratch another itch – the <a href="http://nuget.org">NuGet</a> package manager. We’ve been using it in our projects with great success but I have never explored the part with creation and publication of packages.</p>
+
+<h3>How do you get it</h3>
+
+<p><a href="https://github.com/vcaraulean/Caliburn.Micro.Telerik">Caliburn.Micro.Telerik source code on GitHub</a>. Feel free to pull the code &amp; use only parts you need. There are two main classes, you can copy&amp;paste them in your projects. If you want to contribute, I’d appreciate a push request with new conventions, better code samples or bug fixes. Report issues if you’ve found any&#8230;</p>
+
+<p><a href="http://nuget.org/List/Packages/Caliburn.Micro.Telerik">Caliburn.Micro.Telerik as a NuGet package</a>. “Add Library Package Reference &#8230;” from Visual Studio &amp; start using it. My package has a dependency on Caliburn.Micro.1.1.0 so you can just reference it and Caliburn will be pulled in automatically.</p>
+
+<h3>What’s in</h3>
+
+<p>First of all, <strong>conventions</strong>. I’ve put inside conventions we’ve been using in our projects and plan to add more. So far there are conventions for:</p>
+
+<ul>
+<li>RadTabControl</li>
+<li>RadBusyIndicator</li>
+<li>RadDateTimePicker (affects also RadTimePicker and RadDatePicker)</li>
+</ul>
+
+
+<p>Then you have a basic <strong>implementation of IWindowManager</strong>, the RadWindowManager class. Nothing fancy, pretty basic stuff. And I plan to extend it to offer also an unified interface to Telerik’s custom dialogs like Confirm, Alert and Prompt.</p>
+
+<p>And third, there are <strong>two sample projects</strong>, one showing how to use conventions and other makes use of RadWindowManager.</p>
+
+<h3>How to use conventions</h3>
+
+<p>Add a line in your Bootstrapper’s Configure() method to enable conventions:</p>
+
+<pre><code>public class AppBootstrapper : Bootstrapper&lt;IShell&gt;
+{      
+    protected override voidConfigure() {
+    // ...
+
+        TelerikConventions.Install();
+    }
+}
+</code></pre>
+
+<p>Check it out and let me know if you found it useful or how it’s possible to make it better&#8230;</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2011/05/31/quick-tip-configure-teamcity-6-5-to-run-a-personal-build-when-youve-committed-to-a-branch/">Quick Tip - Configure TeamCity 6.5 to Run a Personal Build When You&#8217;ve Committed to a Branch</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-05-31T17:14:27+02:00" pubdate data-updated="true">May 31<span>st</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This feature is well enough to upgrade your TeamCity to latest 6.5. Of course, if you’re using a DVCS (Git or Mercurial) and use feature branches. As feature branches can be active for a longer time and last few dozens of commits, you want to plug that branch into your Continous Integration process. That’s for sure&#8230;</p>
+
+<p>Feature description by JetBrains:</p>
+
+<blockquote><p><strong>Remote run on changes in DVCSs branches</strong>: New build trigger added that watches for commits into Git or Mercurial branches and adds personal build to the build queue when commit detected.</p></blockquote>
+
+<p>It took me some time to find how it can be enabled. Finally <a href="http://confluence.jetbrains.net/display/TCD65/Branch+Remote+Run+Trigger">found it in documentation</a>. The trick is – <strong>it’s a build trigger</strong>. Just add a new trigger, called <strong>Branch Remote Run Trigger</strong> and enable it.</p>
+
+<p>You can specify a pattern that will be used to select which branches will be picked up. I’ve specified <code>*</code> because I wanted that every branch to be continuously built &amp; tested.</p>
+
+<p>But you you have really long-living branches I would suggest a separate build for it however&#8230;</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2011/05/25/quick-tip-if-git-cant-find-your-global-config/">Quick Tip - if Git Can&#8217;t Find Your Global Config&#8230;</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-05-25T18:30:55+02:00" pubdate data-updated="true">May 25<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>If you’ve put (or want to put) your <strong>.gitconfig</strong> in your home directory (<code>C:\Users\username\</code>) and git cannot find it you may try to add a user variable called <strong>HOME</strong> and set it to <strong>%USERPROFILE%</strong>.</p>
+
+<p>See screenshot for details:</p>
+
+<p><img src="/../../../../../images/2011/git-env-config.png" alt="alt screenshot" /></p>
+
+<p>Useful commands:</p>
+
+<pre><code>git config --global -l 
+git config --global -e
+</code></pre>
+
+<p>First will show your global configuration file, second will try open it to edit.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2011/05/18/new-day-new-adventures-samsung-omnia-7-and-7392-update-for-wp7/">New Day, New Adventures - Samsung Omnia 7 and 7392 Update for WP7</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-05-18T12:35:23+02:00" pubdate data-updated="true">May 18<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I’ve been glad to see that Microsoft started again rolling out the 7392 update for Omnia 7. We, geeks, are loving updates. It gets us more stability and new features. And bugs, sometimes&#8230;</p>
+
+<p>The 7392 is a minor one, it should fix some issues with security certificates. It’s not critical, but you’ll have to install it in order to get all next updates.</p>
+
+<p>When MS <a href="http://windowsteamblog.com/windows_phone/b/windowsphone/archive/2011/05/17/updates-resume-to-omnia-7-phones.aspx">announced that he resumes rolling this update</a> they also mentioned that “a small number of people &#8230; might have trouble &#8230;”. By Murphy&#8217;s law I’ve landed in that small group that’s having troubles. How it was:</p>
+
+<ul>
+<li>Zune said it <strong>has an update</strong> for my phone.</li>
+<li>Zune is <strong>trying</strong> to install update but can’t move past “rebooting” stage. No probs, Microsoft <a href="http://support.microsoft.com/kb/2547687">warned about it an provided a workaround</a>.</li>
+<li>Installed the tool from Samsung, following instructions how to enter the phone in Download Mode.</li>
+<li>The phone is <strong>not entering in Download Mode</strong>, so Samsung’s tool cannot update the firmware so then Zune can install 7392 update.</li>
+<li>The only option to be tried is, as suggested by the tool and MS’s guide, is to <strong>contact Samsung</strong> Service Center.</li>
+</ul>
+
+
+<p>After googling around I’ve found that Omnia 7 phones with bootloader version 4.10.1.9 cannot enter in Download Mode by pressing VOLUMEUP + CAMERA keys. It’s disabled in this version.</p>
+
+<p>Looking further I’ve found that I have 2 options to get this update (and, consequently all next updates that will be rolled from now on):</p>
+
+<ul>
+<li><strong>Contact Samsung’s Service Center</strong>. The recommended way. This probably will mean that you have to send your phone somewhere in order to get it serviced. Will call them to see how much time will take that, but looks it’s not an option for me.</li>
+<li><strong>Tweak the hardware to enter Download Mode</strong>. The phones that can’t enter this mode by with known key combination can be forced to to it using a special (modified) PC connection cable or a Mini-USB dongle attached to the phone. Search Ebay for “Samsung Galaxy S Download Mode USB jig”, you’ll get the idea. 8$ + shipping. Plugging in this dongle will set the phone to Download Mode and you’ll be able to run <a href="http://support.microsoft.com/kb/2547687">Samsung’s utility</a> to update the phone. Or you’ll be able to flash a new <a href="http://www.samfirmware.com">ROM for device</a>. See <a href="http://forum.xda-developers.com/wiki/index.php?title=Samsung_Omnia_7">Omnia 7 wiki on xds-developers</a> for details about phone and flashing.</li>
+</ul>
+
+
+<p>Second options isn’t a recommended way to do it. You can kill your phone. Do it at your own risk. But most probably that’s what I’ll be trying to do, because I don’t have any willing to send my phone to a service center even for few days let alone for few weeks.</p>
+
+<h3>Update 01/06/2011:</h3>
+
+<p>As I’ve received today the USB jig that I’ve mentioned earlier, this is the follow up.</p>
+
+<p>Switched phone off, plugged in the jig &amp; wait for Download Mode to appear on the screen, pulled it out then connected to the PC. Samsung’s tool detected the phone and offered to update my firmware. Less than a minute later it congratulates with a successful update and rebooted the phone.</p>
+
+<p>After reboot Zune started and offered to install the 7.0.7392 update. Accepted.</p>
+
+<p>It passed successfully the glorious “rebooting” stage and after doing the backup my phone <strong>was successfully updated</strong> to latest Windows Phone OS. Now waiting for Mango&#8230;</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2011/05/06/me-developerim-done-me-designerwait-a-minute/">Me Developer - &#8220;I&#8217;m Done&#8221;; Me Designer - &#8220;Wait a Minute&#8230;&#8221;</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-05-06T16:29:07+02:00" pubdate data-updated="true">May 6<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>As most of developers working in a small teams or projects I have to work on UI. Should it be a new screen, complete feature with some UI interactions or just a fix of some font/alignment/style issues.</p>
+
+<p>When you’re in “developer mode” criteria for “done” is more or less precise: tests are green, code is OK and metrics (if you have some) are acceptable.</p>
+
+<p>Then I have to do some UI work and when I wear my Designer hat it gets difficult to define “done” criteria. We can easily appreciate “functional” quality of one particular screen. But it’s <strong>Design and Usability values are more difficult</strong> to formalize. You can check some UI Guidelines, you can show your work to a stakeholder or client. They both will say it’s OK. Then you’re improving it by grouping better screen’s content. They again say “it’s OK”. You’re checking alignments, highlight frequently used commands and do subtle color changes to application’s color set. And again, “it’s OK”.</p>
+
+<p>Is it better than before? Definitely. Is it done? Well &#8230; If you’re at your “<strong>it’s good enough</strong>” point, you probably will stop. Until next time&#8230;</p>
+
+<p>To some degree, this tendency towards perfection it’s applicable to development too. A developer can (almost) infinitely polish, optimize &amp; refactor existing code. The code will be better. Will it be observable by final user? Less likely (unless it’s a performance issue). And this is the difference with designer’s work: <strong>any change will potentially be appreciated by end-user</strong>.</p>
+
+<p>That’s why I think that impact of Design and Usability on any software product is more important that it’s internal beauty.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2011/04/28/nostalgy-in-my-early-days-as-a-software-developer/">Nostalgy. My Early Days as a Software Developer &#8230;</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-04-28T02:03:22+02:00" pubdate data-updated="true">Apr 28<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Something brought up old memories from the days when I’ve been working in Embedded Systems development.</p>
+
+<p><img src="/../../../../../images/2011/dsc00984.jpg" alt="alt screenshot" /></p>
+
+<p>I’m third from the left&#8230;</p>
+
+<p>The “big thing” in the back is a Diesel engine stripped from a big ship. Converted to an internal combustion engine working on natural gas and producing 6 Megawatts of Electrical power. Cooling/heating, turbo, oiling, ignition – those are only few subsystems of this complex.</p>
+
+<p>One more picture:</p>
+
+<p><img src="/../../../../../images/2011/dsc00931.jpg" alt="alt screenshot" /></p>
+
+<p>My former employer, <a href="http://rgg.md">Romany Gaz Group</a>, done all the electronics + software. It was a blast to work on. A mix of hardware, microprocessors and software, low level hacking and unforgettable feeling of true Research and Development work:</p>
+
+<ul>
+<li>writing in assembler for mythical Motorola 68HC11, an 8-bit microprocessor with a whopping 64 Kb of program memory and less than 1 Kb of RAM. Then come the HC12 with more memory and C compiler.</li>
+<li>in-house Real-Time Operational System with multi-tasking support.</li>
+<li>“advanced” user interfaces on 20x4 character displays and 5 button keyboards</li>
+<li>homebrew communication protocol spawning into few levels of OSI model</li>
+<li>tens of sensors and digital signals</li>
+<li>tens of output signals, valves, pumps</li>
+<li>a SCADA-like PC application for monitoring and control</li>
+</ul>
+
+
+<p>And a fantastic team of talented engineers that tamed the beast. You have to hear it grumble&#8230;</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/4/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/2/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+	<h1>About</h1>
+	<p>I&#8217;m a passionate software developer living in Geneva, Switzerland</p>
+	<p><a href="/about">Read more &#8230;</a></p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/12/14/book-review-nosql-distilled/">Book review - NoSQL Distilled</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/15/do-less-and-achieve-more-with-ravendb/">Do less and achieve more with RavenDb</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/09/diving-deeper-in-reactive-extensions/">Diving deeper in Reactive Extensions, concurrency</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/30/hello/">Hello, new blog!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/30/visual-studio-2012-dark-theme-tip/">Visual Studio 2012 dark theme tip - light up your UserControl in XAML designer</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/28/evening-time-time-for-fun/">Evening time, time for fun</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/21/on-motivation-a-quote/">On motivation, a quote&#8230;</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/19/migrating-from-silverlight-to-wpf-a-case-study/">Migrating from Silverlight to WPF, a case study</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/18/fearing-about-silverlights-future-dont/">Fearing about Silverlight&#8217;s future? Don&#8217;t&#8230;</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/02/packed-for-vacation/">Packed for vacation&#8230;</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("vcaraulean", 5, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/vcaraulean" class="twitter-follow-button" data-show-count="false">Follow @vcaraulean</a>
+  
+</section>
+
+
+
+<section class="googleplus googleplus-hidden">
+  <h1>
+    <a href="https://plus.google.com/108353347632139121774?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Valeriu Caraulean -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'caraulean';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

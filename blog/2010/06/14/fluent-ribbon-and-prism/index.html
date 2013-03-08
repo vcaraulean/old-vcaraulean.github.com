@@ -1,0 +1,343 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Fluent Ribbon and Prism - valeriu caraulean</title>
+  <meta name="author" content="Valeriu Caraulean">
+
+  
+  <meta name="description" content="I would like to show an example of application that is about how to use Fluent Ribbon control together with Prism (aka Composite WPF). Our team is &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://caraulean.com/blog/2010/06/14/fluent-ribbon-and-prism/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="valeriu caraulean" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-21974825-3']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1>
+    <a href="/">
+      <div id="logoLeft">{</div>
+      <div id="logoText"> blog </div>
+      <div id="logoRight">}</div>
+      <div>valeriu caraulean</div>
+      <div class="clear"></div>
+    </a>
+  </h1>
+  
+    <h2>keep it simple, it will work...</h2>
+  
+  <div class="clear"></div>
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:caraulean.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/projects">Projects</a></li>
+  <li><a href="/about">About</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">Fluent Ribbon and Prism</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-06-14T16:59:53+02:00" pubdate data-updated="true">Jun 14<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I would like to show an example of application that is about how to use <a href="http://fluent.codeplex.com">Fluent Ribbon</a> control together with <a href="http://compositewpf.codeplex.com">Prism (aka Composite WPF)</a>. Our team is using this combination for some time already; although, with various degrees of success: the Fluent Ribbon is not enough mature (but pretty stable) and my personal relation with Prism is kind of love/hate. The <a href="http://www.castleproject.org/container/">Castle Winsor</a> is starring as IoC Container of choice.</p>
+
+<p>The code is not something extraordinary by any means. You can find lots of similar samples for other controls in the net. It’s just a sample how to use these libraries together.</p>
+
+<p>In this example I’ve set next scenario: a module (or another part of application) wants to add new <strong>RibbonTabItem</strong> to existing <strong>Ribbon</strong> without having a direct reference to it. Also, application should support activation/deactivation and removing of Tabs.</p>
+
+<p>The basics are pretty straightforward: pick/write an IRegion, write an adapter to work as a mediator between it and control being extended, profit!..</p>
+
+<p>I’ve decided to use an existing Region to serve as host for tabs - <strong>SingleActiveRegion</strong>. It seems to fit well expected behavior.</p>
+
+<p>Two classes that I wrote are <strong><a href="http://github.com/vcaraulean/FluentRibbonAndPrism/blob/master/FluentRibbonAndPrism/Infrastructure/RibbonRegionAdapter.cs">RibbonRegionAdapter</a></strong> and <strong><a href="http://github.com/vcaraulean/FluentRibbonAndPrism/blob/master/FluentRibbonAndPrism/Infrastructure/RibbonRegionSyncBehavior.cs">RibbonRegionSyncBehavior</a></strong>. The behavior class is used to synchronize the Tabs collection of the Ribbon with Views and ActiveViews collections of the SingleActiveRegion. Adapter serves only to instantiate the region and attach the behavior.</p>
+
+<p>Also, this solution uses Castle Windsor to wire up all things. The <strong>WindsorBootstrapper</strong> class wires up an application based on Prism v2.2 and Castle.</p>
+
+<p>I’ll not publish the the code here, you can &#8220;git clone &#8230;&#8221; it from <a href="http://github.com/vcaraulean/FluentRibbonAndPrism">repository on GitHub</a>. Or, from the same place, you have the option to <a href="http://github.com/vcaraulean/FluentRibbonAndPrism/archives/master">download sources</a>.</p>
+
+<p>Future plans include few more regions (Backstage, RibbonTabItem) and may be some tests.</p>
+
+<p>Solution specifics:</p>
+
+<ul>
+<li>Prism v2.2</li>
+<li>Fluent Ribbon rev. 51299</li>
+<li>Castle Windsor 2.1.1</li>
+<li>VS 2010 &amp; NET 4.0</li>
+</ul>
+
+
+<p>Disclaimer: code is provided “AS IS”. It may contain bugs and not be written in best possible way. I’m not a Prism specialist by any means. Any help is welcome if somebody can improve this code or wants to contribute for a more meaningful example&#8230;</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Valeriu Caraulean</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-06-14T16:59:53+02:00" pubdate data-updated="true">Jun 14<span>th</span>, 2010</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/community/'>community</a>, <a class='category' href='/blog/categories/wpf/'>wpf</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://caraulean.com/blog/2010/06/14/fluent-ribbon-and-prism/" data-via="vcaraulean" data-counturl="http://caraulean.com/blog/2010/06/14/fluent-ribbon-and-prism/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left articlenav" href="/blog/2010/05/21/got-new-hardware-part-1/" title="Previous Post: Got new hardware - part 1">&laquo; Got new hardware - part 1</a>
+      
+      
+        <a class="basic-alignment right articlenav" href="/blog/2010/06/19/user-experience-and-hardware-updates/" title="Next Post: User experience and hardware updates">User experience and hardware updates &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+	<h1>About</h1>
+	<p>I'm a passionate software developer living in Geneva, Switzerland</p>
+	<p><a href="/about">Read more ...</a></p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/12/14/book-review-nosql-distilled/">Book review - NoSQL Distilled</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/15/do-less-and-achieve-more-with-ravendb/">Do less and achieve more with RavenDb</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/09/diving-deeper-in-reactive-extensions/">Diving deeper in Reactive Extensions, concurrency</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/30/hello/">Hello, new blog!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/30/visual-studio-2012-dark-theme-tip/">Visual Studio 2012 dark theme tip - light up your UserControl in XAML designer</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/28/evening-time-time-for-fun/">Evening time, time for fun</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/21/on-motivation-a-quote/">On motivation, a quote...</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/19/migrating-from-silverlight-to-wpf-a-case-study/">Migrating from Silverlight to WPF, a case study</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/18/fearing-about-silverlights-future-dont/">Fearing about Silverlight's future? Don't...</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/02/packed-for-vacation/">Packed for vacation...</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("vcaraulean", 5, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/vcaraulean" class="twitter-follow-button" data-show-count="false">Follow @vcaraulean</a>
+  
+</section>
+
+
+
+<section class="googleplus googleplus-hidden">
+  <h1>
+    <a href="https://plus.google.com/108353347632139121774?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Valeriu Caraulean -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'caraulean';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://caraulean.com/blog/2010/06/14/fluent-ribbon-and-prism/';
+        var disqus_url = 'http://caraulean.com/blog/2010/06/14/fluent-ribbon-and-prism/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

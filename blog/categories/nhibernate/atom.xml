@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: nhibernate | valeriu caraulean]]></title>
+  <link href="http://caraulean.com/blog/categories/nhibernate/atom.xml" rel="self"/>
+  <link href="http://caraulean.com/"/>
+  <updated>2013-03-08T23:23:44+01:00</updated>
+  <id>http://caraulean.com/</id>
+  <author>
+    <name><![CDATA[Valeriu Caraulean]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[NHibernate 3.0 will be a very nice release]]></title>
+    <link href="http://caraulean.com/blog/2009/12/21/nhibernate-3-0-will-be-a-very-nice-release/"/>
+    <updated>2009-12-21T15:05:10+01:00</updated>
+    <id>http://caraulean.com/blog/2009/12/21/nhibernate-3-0-will-be-a-very-nice-release</id>
+    <content type="html"><![CDATA[<p>First of all, <a href="http://blogs.imeta.co.uk/sstrong/Default.aspx">Steve Strong</a> made a Christmas gift to community by presenting a <a href="http://nhforge.org/blogs/nhibernate/archive/2009/12/17/linq-to-nhibernate-progress-report-a-christmas-gift.aspx">new Linq implementation</a> for <a href="http://nhforge.org/">NHibernate</a>, which is now incorporated in the trunk. Kudos for a such great work!</p>
+
+<p>Another valuable addition to NHibernate is the <a href="http://nhforge.org/blogs/nhibernate/archive/2009/12/17/queryover-in-nh-3-0.aspx">QueryOver<T> API</a> that wrapped ICriteria API and made it easier to use. Thanks to <a href="http://broloco.blogspot.com/">Richard Brown</a>.</p>
+
+<p>Both features are not crucial for the success of NHibernate, but they are very nice improvements that will attract new users and will keep the old ones. It's easier to advocate for NHibernate when you can point not only at his advanced features. The hype around Linq makes difference when features are compared. Having a provider for NHibernate will be a strong decision argument.</p>
+
+<p>I hope that soon after New Year's holidays I'll try to switch to NHibernate 3.0. If migration of our project will be painless and all tests will still green, I think we'll run with the trunk. It's the least we can do to help make this project better.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Clean code: Register additional event listeners in NHibernate]]></title>
+    <link href="http://caraulean.com/blog/2009/09/02/clean-code-register-additional-event-listeners-in-nhibernate/"/>
+    <updated>2009-09-02T10:49:02+02:00</updated>
+    <id>http://caraulean.com/blog/2009/09/02/clean-code-register-additional-event-listeners-in-nhibernate</id>
+    <content type="html"><![CDATA[<p>"why is this a problem?" may ask you...</p>
+
+<p>Let's review the ways that <a href="http://nhforge.org/">NHibernate</a> lets you register your own event listeners. You can do it in configuration file:</p>
+
+<pre><code>&lt;listener class="NHTest.Listeners.CustomSaveEventListener, NHTest" type="save" /&gt;
+</code></pre>
+
+<p>... or in code:</p>
+
+<pre><code>Configuration cfg = new Configuration();  
+cfg.EventListeners.SaveEventListeners =   
+new ISaveOrUpdateEventListener[] {new CustomSaveEventListener() };  
+</code></pre>
+
+<p>Nice, so far...</p>
+
+<p>It's not if you want to <strong>add</strong> a listener, not to replace them. Both registrations are just replacing default event listeners with your own implementations. Very often it's not want you want!</p>
+
+<p>In our case, we want default listeners do the job and just add few our own listeners to run the business. No problem, let's code:</p>
+
+<pre><code>var listeners = configuration.EventListeners;
+listeners.SaveEventListeners = 
+    new List&lt;ISaveOrUpdateEventListener&gt;(listeners.SaveEventListeners)
+    {new CustomSaveEventListener()}
+    .ToArray();
+</code></pre>
+
+<p>Since I wrote that code some day I hated it. Too verbose, too obscure, hard to read &amp; understand. But event registration infrastructure doesn't offer an easy and simple way to add a listener. Few times I tried to come with a nice solution for that, even tried to modify NH's code.</p>
+
+<p>Today, I've done it:</p>
+
+<pre><code>configuration.AddListener(el =&gt; el.SaveEventListeners, new CustomSaveEventListener());
+</code></pre>
+
+<p>Some expression's magic and we end up with a very <strong>clean &amp; readable code</strong>.</p>
+
+<p>Implementation:</p>
+
+<pre><code>public static class NHibernateConfigurationExtensions
+{
+    public static void AddListener&lt;TListener&gt;(
+        this Configuration configuration, 
+        Expression&lt;Func&lt;EventListeners, TListener[]&gt;&gt; expression, 
+        TListener listenerImpl)
+    {
+        var propertyInfo = ReflectionHelper.GetProperty(expression);
+        var existentListeners = (TListener[]) propertyInfo.GetValue(configuration.EventListeners, null);
+        var newListeners = new List&lt;TListener&gt;(existentListeners) { listenerImpl }.ToArray();
+        propertyInfo.SetValue(configuration.EventListeners, newListeners, null);
+    }
+
+    public static void AddListeners&lt;TListener&gt;(
+        this Configuration configuration, 
+        Expression&lt;Func&lt;EventListeners, TListener[]&gt;&gt; expression, 
+        IEnumerable&lt;TListener&gt; listeners)
+    {
+        foreach (var listener in listeners)
+        {
+            configuration.AddListener(expression, listener);
+        }
+    }
+}    
+</code></pre>
+
+<p>Have a nice day...</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[NHibernate Mapping]]></title>
+    <link href="http://caraulean.com/blog/2009/04/12/nhibernate-mapping/"/>
+    <updated>2009-04-12T12:42:46+02:00</updated>
+    <id>http://caraulean.com/blog/2009/04/12/nhibernate-mapping</id>
+    <content type="html"><![CDATA[<p><a href="http://ayende.com/Blog/Default.aspx">Ayende</a> is running a series of posts detailing and explaining how NHibernate maps entity classes to database. Posts include XML mappings, code and SQL queries generated when saving or querying the database so that you have everything to understand what NHibernate do to persist your data. The series is a nice addition to <a href="http://nhforge.org/doc/nh/en/index.html">NHibernate Reference Documentation</a>.</p>
+
+<p>NHibernate Mapping:</p>
+
+<ul>
+<li><a href="http://ayende.com/Blog/archive/2009/04/07/nhibernate-mapping-ltpropertygt.aspx">Properties <property/></a></li>
+<li><a href="http://ayende.com/Blog/archive/2009/04/08/nhibernate-mapping-ltcomponentgt.aspx">Components <component/></a></li>
+<li><a href="http://ayende.com/Blog/archive/2009/04/09/nhibernate-mapping-ltmany-to-onegt.aspx">Many to one relationships <many-to-one/></a></li>
+<li><a href="http://ayende.com/Blog/archive/2009/04/10/nhibernate-mapping-ndash-inheritance.aspx">Inheritance</a></li>
+<li><a href="http://ayende.com/Blog/archive/2009/04/11/nhibernate-mapping-ltdynamic-componentgt.aspx">Dynamic components <dynamic-component/></a></li>
+<li><a href="http://ayende.com/Blog/archive/2009/04/13/nhibernate-mapping-ltsetgt.aspx">Collections <set/></a></li>
+<li><a href="http://ayende.com/Blog/archive/2009/04/15/nhibernate-mapping-concurrency.aspx">Concurrency</a></li>
+<li><a href="http://ayende.com/Blog/archive/2009/04/16/nhibernate-mapping-ltdatabase-objectgt.aspx">Database objects <database-object/></a></li>
+<li><a href="http://ayende.com/Blog/archive/2009/04/17/nhibernate-mapping-ndash-named-queries-ltquerygt-and-ltsql-querygt.aspx">Named queries <query/> &amp; <sql-query/></a></li>
+<li><a href="http://ayende.com/Blog/archive/2009/04/19/nhibernate-mapping-ltone-to-onegt.aspx">One to one relations <one-to-one/></a></li>
+<li><a href="http://ayende.com/Blog/archive/2009/04/20/nhibernate-mapping-ltjoingt.aspx">Joined classes <join/></a></li>
+<li><a href="http://ayende.com/Blog/archive/2009/04/21/nhibernate-mapping-ltanygt.aspx">Any type mappings <any/></a></li>
+<li><a href="http://ayende.com/Blog/archive/2009/04/22/nhibernate-mapping-ltmany-to-anygt.aspx">Many to any relationships <many-to-any/></a></li>
+</ul>
+
+
+<p>It was a nice reading. I've refreshed few things in my memory and learned few new tricks.</p>
+
+<p>This post will be updated as new chunks will be published (I hope it will) by Ayende.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[NHibernate's niceties: hbm2ddl auto mode in unit tests]]></title>
+    <link href="http://caraulean.com/blog/2008/12/18/nhibernates-niceties-hbm2ddl-auto-mode-in-unit-tests/"/>
+    <updated>2008-12-18T18:33:17+01:00</updated>
+    <id>http://caraulean.com/blog/2008/12/18/nhibernates-niceties-hbm2ddl-auto-mode-in-unit-tests</id>
+    <content type="html"><![CDATA[<p>Very often you're going over a description of some function or new feature and just notice in your mind, "nice feature" without seeing a real application for it. Later, you're coming with scenario where the trick you've read days ago will fit perfectly.</p>
+
+<p>That was the case when I've seen earlier in <a href="http://www.tunatoksoz.com/">Tuna Toksoz</a>'s weblog a <a href="http://www.tunatoksoz.com/post/NHibernate-hbm2ddl.aspx">description of "hbm2ddl.auto" property</a>. Few days ago, I've put it to work in a way that makes me feel better. By the way, the particular reason that made me happy was that I've deleted a lot of repetitive code from our code base.</p>
+
+<h4>How you can use hbm2ddl.auto property in unit tests</h4>
+
+<p>Our integration tests are run over a real database. For each test we're re-creating the database, so that each test will be ran in separation and without interfering with results of previous tests. Also, things are a bit complicated since we're working with few databases at the same time, each with his own schema. Before, each test had to use SchemaExport class that exported the database schema built from NHibernate configuration on the way deleting your old database/schema/data. So, each integration test class had same method to call. Redundant and repetitive. Yes, you can make a base class that will do that, but you have to inherit then all tests from that class.</p>
+
+<p><strong>How it works now:</strong> in session configuration (usually in app.config for integration test project) you put:</p>
+
+<pre><code>&lt;property name="hbm2ddl.auto"&gt;create&lt;/property&gt;
+</code></pre>
+
+<p>... and you're set. Each time your code will build a new SessionFactory, NHibernate will call:</p>
+
+<pre><code>new SchemaExport(cfg).Create(false, true);
+</code></pre>
+
+<p>This way, before the SessionFactory will be built, your database will be refreshed with a new schema and tests will run in a clean database.</p>
+
+<p>One line of code instead of tens or hundreds. Isn't that a good trick?!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Additional identity column with NHibernate]]></title>
+    <link href="http://caraulean.com/blog/2008/08/26/additional-identity-column-with-nhibernate/"/>
+    <updated>2008-08-26T11:51:49+02:00</updated>
+    <id>http://caraulean.com/blog/2008/08/26/additional-identity-column-with-nhibernate</id>
+    <content type="html"><![CDATA[<p>As always, business requirement went over existing code base to ask for a minor change that wasn't compatible with our existing infrastructure: all surrogate keys are unique identifiers (Guid) and all infrastructure was built around that. The business people asked to add to an existing domain entity a natural key - integer identity number (auto increment field), to serve as a reference number.</p>
+
+<p>We had two choices:</p>
+
+<ul>
+<li>to generate the identity from business code</li>
+<li>to let database manage it for us.</li>
+</ul>
+
+
+<p>The second approach it preferable for us because it's the database's job to generate the keys.</p>
+
+<p>Out of the box NHibernate doesn't support such a thing. Answers to my question in <a href="http://groups.google.com/group/nhusers?hl=en">NHibernate Users discussion group</a> led to the next solution.</p>
+
+<p>Given the class:</p>
+
+<pre><code>public class Entity
+{
+    public int Id { get; set; }
+    public int Id2 { get; set; }
+}
+</code></pre>
+
+<p>First "Id" is the primary key, the second is the key that we want to map to identity column. To have that done we should do two things:</p>
+
+<ul>
+<li>Map "Id2" property as "generated"</li>
+<li>Use "database-object" to drop the column generated by NHibernate &amp; create new one, with IDENTITY set on.</li>
+</ul>
+
+
+<p>The complete mapping:</p>
+
+<pre><code>&lt;hibernate-mapping xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    namespace="NHibernate.Playground"
+    assembly="NHibernate.Playground"
+    default-lazy="false" xmlns="urn:nhibernate-mapping-2.2"&gt;
+  &lt;class name="Entity"&gt;
+    &lt;id name="Id"&gt;
+      &lt;generator class="increment" /&gt;
+    &lt;/id&gt;
+    &lt;property name="Id2" type="int" generated="always" insert="false" /&gt;
+  &lt;/class&gt;
+  &lt;database-object&gt;
+    &lt;create&gt;
+      ALTER TABLE Entity DROP COLUMN Id2
+      ALTER TABLE Entity ADD Id2 INT IDENTITY
+    &lt;/create&gt;
+    &lt;drop&gt;
+      ALTER TABLE Entity DROP COLUMN Id2
+    &lt;/drop&gt;
+  &lt;/database-object&gt;
+&lt;/hibernate-mapping&gt;
+</code></pre>
+
+<p>I like the flexibility offered by NHibernate. Even if you don't have required feature, you can always use naked ADO.NET or raw SQL.</p>
+]]></content>
+  </entry>
+  
+</feed>

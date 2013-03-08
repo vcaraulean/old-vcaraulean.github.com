@@ -1,0 +1,381 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Silverlight 4 quirks: OOB and loading MainWindow size/position - valeriu caraulean</title>
+  <meta name="author" content="Valeriu Caraulean">
+
+  
+  <meta name="description" content="Since we’re writing an Out-Of-Browser Silverlight application, we want it to look and behave like a normal windows app. One of the first things I &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://caraulean.com/blog/2010/10/12/silverlight-4-quirks-oob-and-loading-mainwindow-sizeposition/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="valeriu caraulean" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-21974825-3']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1>
+    <a href="/">
+      <div id="logoLeft">{</div>
+      <div id="logoText"> blog </div>
+      <div id="logoRight">}</div>
+      <div>valeriu caraulean</div>
+      <div class="clear"></div>
+    </a>
+  </h1>
+  
+    <h2>keep it simple, it will work...</h2>
+  
+  <div class="clear"></div>
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:caraulean.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/projects">Projects</a></li>
+  <li><a href="/about">About</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">Silverlight 4 Quirks: OOB and Loading MainWindow Size/position</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-10-12T17:07:48+02:00" pubdate data-updated="true">Oct 12<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Since we’re writing an Out-Of-Browser Silverlight application, we want it to look and behave like a normal windows app. One of the first things I’m adding to new apps, is saving Window’s position and size and reloading them when application starts next time. So, when user launches the app again, it will find the app same size and position as before</p>
+
+<p>In WPF that’s done pretty straightforward and it just works! For Silverlight 4 it took me already half of the day, and it’s not done yet&#8230;</p>
+
+<p>To save MainWindow’s position and size in Silverlight 4 you can attach to MainWindow’s Closing event where you can pick values for current size and position. Then, when loading app next time, in Application’s Startup event we can <em>try load </em>previous values.</p>
+
+<p>Where’s the catch? Width and Height are set properly, while setting Left and Top properties has NO EFFECT. Then, if the window is “snapped” to margins (in Windows 7,  maximized for full screen&#8217;s  height, leaving width the same) it will not be able to restore to previous  height, saying that value is out of bounds.</p>
+
+<p>The code, very simple and straightforward:</p>
+
+<pre><code>public class MainWindowSettings
+{
+    public static void Initialize()
+    {
+        if(!Application.Current.IsRunningOutOfBrowser)
+            return;
+        if (!Application.Current.HasElevatedPermissions)
+            return;
+        Initialize(Application.Current.MainWindow);
+    }
+    private static void Initialize(Window mainWindow)
+    {
+        var appSettings = new ApplicationSettings();
+        var settings = appSettings.Read&lt;Settings&gt;(Settings.Key, null);
+        if (settings != null)
+        {
+            mainWindow.WindowState = settings.WindowState;
+            if (settings.WindowState != WindowState.Maximized)
+            {
+                mainWindow.Height = settings.Height;
+                mainWindow.Width = settings.Width;
+                mainWindow.Top = settings.Top;
+                mainWindow.Left = settings.Left;
+            }
+        }
+        mainWindow.Closing += (sender, args) =&gt;
+        {
+            var windowSettings = new Settings
+            {
+                Height = mainWindow.Height,
+                Width = mainWindow.Width,
+                Top =  mainWindow.Top,
+                Left = mainWindow.Left,
+                WindowState = mainWindow.WindowState
+            };
+            new ApplicationSettings().Write(Settings.Key, windowSettings);
+        };
+    }
+    public class Settings
+    {
+        public const string Key = "MainWindowSettings";
+        public Settings()
+        {
+            WindowState = WindowState.Normal;
+        }
+        public double Width { get; set; }
+        public double Height { get; set; }
+        public double Top { get; set; }
+        public double Left { get; set; }
+        public WindowState WindowState { get; set; }
+    }
+}
+</code></pre>
+
+<p>Anybody have a clue? An advice, other than “wait Silverlight v. Next”?</p>
+
+<p><strong>Update</strong>: I&#8217;ve copy/pasted this code in new empty app and discovered that saving Top&amp;Left values is working as it should. But the problem with &#8220;snap&#8221; is still here. Googling it revealed that <a href="http://forums.silverlight.net/forums/p/204612/479374.aspx">I&#8217;m not alone</a> facing this <a href="http://forums.silverlight.net/forums/p/199966/466463.aspx">issue</a>. So, waiting Silverlight v. Next&#8230;</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Valeriu Caraulean</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-10-12T17:07:48+02:00" pubdate data-updated="true">Oct 12<span>th</span>, 2010</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/silverlight/'>silverlight</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://caraulean.com/blog/2010/10/12/silverlight-4-quirks-oob-and-loading-mainwindow-sizeposition/" data-via="vcaraulean" data-counturl="http://caraulean.com/blog/2010/10/12/silverlight-4-quirks-oob-and-loading-mainwindow-sizeposition/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left articlenav" href="/blog/2010/09/29/houston-we-have-a-problem-unit-tests-in-silverlight/" title="Previous Post: Houston, we have a problem. Unit tests in Silverlight">&laquo; Houston, we have a problem. Unit tests in Silverlight</a>
+      
+      
+        <a class="basic-alignment right articlenav" href="/blog/2010/10/13/multi-targeting-with-project-linker-by-example-castle-core-for-silverlight-4/" title="Next Post: Multi-targeting with Project Linker by example: Castle.Core for Silverlight 4">Multi-targeting with Project Linker by example: Castle.Core for Silverlight 4 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+	<h1>About</h1>
+	<p>I'm a passionate software developer living in Geneva, Switzerland</p>
+	<p><a href="/about">Read more ...</a></p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/12/14/book-review-nosql-distilled/">Book review - NoSQL Distilled</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/15/do-less-and-achieve-more-with-ravendb/">Do less and achieve more with RavenDb</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/09/diving-deeper-in-reactive-extensions/">Diving deeper in Reactive Extensions, concurrency</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/30/hello/">Hello, new blog!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/30/visual-studio-2012-dark-theme-tip/">Visual Studio 2012 dark theme tip - light up your UserControl in XAML designer</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/28/evening-time-time-for-fun/">Evening time, time for fun</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/21/on-motivation-a-quote/">On motivation, a quote...</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/19/migrating-from-silverlight-to-wpf-a-case-study/">Migrating from Silverlight to WPF, a case study</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/18/fearing-about-silverlights-future-dont/">Fearing about Silverlight's future? Don't...</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/02/packed-for-vacation/">Packed for vacation...</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("vcaraulean", 5, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/vcaraulean" class="twitter-follow-button" data-show-count="false">Follow @vcaraulean</a>
+  
+</section>
+
+
+
+<section class="googleplus googleplus-hidden">
+  <h1>
+    <a href="https://plus.google.com/108353347632139121774?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Valeriu Caraulean -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'caraulean';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://caraulean.com/blog/2010/10/12/silverlight-4-quirks-oob-and-loading-mainwindow-sizeposition/';
+        var disqus_url = 'http://caraulean.com/blog/2010/10/12/silverlight-4-quirks-oob-and-loading-mainwindow-sizeposition/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

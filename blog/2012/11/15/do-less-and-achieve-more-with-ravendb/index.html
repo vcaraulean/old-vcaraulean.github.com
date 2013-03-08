@@ -1,0 +1,389 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Do less and achieve more with RavenDb - valeriu caraulean</title>
+  <meta name="author" content="Valeriu Caraulean">
+
+  
+  <meta name="description" content="If you&#8217;re after a document database for a .NET application it&#8217;s hard to miss the buzz around RavenDb. Although there are many other NoSQL &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://caraulean.com/blog/2012/11/15/do-less-and-achieve-more-with-ravendb/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="valeriu caraulean" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-21974825-3']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1>
+    <a href="/">
+      <div id="logoLeft">{</div>
+      <div id="logoText"> blog </div>
+      <div id="logoRight">}</div>
+      <div>valeriu caraulean</div>
+      <div class="clear"></div>
+    </a>
+  </h1>
+  
+    <h2>keep it simple, it will work...</h2>
+  
+  <div class="clear"></div>
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:caraulean.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/projects">Projects</a></li>
+  <li><a href="/about">About</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">Do Less and Achieve More With RavenDb</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-15T09:40:00+01:00" pubdate data-updated="true">Nov 15<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>If you&#8217;re after a document database for a .NET application it&#8217;s hard to miss the buzz around <a href="http://ravendb.net">RavenDb</a>. Although there are many other NoSQL databases that are getting much more attention and popularity, RavenDb distinguishes itself by being a native in .NET ecosystem while still offering great value as a generic, technology agnostic data store.</p>
+
+<p>Dealing with Relational Databases, SQL and Object-Relational Mapping are probably the most omnipresent skills in any developer&#8217;s career. But take a .NET dev with a good background in modern database technologies and let him play few hours with RavenDb and I guarantee that he&#8217;ll come back impressed.</p>
+
+<p>And there is a good reason for that. One of the most impressive things is how easy it to define a class, fill it with data then just throw it in the store. Then load it back an put it on the screen or send over the wires. All this without any object-to-database mappings, no transformations, no base classes; with only few lines of configuration and initialization code. It&#8217;s fascinating when you&#8217;re an ORM veteran and experience it for the first time&#8230;</p>
+
+<p>I won&#8217;t go over all of the features of RavenDb. I will just touch few points that, in my opinion, can drastically reduce the amount of infrastructure code of almost any application, be it a client-server &#8220;enterprise-grade&#8221; system, web site / service or even a rich desktop application.</p>
+
+<p>Disclaimer: YMMV. I&#8217;m writing about things I&#8217;ve seen or experienced myself.</p>
+
+<h2>Reduce your mapping layers</h2>
+
+<p>Things you probably (or certainly) will not need with RavenDb:</p>
+
+<ul>
+<li>Maintain a mapping layer to fit your domain model in a relational database with it&#8217;s rules and constraints</li>
+<li>Keep on the eternal fight with lazy relations</li>
+<li>Map your domain to DTOs and backwards when you&#8217;re talking over the wires (especially using WCF)</li>
+<li>Map the DTOs to client side models and view models</li>
+</ul>
+
+
+<p>All this stuff is code. Code to be written, tested and maintained. Take this code and throw it away. Feel better now? I&#8217;m glad for you&#8230;</p>
+
+<p>Of course you&#8217;ll have some mapping code. As example you&#8217;ll probably have to shape your documents to display them on the screen or create static indexes. But I&#8217;d consider it as a business/domain concern and not just plumbing code to please your communication layer or mapping framework.</p>
+
+<h2>Cut through your infrastructure</h2>
+
+<p>What I love in RavenDb is that it&#8217;s not a mere data store. It comes with a bunch of features and bundles that aren&#8217;t directly related to persist and query data, but are much more like functional or business components for your application covering real feature requirements. Examples?</p>
+
+<h4>Search</h4>
+
+<p>Any reasonably sized and feature rich application that is manipulating data records is incomplete without an embedded search feature. In .NET world the choice is extremely limited. You&#8217;ll probably choose the Lucene.NET, write code to sync your search indexes with database/domain changes, then, run scary with the hope to never have to touch that code again. If you&#8217;ve worked with Lucene.NET, you know what I&#8217;m talking about&#8230;</p>
+
+<p>Much of the RavenDb powers are based on Lucene.NET. But you&#8217;ll barely observe it hidden behind a friendly API and the &#8220;usual suspect&#8221;, LINQ.</p>
+
+<h4>Security</h4>
+
+<p>You never meet a stakeholder or client obsessed about security? Move on to the next point&#8230;</p>
+
+<p>Authorization is hard: Users, Roles, Operations, Permissions. Then add row level security. Oh my, it&#8217;s really hard. And it&#8217;s even harder to get it working properly and with minimal penalization on performance. I think because it&#8217;s a tough challenge there aren&#8217;t many generic solutions for this problem.</p>
+
+<p>RavenDb comes with <a href="http://ravendb.net/docs/server/bundles/authorization">Authorization Bundle</a>. The only thing you have to do is to define your rules and (when required) add additional checks for constraints in your business or domain logic.</p>
+
+<h4>Client notifications</h4>
+
+<p>It&#8217;s called <a href="http://ayende.com/blog/157121/awesome-feature-of-the-day-ravendb-changes-api">Changes API</a>, it let&#8217;s your client know when a document changes on the server. I&#8217;ve been there, done that:</p>
+
+<ul>
+<li>Whenever NHibernate detects a change, send a message about it to a queue.</li>
+<li>Have a service listening to that queue.</li>
+<li>When there&#8217;s a message, notify all interested subscribers about it.</li>
+<li>Over WCF. Duplex channel. Silverlight&#8230;</li>
+</ul>
+
+
+<p>And I still have known bugs in that subsystem.</p>
+
+<p>Now take all this stuff and throw it away. Using RavenDb&#8217;s client API you can subscribe to change events of a single document, a document type or index. An the awesome part - it implements IObservable from <a href="http://www.introtorx.com/">Reactive Extensions</a>. Ditto.</p>
+
+<h4>Versioning/Audit</h4>
+
+<p>With <a href="http://ravendb.net/docs/server/bundles/versioning">Versioning Bundle</a> RavenDb will keep the history of changes made to a document. With the audit trail you&#8217;ll be able to find who changed what and when. Depending on your architecture it may be very simple to implement basic audit infrastructure. But it&#8217;s a much more challenging task to keep around modifications and with relational model is very hard to revert changes when your records were stored in database. With Versioning Bundle it&#8217;s easy to plug in and know everything.</p>
+
+<hr />
+
+<p>To refrain: all this stuff is code. Code to be written, tested, maintained.</p>
+
+<p>And one more thing. All this components are written by the authors of RavenDb. While I&#8217;m confident in my skills, I know my limits. I wouldn&#8217;t be able to do a better job integrating with a third-party system than the people who wrote it from scratch.</p>
+
+<p>I&#8217;ve highlighted only some of typical parts of a reasonably complex software system but there are more, of course. With RavenDb you already have functional blocks ready for integration and use. This is a point to consider when time-to-marked is critical or you care about your product. And less of a concern when you&#8217;re only after your monthly paycheck.</p>
+
+<p>Even if you have already some of these subsystems in place and are using &#8220;typical&#8221; architecture with a service layer, ORM and relational database, you should seriously consider RavenDb while you&#8217;re at early stages of your product.</p>
+
+<p>Because with RavenDb you can do less but achieve more by focusing on things that really matter: your domain model, business knowledge and that bizarre wrapper around it, called User Interface.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Valeriu Caraulean</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-15T09:40:00+01:00" pubdate data-updated="true">Nov 15<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ravendb/'>ravendb</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://caraulean.com/blog/2012/11/15/do-less-and-achieve-more-with-ravendb/" data-via="vcaraulean" data-counturl="http://caraulean.com/blog/2012/11/15/do-less-and-achieve-more-with-ravendb/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left articlenav" href="/blog/2012/10/09/diving-deeper-in-reactive-extensions/" title="Previous Post: Diving deeper in Reactive Extensions, concurrency">&laquo; Diving deeper in Reactive Extensions, concurrency</a>
+      
+      
+        <a class="basic-alignment right articlenav" href="/blog/2012/12/14/book-review-nosql-distilled/" title="Next Post: Book review - NoSQL Distilled">Book review - NoSQL Distilled &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+	<h1>About</h1>
+	<p>I'm a passionate software developer living in Geneva, Switzerland</p>
+	<p><a href="/about">Read more ...</a></p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/12/14/book-review-nosql-distilled/">Book review - NoSQL Distilled</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/15/do-less-and-achieve-more-with-ravendb/">Do less and achieve more with RavenDb</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/09/diving-deeper-in-reactive-extensions/">Diving deeper in Reactive Extensions, concurrency</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/30/hello/">Hello, new blog!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/30/visual-studio-2012-dark-theme-tip/">Visual Studio 2012 dark theme tip - light up your UserControl in XAML designer</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/28/evening-time-time-for-fun/">Evening time, time for fun</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/21/on-motivation-a-quote/">On motivation, a quote...</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/19/migrating-from-silverlight-to-wpf-a-case-study/">Migrating from Silverlight to WPF, a case study</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/18/fearing-about-silverlights-future-dont/">Fearing about Silverlight's future? Don't...</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/02/packed-for-vacation/">Packed for vacation...</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("vcaraulean", 5, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/vcaraulean" class="twitter-follow-button" data-show-count="false">Follow @vcaraulean</a>
+  
+</section>
+
+
+
+<section class="googleplus googleplus-hidden">
+  <h1>
+    <a href="https://plus.google.com/108353347632139121774?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Valeriu Caraulean -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'caraulean';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://caraulean.com/blog/2012/11/15/do-less-and-achieve-more-with-ravendb/';
+        var disqus_url = 'http://caraulean.com/blog/2012/11/15/do-less-and-achieve-more-with-ravendb/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

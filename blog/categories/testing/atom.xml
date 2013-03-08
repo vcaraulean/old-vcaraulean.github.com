@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: testing | valeriu caraulean]]></title>
+  <link href="http://caraulean.com/blog/categories/testing/atom.xml" rel="self"/>
+  <link href="http://caraulean.com/"/>
+  <updated>2013-03-08T23:23:44+01:00</updated>
+  <id>http://caraulean.com/</id>
+  <author>
+    <name><![CDATA[Valeriu Caraulean]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Cultural differences...]]></title>
+    <link href="http://caraulean.com/blog/2011/09/21/cultural-differences/"/>
+    <updated>2011-09-21T19:13:10+02:00</updated>
+    <id>http://caraulean.com/blog/2011/09/21/cultural-differences</id>
+    <content type="html"><![CDATA[<p>Today I’ve been helping a coworker to bootstrap new project. Nothing fancy: ASP.NET site hosting WCF services, few POCOs and Entity Framework in Code First mode to persist them all.</p>
+
+<p>Interesting moment came when he wanted to see if his service actually works. He quickly created another project (Windows Forms) to try connect to newly created service. When I’ve seen that I’ve suggested that a unit test project would be easier and more useful, he preferred to go his route and added buttons, large text block and some plumbing code to take service’s response to the screen.</p>
+
+<p>I’m not blaming here (as he is rather new to .NET platform), but his approach has few disadvantages versus verifying a service using unit tests:</p>
+
+<ul>
+<li>it’s slower to create a minimally meaningful solution: a crappy screen with a button “connect” and large text box to see results? I’d prefer a test with an assertion and may be some console output</li>
+<li>it’s slower to analyze results: you have to scan the screen to see/analyze replies. I’d prefer that a test assertion would take care of that.</li>
+<li>it’s error prone: you have to rely on human input to test it. I’d prefer an automated approach.</li>
+<li>it’s not repeatable nor scalable: what if you have second service? 10 methods in service?. I’d create new test fixture and refactor existing code, not UI.</li>
+<li>...</li>
+</ul>
+
+
+<p>... lot’s of things that are wrong with this approach.</p>
+
+<p>Even if it’s a short living spike, new project, new feature – whatever needs a proof of code in working state – <strong>I’d prefer to write a test for it</strong>. And I’m not talking here about rigorous Test-Driven-Development approach. It’s more like <strong>acceptance testing at service or component boundaries</strong>, only to be sure that it works as expected. And creating an UI just to see that a service works – it sounds wrong to me. But those are “cultural differences”, I think...</p>
+
+<p>PS: By “cultural differences” I mean past experience, habits, education, professional environment and so on...</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[NHibernate's niceties: hbm2ddl auto mode in unit tests]]></title>
+    <link href="http://caraulean.com/blog/2008/12/18/nhibernates-niceties-hbm2ddl-auto-mode-in-unit-tests/"/>
+    <updated>2008-12-18T18:33:17+01:00</updated>
+    <id>http://caraulean.com/blog/2008/12/18/nhibernates-niceties-hbm2ddl-auto-mode-in-unit-tests</id>
+    <content type="html"><![CDATA[<p>Very often you're going over a description of some function or new feature and just notice in your mind, "nice feature" without seeing a real application for it. Later, you're coming with scenario where the trick you've read days ago will fit perfectly.</p>
+
+<p>That was the case when I've seen earlier in <a href="http://www.tunatoksoz.com/">Tuna Toksoz</a>'s weblog a <a href="http://www.tunatoksoz.com/post/NHibernate-hbm2ddl.aspx">description of "hbm2ddl.auto" property</a>. Few days ago, I've put it to work in a way that makes me feel better. By the way, the particular reason that made me happy was that I've deleted a lot of repetitive code from our code base.</p>
+
+<h4>How you can use hbm2ddl.auto property in unit tests</h4>
+
+<p>Our integration tests are run over a real database. For each test we're re-creating the database, so that each test will be ran in separation and without interfering with results of previous tests. Also, things are a bit complicated since we're working with few databases at the same time, each with his own schema. Before, each test had to use SchemaExport class that exported the database schema built from NHibernate configuration on the way deleting your old database/schema/data. So, each integration test class had same method to call. Redundant and repetitive. Yes, you can make a base class that will do that, but you have to inherit then all tests from that class.</p>
+
+<p><strong>How it works now:</strong> in session configuration (usually in app.config for integration test project) you put:</p>
+
+<pre><code>&lt;property name="hbm2ddl.auto"&gt;create&lt;/property&gt;
+</code></pre>
+
+<p>... and you're set. Each time your code will build a new SessionFactory, NHibernate will call:</p>
+
+<pre><code>new SchemaExport(cfg).Create(false, true);
+</code></pre>
+
+<p>This way, before the SessionFactory will be built, your database will be refreshed with a new schema and tests will run in a clean database.</p>
+
+<p>One line of code instead of tens or hundreds. Isn't that a good trick?!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Unit tests with Automatic Transaction Management]]></title>
+    <link href="http://caraulean.com/blog/2008/10/03/unit-tests-with-automatic-transaction-management/"/>
+    <updated>2008-10-03T18:18:43+02:00</updated>
+    <id>http://caraulean.com/blog/2008/10/03/unit-tests-with-automatic-transaction-management</id>
+    <content type="html"><![CDATA[<p>In our projects we're using Castle's Automatic Transaction Management facility (ATM). This facility allows to declaratively define transaction boundaries: by marking a method by a specific attribute the call to this method will be wrapped in a transaction, so that a transaction will be opened before calling the method and committed right after finishing method execution.</p>
+
+<p>In code, it looks like this:</p>
+
+<pre><code>[Transactional]
+public class Foo
+{
+    [Transaction]
+    public virtual void Bar()
+    {
+        // Do something in a transaction
+    }
+}
+</code></pre>
+
+<p>Let's suppose that later, we want to test this code. Say, we want to verify that code in Foo.Bar() method is executed in a transaction. Moreover, we want to assure that the marking attributes will not be deleted accidentally.</p>
+
+<p>We can test that within two aspects. First - an integration test: a real application part will be spawned and a call will be performed. After, we should verify that changes was committed by transaction. It takes time to run such a test (integration test usually runs slower) and effort to write &amp; verify such a test. Second way to test that - is to check presence or required attributes. This will be a fast unit test that will just check that attribute is still applied to a method.</p>
+
+<p>Those methods complements each other. Ideally, it should be both written.</p>
+
+<p>Let's see how we can verify that attributes required by ATM are applied to required methods.</p>
+
+<p>First, we've defined the API that we want to use to do our check:</p>
+
+<pre><code>CustomAssertions.ShouldUseATM&lt;Foo&gt;(foo =&gt; foo.Bar());
+</code></pre>
+
+<p>Yes, you see it right, we want to make it type save, refactor-able and nice looking.</p>
+
+<p>This helper class should verify next assumptions, all required by ATM:
+  * Tested class should be marked with TransactionalAttribute;
+  * Method should be marked by TransactionAttribute;
+  * Method should be virtual.</p>
+
+<p>Solution we came to this problem is the next class:</p>
+
+<pre><code>public static partial class CustomAssertions
+{
+    public static void ShouldUseATM&lt;T&gt;(Expression&lt;Action&lt;T&gt;&gt; methodExpression) where T : class 
+    {
+        ThrowIfTypeNotMarkedAsTransactional(typeof (T));
+
+        var methodInfo = ((MethodCallExpression) methodExpression.Body).Method;
+
+        ThrowIfMethodIsNotMarkedWithTransactionAttribute(methodInfo);
+        ThrowIfMethodMarkedWithTransactionAttributeIsVirtual(methodInfo);
+    }
+
+    private static void ThrowIfTypeNotMarkedAsTransactional(Type classType)
+    {
+        object[] foundAttributes = classType.GetCustomAttributes(typeof(TransactionalAttribute), false);
+        if  (foundAttributes.Length == 0)
+            Assert.Fail("The type '{0}' is not marked with [Transactional] attribute", classType.Name);
+    }
+
+    private static void ThrowIfMethodIsNotMarkedWithTransactionAttribute(MethodInfo info)
+    {
+        var found = info.GetCustomAttributes(typeof(TransactionAttribute), false);
+        if (found.Length == 0)
+            Assert.Fail("Method '{0}' from '{1}' type is not marked with [Transaction] attribute",
+                       info.Name,
+                       info.DeclaringType.Name);
+    }
+
+    private static void ThrowIfMethodMarkedWithTransactionAttributeIsVirtual(MethodBase methodInfo)
+    {
+        if  (methodInfo.IsVirtual &amp;&amp; !methodInfo.IsFinal)
+            return;
+
+        Assert.Fail("Method '{0}' from '{1}' type is marked with [Transaction] attribute, but is not declared as virtual.",
+                    methodInfo.Name,
+                    methodInfo.DeclaringType.Name);
+    }
+}
+</code></pre>
+
+<p>So far, we're pleased with how it works for us.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[What integration tests should you write first]]></title>
+    <link href="http://caraulean.com/blog/2008/06/18/what-integration-tests-should-you-write-first/"/>
+    <updated>2008-06-18T12:18:10+02:00</updated>
+    <id>http://caraulean.com/blog/2008/06/18/what-integration-tests-should-you-write-first</id>
+    <content type="html"><![CDATA[<p>Generally, the goal of integration tests is to verify that different application parts are glued well together and interacts as expected. Thus, they are a bit different thing from unit tests that tends to test how a small, separate part is acting. Below are two tests that I can't classify to be pure integration tests because they touch a sensible part of application/infrastructure configuration like Windsor's configuration files and NHibernate's mappings. These simple tests can save a lot of time at very initial development stage when application bits are changed frequently and later, as a guarantee that you've not broken something in a recent refactoring.</p>
+
+<h4>Can_resolve_all_services_in_container()</h4>
+
+<p><a href="http://weblogs.asp.net/bsimser/default.aspx">Bill Simser</a> wrote some time ago about <a href="http://weblogs.asp.net/bsimser/archive/2008/06/04/the-first-spec-you-should-write-when-using-castle.aspx">the first test to be written when using Castle's Windsor Container</a>. It's a real gem that let's you verify if any of services registered in container can be resolved (have all required dependencies). Here is it, a bit improved for skipping verification for generic types, since, at that moment, we don't know the generic argument for type to be constructed:</p>
+
+<pre><code>[Test]
+public void Can_resolve_all_services_in_container()
+{
+    var container = new WindsorContainer("container.xml");
+    foreach (IHandler handler in container.Kernel.GetAssignableHandlers(typeof(object)))
+    {
+        if (handler.ComponentModel.Service.IsGenericType)
+            continue;
+
+        container.Resolve(handler.ComponentModel.Service);
+    }
+}
+</code></pre>
+
+<h4>Can_compile_NHibernate_mapping_configuration()</h4>
+
+<p>This test was sitting for a long time in our codebase, but I've seen it recently in <a href="http://codebetter.com/blogs/david_laribee/archive/2008/06/17/test-your-nhibernate-mappings.aspx">this post</a> of <a href="http://codebetter.com/blogs/david_laribee/default.aspx">David Larebee</a>. I wrote it in times when writing our first mappings and the only one way to verify if you don't have any faults was to write one of CRUD operations and run the test. But that's a long process. Shorter response cycle is always better. Here it is:</p>
+
+<pre><code>[Test]
+public void Can_compile_NHibernate_mapping_configuration()
+{
+    ISessionFactory factory =
+        new Configuration()
+            .Configure()
+            .AddAssembly("MyApp.MyDomainAssembly")
+            .BuildSessionFactory();
+
+    Assert.IsNotNull(factory);
+}
+</code></pre>
+
+<p>This test suppose that you have HNibernate configuration in your app.config and tries to register all mappings from given assembly file.</p>
+]]></content>
+  </entry>
+  
+</feed>

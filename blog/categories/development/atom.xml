@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: development | valeriu caraulean]]></title>
+  <link href="http://caraulean.com/blog/categories/development/atom.xml" rel="self"/>
+  <link href="http://caraulean.com/"/>
+  <updated>2013-03-08T23:23:44+01:00</updated>
+  <id>http://caraulean.com/</id>
+  <author>
+    <name><![CDATA[Valeriu Caraulean]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Fearing about Silverlight's future? Don't...]]></title>
+    <link href="http://caraulean.com/blog/2012/07/18/fearing-about-silverlights-future-dont/"/>
+    <updated>2012-07-18T13:26:29+02:00</updated>
+    <id>http://caraulean.com/blog/2012/07/18/fearing-about-silverlights-future-dont</id>
+    <content type="html"><![CDATA[<p>Just accept the facts, prepare &amp; migrate to WPF when ready.</p>
+
+<p>When you have something worrying you, the best way to tackle it is to cut it straight and act on it. That's the way to get it out of your head. If not, you're left on the mercy of external factors that may change the circumstances and the problem will go away.</p>
+
+<blockquote><p>“If you wait by the river long enough, the bodies of your enemies will float by.”
+- Sun Tzu</p></blockquote>
+
+<p>For some time I have a strange feeling about Silverlight. Few years ago it was "the solution" for cross-platform Rich Internet Applications. It was Microsoft's "offre du jour" for Enterprise Software development, offering ease of deployment &amp; update, run anywhere premise and offering a (part of) common development platform for Windows: XAML &amp; .NET.</p>
+
+<h4>Times are changing</h4>
+
+<p>The rapid rise of HTML5 &amp; CSS3 have had a huge impact on client side application development. Reach features of "next web" markup &amp; styling together with explosion of JavaScript popularity (adoption &amp; tooling) makes Web Applications an extremely viable "Rich Client" solution even for Enterprise Software. And sometimes it works nicely for mobile applications too.</p>
+
+<p>Then there is Microsoft's focus on Windows 8 &amp; WinRT. All bets are on the new and shiny Windows 8, Office 2013, Windows Phone 8 &amp; Surface. WinRT is "the new Silverlight", this time without the goal to run on multiple platforms but with a lot of aspirations to support Microsoft's moves in tablet and mobile markets.</p>
+
+<h4>And now</h4>
+
+<p>Looking back at my experience as a Silverlight developer, there is a sensible level of deception and frustration. Missing features, cut-off or half-backed functionality, leaking resources and a failed promise to offer a viable way to develop cross-platform applications. And the worst of all, I think we've lost time working around various limitations of Silverlight in order to get it working properly and comply with our requirements (somewhere between 10 to 15 %%).</p>
+
+<p>The current version of Silverlight is 5. Microsoft is quiet about his future - current releases will be supported, but absolute no information about next versions. Instead, there are plenty of rumors that there will be no Silverlight 6. Microsoft is too busy pushing the Windows 8 and the Silverlight's incarnation on this platform, the WinRT.</p>
+
+<h4>What do you have to loose? Not too much...</h4>
+
+<p>More important is what you can gain by migrating your current Silverlight application to WPF:</p>
+
+<ul>
+<li>A normal Windows application, running on all versions of Windows from XP to 8.</li>
+<li>The power of WPF &amp; full .NET framework.</li>
+<li>Full integration with OS: printing, scanning, file system, services.</li>
+<li>Better integration with other applications. MS Office, Reporting tools, you name it.</li>
+<li>Touch &amp; Multi-Touch support. You can create applications for Windows 8 that aren't Metro, but are touch friendly.</li>
+</ul>
+
+
+<p>The main thing you’d probably miss is the ability to run application directly in your browser, without installing it. But if it’s an Silverlight OOB application, you probably need some features not available in his sandboxed environment and running in browser is already out of question.</p>
+
+<h4>Would it be hard to migrate to WPF? It depends...</h4>
+
+<p>If you have a well structured application that follows good practices, it shouldn’t be a hard task to complete. Major steps to migrate a Silverlight application to WPF will be:</p>
+
+<ul>
+<li><strong>Libraries &amp; frameworks</strong>. If you were careful picking those, it now should be a pretty simple task of switching assemblies. Should it be the MVVM framework (Caliburn.Micro or MVVMLight), IoC container (Castle.Windsor) or third-party visual component library (Telerik, DevExpress) - usually they have versions for Silverlight and WPF. In ideal case you will end up just swapping assemblies.</li>
+<li><strong>Porting the source code</strong>. Again, depending on how you've approached development process it may be not so hard to do. It most cases it will be just "copy files" over. But some parts would need to be rewritten, often to simplify or throw away things. I estimate that volume of code to be reviewed/rewritten will be around 15% of overall client side code. Resharper &amp; good old Find-Replace are your friends here.</li>
+<li><strong>Installer &amp; application updates</strong>. Up until now you relied on Silverlight to install &amp; update the application. This part should be redone. ClickOnce is a viable solution, it will serve well your initial requirements to install and update the application. It would take 2-3 days to build, test &amp; make available a decent solution for this problem.</li>
+<li><strong>Rigorous testing after migration</strong>. May be most difficult and time consuming one if you have a large application as there is no tooling support to help with it.</li>
+</ul>
+
+
+<p>I'm not advocating blindly for immediate migration of every Silverlight application to WPF. If your application have reached his first release, doesn't have a long lifespan and current users are happy - you'll probably be fine sticking with Silverlight. But if you're still in active development or the application is a part of company's strategic products &amp; directions, you should very seriously consider the move.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Using WCF without configuration files]]></title>
+    <link href="http://caraulean.com/blog/2011/11/16/using-wcf-without-configuration-files/"/>
+    <updated>2011-11-16T01:14:59+01:00</updated>
+    <id>http://caraulean.com/blog/2011/11/16/using-wcf-without-configuration-files</id>
+    <content type="html"><![CDATA[<p>I have recently published new project on GitHub, <a href="http://github.com/vcaraulean/WcfWithoutConfigFile">WcfWithoutConfigFile</a>. This post is intended as a ‘readme’ file for this repository.</p>
+
+<p>It’s just a collection of simple projects that I’ve put together when a coworker asked me to show how he can use WCF without configuration files. He got feed up working with XML in web.config and wanted a cleaner and more understandable way to configure Windows Communication Foundation.</p>
+
+<p>What’s in:</p>
+
+<ul>
+<li>How to use WCF in your unit tests (<a href="http://github.com/vcaraulean/WcfWithoutConfigFile/tree/master/WcfWithoutConfigFile.Tests">WcfWithoutConfigFile.Tests</a> project). Sometimes you want to get your code tested at service boundaries and you want to involve also WCF. It contains, among a simple unit test, a base class for your tests so the test cases are clean and don’t contain plumbing code.</li>
+<li>Hosting WCF services in IIS (<a href="http://github.com/vcaraulean/WcfWithoutConfigFile/tree/master/WcfWithoutConfigFile.WebHost">WcfWithoutConfigFile.WebHost</a> project). Defining the service in .svc files and all required infrastructure to instantiate the service via code-only configuration.</li>
+<li><strong>My favorite</strong> – hosting WCF service in IIS using Castle’s <a href="http://www.castleproject.org/container/facilities/trunk/wcf/index.html">WcfIntegration facility</a> (<a href="https://github.com/vcaraulean/WcfWithoutConfigFile/tree/master/WcfWithoutConfigFile.WebHost.Castle">WcfWithoutConfigFile.WebHost.Castle</a> project). It leverages Castle Windsor container and WcfFacility to easily host/run/consume your WCF services. It also configures the service to use Windows authentication and shows how to retrieve client’s WindowsIdentity in the service. There is also a client project, <a href="https://github.com/vcaraulean/WcfWithoutConfigFile/tree/master/WcfWithoutConfigFile.WebHost.Castle-Client">WcfWithoutConfigFile.WebHost.Castle-Client</a> that connects to service and does some operations.</li>
+</ul>
+
+
+<p><a href="https://github.com/vcaraulean/WcfWithoutConfigFile/tree/master/WcfWithoutConfigFile.WebHost.Castle">WcfWithoutConfigFile.WebHost.Castle</a> requires some configuration to get it working properly. Be sure to:</p>
+
+<ul>
+<li>Run it in IIS Express</li>
+<li>Enable Windows Authentication in project properties</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[The Life After Silverlight 5]]></title>
+    <link href="http://caraulean.com/blog/2011/11/15/the-life-after-silverlight-5/"/>
+    <updated>2011-11-15T13:28:07+01:00</updated>
+    <id>http://caraulean.com/blog/2011/11/15/the-life-after-silverlight-5</id>
+    <content type="html"><![CDATA[<p>There is a lot of panic in Microsoft eco-system caused by some <a href="http://www.zdnet.com/blog/microsoft/will-there-be-a-silverlight-6-and-does-it-matter/11180">rumors that Silverlight 5 will be the last of the family</a>. Developers are crying about skills being buried and managers fearing about the future of in-house enterprise apps.</p>
+
+<p>And everyone is guessing what will be Microsoft pushing in the segment currently occupied by Silverlight. Now we have two available options, the new guy in the block - the HTML 5, and the good old and trusty WPF. Won’t mention Windows 8 here as it’s way to the Enterprise is too long to be considered as an option.</p>
+
+<p>So, everyone is watching the next move of Microsoft as there is not a clear winner – HTML 5 is too young to be considered seriously and WPF is too old to be considered as a long-time investment. When Silverlight was a competitor <a href="http://www.scottlogic.co.uk/blog/colin/2011/05/flex-silverlight-html5-time-to-decide/">the choice was rather easy</a>, now <a href="http://www.scottlogic.co.uk/blog/colin/2011/11/the-untimely-demise-of-the-plugin-and-how-lob-developments-will-suffer/">picture is much more blurred</a>.</p>
+
+<h2>In my view</h2>
+
+<p>XAML &amp; .NET will stay with us. Will it be WPF, Metro or anything MS will roll out for Desktop and LOB applications it will be based on those two pillars. At least for 7-10 years we’re assured.</p>
+
+<p>I’ll make few guesses, what MS’s steps will be after Silverlight end will be announced (it will be interesting to read it in a year or two):</p>
+
+<ul>
+<li>A promise that Silverlight 5 will be supported for next 3-4 years</li>
+<li>Actively encouraging developers to migrate Silverlight apps to WPF</li>
+<li>Newer versions of WPF will promote features previously hyped as Silverlight’s exclusives (in-browser apps, sandboxing, web deployment &amp; updates and others) minus the ability to run in browsers on various platforms.</li>
+</ul>
+
+
+<p>As for companies struggling with the choice right now (and it will probably true for near future), you’ll have to decide:</p>
+
+<ul>
+<li>Interaction and Data intensive applications, Rich User Experience, Resource Intensive application, deep OS integration – embrace the WPF and be happy (if you don’t mind to lock yourself to MS and Windows).</li>
+<li>Platform independent, high user base, moderately interactive UIs, presentation and manipulation of small amounts of data – your best bet is the Web: HTML5, CSS3 and JavaScript will be your tools.</li>
+</ul>
+
+
+<p>And if you still struggle with the choice the best thing you can do next is to look at your current development team. If they are more experienced and efficient with Web technologies you’re set. If they are mostly Desktop specialists then you’d want to explore their productivity to the max and get the release date closer. You’re sorted.</p>
+
+<p><strong>And the last word</strong>: don’t be a mono-disciplinary developer. Don’t lock yourself exclusively in Desktop or Web, Microsoft or LAMP or whatever. The day you’ll fail to pick, learn and use efficiently a new tool/framework will mean your career as a Professional Software Developer is done. Be open. Look around, there are so many amazing things in Software Development industry. Just pick something new and learn. It will be one of the best investments you can do in your future. You can do it right now...</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Cultural differences...]]></title>
+    <link href="http://caraulean.com/blog/2011/09/21/cultural-differences/"/>
+    <updated>2011-09-21T19:13:10+02:00</updated>
+    <id>http://caraulean.com/blog/2011/09/21/cultural-differences</id>
+    <content type="html"><![CDATA[<p>Today I’ve been helping a coworker to bootstrap new project. Nothing fancy: ASP.NET site hosting WCF services, few POCOs and Entity Framework in Code First mode to persist them all.</p>
+
+<p>Interesting moment came when he wanted to see if his service actually works. He quickly created another project (Windows Forms) to try connect to newly created service. When I’ve seen that I’ve suggested that a unit test project would be easier and more useful, he preferred to go his route and added buttons, large text block and some plumbing code to take service’s response to the screen.</p>
+
+<p>I’m not blaming here (as he is rather new to .NET platform), but his approach has few disadvantages versus verifying a service using unit tests:</p>
+
+<ul>
+<li>it’s slower to create a minimally meaningful solution: a crappy screen with a button “connect” and large text box to see results? I’d prefer a test with an assertion and may be some console output</li>
+<li>it’s slower to analyze results: you have to scan the screen to see/analyze replies. I’d prefer that a test assertion would take care of that.</li>
+<li>it’s error prone: you have to rely on human input to test it. I’d prefer an automated approach.</li>
+<li>it’s not repeatable nor scalable: what if you have second service? 10 methods in service?. I’d create new test fixture and refactor existing code, not UI.</li>
+<li>...</li>
+</ul>
+
+
+<p>... lot’s of things that are wrong with this approach.</p>
+
+<p>Even if it’s a short living spike, new project, new feature – whatever needs a proof of code in working state – <strong>I’d prefer to write a test for it</strong>. And I’m not talking here about rigorous Test-Driven-Development approach. It’s more like <strong>acceptance testing at service or component boundaries</strong>, only to be sure that it works as expected. And creating an UI just to see that a service works – it sounds wrong to me. But those are “cultural differences”, I think...</p>
+
+<p>PS: By “cultural differences” I mean past experience, habits, education, professional environment and so on...</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How to make Caliburn.Micro and Silverlight resources in MergedDictionaries play nicely together]]></title>
+    <link href="http://caraulean.com/blog/2011/09/13/how-to-make-caliburn-micro-and-silverlight-resources-in-mergeddictionaries-play-nicely-together/"/>
+    <updated>2011-09-13T23:43:00+02:00</updated>
+    <id>http://caraulean.com/blog/2011/09/13/how-to-make-caliburn-micro-and-silverlight-resources-in-mergeddictionaries-play-nicely-together</id>
+    <content type="html"><![CDATA[<p>I’ve fixed an error in our codebase that prevented Caliburn’s bootstrapper and application resources to live happily together. That was manifesting like warnings in xaml about missing resources and styles, no right styles in Visual Studio designer and so on.</p>
+
+<p>Now, to reproduce the problem we have to follow Caliburn’s guidelines then make few changes:</p>
+
+<ul>
+<li>Create new Silverlight 4 application</li>
+<li>Add Caliburn.Micro NuGet package</li>
+<li><a href="http://caliburnmicro.codeplex.com/wikipage?title=Nuget">Configure your application</a> to bootstrap Caliburn</li>
+<li>Add new Resource Dictionary to host your common styles/brushes/whatever</li>
+<li>Include your dictionary in MergedDictionaries section</li>
+<li>Add a fancy color brush and use it in ShellView.xaml by referencing it as a static resource</li>
+<li>Build your app</li>
+</ul>
+
+
+<p>Your application will compile and run fine. However, you can spot few <strong>issues</strong> with your code:</p>
+
+<ul>
+<li>ShellView.xaml:
+
+<ul>
+<li>Xaml editor displaying warning: “The resource could not be resolved”</li>
+<li>VS Designer will not use your resource on design surface</li>
+</ul>
+</li>
+<li>App.xaml
+
+<ul>
+<li>Xaml editor displaying warning: “The designer does not support loading dictionaries that mix 'ResourceDictionary' items without a key and other items in the same collection. Please ensure that the 'Resources' property does not contain 'ResourceDictionary' items without a key, or that the 'ResourceDictionary' item is the only element in the collection.”</li>
+</ul>
+</li>
+</ul>
+
+
+<p>To solve this problem you have to modify your App.xaml.</p>
+
+<p>The original App.xaml fragment, as by following recommendations:</p>
+
+<pre><code>&lt;Application.Resources&gt;
+    &lt;ResourceDictionary&gt;
+        &lt;ResourceDictionary.MergedDictionaries&gt;
+            &lt;ResourceDictionary Source="Themes/Generic.xaml" /&gt;
+        &lt;/ResourceDictionary.MergedDictionaries&gt;
+    &lt;/ResourceDictionary&gt;
+    &lt;local:AppBootstrapper x:Key="bootstrapper" /&gt;
+&lt;/Application.Resources&gt;
+</code></pre>
+
+<p>Now, the <strong>corrected version</strong> that removes all issues I’ve described earlier:</p>
+
+<pre><code>&lt;Application.Resources&gt;
+    &lt;ResourceDictionary&gt;
+        &lt;ResourceDictionary.MergedDictionaries&gt;
+            &lt;ResourceDictionary Source="Themes/Generic.xaml" /&gt;
+            &lt;ResourceDictionary&gt;
+                &lt;local:AppBootstrapper x:Key="bootstrapper" /&gt;
+            &lt;/ResourceDictionary&gt;
+        &lt;/ResourceDictionary.MergedDictionaries&gt;
+    &lt;/ResourceDictionary&gt;
+&lt;/Application.Resources&gt;
+</code></pre>
+
+<p>Actually, this fragment is the <strong>recommended way of instantiating boostrapper for WPF</strong> version of Caliburn.Micro. Why it isn’t recommended also for Silverlight? I don’t know. For our rather large project I haven’t seen any downgrades and issues using this approach. Just few annoying bugs were gone...</p>
+]]></content>
+  </entry>
+  
+</feed>

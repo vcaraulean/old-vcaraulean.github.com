@@ -1,0 +1,336 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Book review - NoSQL Distilled - valeriu caraulean</title>
+  <meta name="author" content="Valeriu Caraulean">
+
+  
+  <meta name="description" content="NoSQL Distilled: A Brief Guide to the Emerging World of Polyglot Persistence by Martin Fowler and Pramod J. Sadalage. For some time already I&#8217; &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://caraulean.com/blog/2012/12/14/book-review-nosql-distilled/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="valeriu caraulean" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-21974825-3']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1>
+    <a href="/">
+      <div id="logoLeft">{</div>
+      <div id="logoText"> blog </div>
+      <div id="logoRight">}</div>
+      <div>valeriu caraulean</div>
+      <div class="clear"></div>
+    </a>
+  </h1>
+  
+    <h2>keep it simple, it will work...</h2>
+  
+  <div class="clear"></div>
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:caraulean.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/projects">Projects</a></li>
+  <li><a href="/about">About</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">Book Review - NoSQL Distilled</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-14T09:38:00+01:00" pubdate data-updated="true">Dec 14<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="http://www.amazon.com/NoSQL-Distilled-Emerging-Persistence-ebook/dp/B0090J3SYW">NoSQL Distilled: A Brief Guide to the Emerging World of Polyglot Persistence</a> by Martin Fowler and Pramod J. Sadalage.</p>
+
+<p>For some time already I&#8217;ve been keeping an eye on rising popularity of NoSQL. From reading articles and blog posts about various aspects and flavors, I adventured myself and dived more deeply into RavenDb, a NoSQL Document Database. Still, the picture I had in my mind was somewhat blurry and had few areas where I wasn&#8217;t sure that I understand some basic things.</p>
+
+<p>This book is a very good starting point into NoSQL world. It starts with explaining the rise of popularity of NoSQL solutions for multiple domains and modern data storage requirements. Then it explains important concepts around NoSQL data stores like aggregation and distribution models, consistency, versioning and Map-Reduce. The second part of the book takes a look at each family of NoSQL flavors and analyzes their features, data modeling challenges and applicability of concrete database in various domains. Key-Value databases are presented by <a href="http://basho.com/products/riak-overview/">Riak</a>, Document Databases by <a href="http://www.mongodb.org/">MongoDB</a> with few mentions of <a href="http://ravendb.net/">RavenDb</a>, <a href="http://cassandra.apache.org/">Cassandra</a> represents the Column-Family store type, and, final group, the Graph databases are explained using <a href="http://www.neo4j.org/">Neo4J</a>. Last chapters of the book talk about schema migrations, data storage options outside of NoSQL area and what you should consider when choosing a database.</p>
+
+<p>One of the ideas frequently discussed trough the whole book is why people are choosing NoSQL solutions:</p>
+
+<blockquote><p>There are two primary reasons for considering NoSQL. One is to handle data access with sizes and performance that demand a cluster; the other is to improve the productivity of application development by using a more convenient data interaction style.</p></blockquote>
+
+
+<p>Most often when you speak about NoSQL with somebody the reaction looks like &#8220;ah, that thing that Google and Amazon runs on thousands of servers&#8221;. And nobody who only have heard of NoSQL is sensing the second great advantage of these systems: improving productivity and flexibility of your development team and make the life of application developer easier.</p>
+
+<p>NoSQL doesn&#8217;t means a complete schema-less data storage. Instead of having rigid definitions of schema and relationships as in the world of Relational Database, the shape of data is defined by application itself. That is, application is defining how it wants to store and access the data. No more you have to fight the impedance mismatch between relational model and in-memory data structures. Forget the performance penalization of an ORM, limitations of relational model in querying, aggregating and shaping data. Instead, your application defines the aggregate model and naturally persist it. Then it has reach options to slice and dice stored data, perform flexible Map-Reduce transformations and offers reach analytical capabilities. This allows development teams to be more flexible and productive when building complex systems. When your data storage is a simple commodity, easy to access and manipulate, you will have much more time to work on your domain, business logic or User Interface.</p>
+
+<p>Each kind of NoSQL implementation offers it&#8217;s own advantages and has it&#8217;s weak points. For me the most interesting are the Document Databases like MongoDB and RavenDb. They will suit a very broad range of applications because of the notion of a Document - something with properties and values aggregated in one entity stored as a simple JSON document. This will give you ability to index documents, write rich document based queries and much more.</p>
+
+<h3>Summary</h3>
+
+<p>A great overview of existent NoSQL technologies, their characteristics and applicability of each of them in various domains. The book is short as it was really meant as an overview, not a deep dive in these technologies.</p>
+
+<p>At the moment when I write this review Amazon places this book as #1 in Databases category and #2 in Databases/SQL, it has 15 reviews with an overall score of 4.5.</p>
+
+<p>Highly recommended.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Valeriu Caraulean</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-14T09:38:00+01:00" pubdate data-updated="true">Dec 14<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/books/'>books</a>, <a class='category' href='/blog/categories/nosql/'>nosql</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://caraulean.com/blog/2012/12/14/book-review-nosql-distilled/" data-via="vcaraulean" data-counturl="http://caraulean.com/blog/2012/12/14/book-review-nosql-distilled/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left articlenav" href="/blog/2012/11/15/do-less-and-achieve-more-with-ravendb/" title="Previous Post: Do less and achieve more with RavenDb">&laquo; Do less and achieve more with RavenDb</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+	<h1>About</h1>
+	<p>I'm a passionate software developer living in Geneva, Switzerland</p>
+	<p><a href="/about">Read more ...</a></p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/12/14/book-review-nosql-distilled/">Book review - NoSQL Distilled</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/15/do-less-and-achieve-more-with-ravendb/">Do less and achieve more with RavenDb</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/09/diving-deeper-in-reactive-extensions/">Diving deeper in Reactive Extensions, concurrency</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/30/hello/">Hello, new blog!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/30/visual-studio-2012-dark-theme-tip/">Visual Studio 2012 dark theme tip - light up your UserControl in XAML designer</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/28/evening-time-time-for-fun/">Evening time, time for fun</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/21/on-motivation-a-quote/">On motivation, a quote...</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/19/migrating-from-silverlight-to-wpf-a-case-study/">Migrating from Silverlight to WPF, a case study</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/18/fearing-about-silverlights-future-dont/">Fearing about Silverlight's future? Don't...</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/02/packed-for-vacation/">Packed for vacation...</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("vcaraulean", 5, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/vcaraulean" class="twitter-follow-button" data-show-count="false">Follow @vcaraulean</a>
+  
+</section>
+
+
+
+<section class="googleplus googleplus-hidden">
+  <h1>
+    <a href="https://plus.google.com/108353347632139121774?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Valeriu Caraulean -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'caraulean';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://caraulean.com/blog/2012/12/14/book-review-nosql-distilled/';
+        var disqus_url = 'http://caraulean.com/blog/2012/12/14/book-review-nosql-distilled/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

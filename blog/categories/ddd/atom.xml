@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: ddd | valeriu caraulean]]></title>
+  <link href="http://caraulean.com/blog/categories/ddd/atom.xml" rel="self"/>
+  <link href="http://caraulean.com/"/>
+  <updated>2013-03-08T23:23:44+01:00</updated>
+  <id>http://caraulean.com/</id>
+  <author>
+    <name><![CDATA[Valeriu Caraulean]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Learning DDD]]></title>
+    <link href="http://caraulean.com/blog/2009/03/03/learning-ddd/"/>
+    <updated>2009-03-03T19:00:19+01:00</updated>
+    <id>http://caraulean.com/blog/2009/03/03/learning-ddd</id>
+    <content type="html"><![CDATA[<h3>Learning</h3>
+
+<p>There is only one way that can make you better specialist - learning. Continuous learning will continuously improve your skills, change work perception and increase satisfaction you have doing your daily job. If you want to jump over mediocrity you have no other way than improve yourself. Daily.</p>
+
+<h3>DDD</h3>
+
+<p>Being interested in Domain Driven Design (DDD) lately and writing more and more code this way I found today a <a href="http://devlicio.us/blogs/casey/archive/tags/DDD/default.aspx">nice series of blog posts about DDD</a> done by <a href="http://devlicio.us/blogs/casey/default.aspx">Casey Charlton</a>.</p>
+
+<p>Bringing together other related resources:</p>
+
+<ul>
+<li>Book - <a href="http://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215">Domain-Driven Design: Tackling Complexity in the Heart of Software</a> by Eric Evans, the "father" of DDD.</li>
+<li>E-book - <a href="http://www.infoq.com/minibooks/domain-driven-design-quickly">Domain Driven Design Quickly</a>. Free to download.</li>
+<li>Mailing list / discussion group - <a href="http://groups.yahoo.com/group/domaindrivendesign/">DDD Yahoo Group</a>.</li>
+</ul>
+
+
+<p>Have fun. Learn your domain. Express it in code.</p>
+]]></content>
+  </entry>
+  
+</feed>
