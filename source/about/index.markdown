@@ -23,8 +23,7 @@ My online presence:
 - [@vcaraulean in Twitter](http://twitter.com/vcaraulean)
 - [GitHub profile](http://github.com/vcaraulean)
 - [LinkedIn profile](http://ch.linkedin.com/in/vcaraulean)
-- [My old blog](http://blog.caraulean.com) (hosted on Wordpress.com)
 
-If you want to contact me, [write me](mailto:caraulean@gmail.com) an email.
+If you want to contact me, [write me](mailto:valeriu@caraulean.com) an email.
 
 **Disclaimer:** Thought and opinions expressed on this site are my own and don't represent in any way my employer's positions, strategies, or opinions.
