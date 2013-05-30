@@ -18,7 +18,20 @@ body > header {
     }
     div#logoLeft, #logoRight{
       color: $accent-color;
+	  font-size: 2.0em;
+	  margin-top: 7px;
+	  font-weight: light;
     }
+	div#subtitle {
+		@extend .sans;
+		margin-top: -0.5em;
+		margin-left: 0.5em;
+		font-size: 0.4em;
+		color: $subtitle-color;
+		font-weight: normal;
+		letter-spacing: 1px;
+		clear: both;
+	}
   }
   h2 {
     @extend .sans;

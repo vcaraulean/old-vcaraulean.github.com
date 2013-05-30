@@ -2,12 +2,14 @@
   <h1>
     <a href="{{ root_url }}/">
       <div id="logoLeft">{</div>
-      <div id="logoText"> {{ site.title }} </div>
+		<div id="wrapper">
+			<div id="logoText"> {{ site.title }} </div>
+			{% if site.subtitle %}
+				<div id="subtitle">{{ site.subtitle }}</div>
+			{% endif %}
+		</div>
       <div id="logoRight">}</div>
     </a>
   </h1>
-  {% if site.subtitle %}
-    <h2>{{ site.subtitle }}</h2>
-  {% endif %}
   <div class="clear"></div>
 </hgroup>
