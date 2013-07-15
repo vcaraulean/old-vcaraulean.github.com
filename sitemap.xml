@@ -2,474 +2,478 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://caraulean.com/blog/2007/08/17/software-development-were-at-war/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://caraulean.com/blog/2008/02/06/reference-smo-assemblies-from-visual-studio/
         </loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://caraulean.com/blog/2008/02/13/httpcontext-idiom-for-windows-communication-foundation/
         </loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2008/03/27/quick-tips-tricks-resharpers-goodness/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2008/03/28/wcf-security-guidance/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2008/04/15/quick-tips-tricks-bdd-test-naming-macro/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://caraulean.com/blog/2008/06/18/what-integration-tests-should-you-write-first/
         </loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2008/08/13/no-luck-with-tools-lately/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://caraulean.com/blog/2008/08/26/additional-identity-column-with-nhibernate/
         </loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://caraulean.com/blog/2008/10/03/unit-tests-with-automatic-transaction-management/
         </loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2008/11/23/starting-point-is-simplicity/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://caraulean.com/blog/2008/12/18/nhibernates-niceties-hbm2ddl-auto-mode-in-unit-tests/
         </loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2009/01/25/discovering-podcasts/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2009/03/03/learning-ddd/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2009/03/10/theres-always-time-to-launch-your-dream/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2009/03/24/msbuild-xaml-international-characters/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2009/04/12/nhibernate-mapping/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2009/04/28/if-you-want-to-invest-in-your-skills/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2009/04/28/speeding-up-a-local-build/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2009/05/12/successful-user-interface/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2009/05/26/it-s-time-to-pay/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2009/06/05/why-so-noisy/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2009/07/06/my-biggest-failure-this-year/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2009/07/12/reading-about-wolfram-alfa/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://caraulean.com/blog/2009/07/15/wpf-niceties-collection-grouping-in-viewmodel/
         </loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://caraulean.com/blog/2009/09/02/clean-code-register-additional-event-listeners-in-nhibernate/
         </loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2009/11/26/alt-net-swiss-community-its-running/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2009/12/02/wpf-lob-samples/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://caraulean.com/blog/2009/12/21/nhibernate-3-0-will-be-a-very-nice-release/
         </loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2010/01/25/intro-to-usability/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2010/01/31/have-been-in-the-aliens-camp-twice/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2010/02/07/software-quality-for-everyone/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2010/03/15/all-is-starting-with-a-cv/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://caraulean.com/blog/2010/04/12/how-to-reference-platform-specific-x86x64-assemblies-in-visual-studio-projects/
         </loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2010/04/14/microsoft-techdays-2010-geneva-day-1/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2010/05/21/got-new-hardware-part-1/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2010/06/14/fluent-ribbon-and-prism/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2010/06/19/user-experience-and-hardware-updates/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2010/07/04/complexity-is-ok-complicated-is-bad/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://caraulean.com/blog/2010/08/05/interesting-pattern-to-decouple-application-parts-and-for-integrating-with-other-apps/
         </loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2010/08/11/tomorrow-will-be-better/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2010/08/12/quote-of-the-day/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2010/08/17/explaining-castle-note-to-myself/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://caraulean.com/blog/2010/08/30/one-of-the-biggest-problem-in-software-development-industry/
         </loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2010/09/11/windows-phone-7/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2010/09/25/traditional-toolbars-and-ribbon-bar/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2010/09/29/flirting-with-java-community/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://caraulean.com/blog/2010/09/29/houston-we-have-a-problem-unit-tests-in-silverlight/
         </loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://caraulean.com/blog/2010/10/12/silverlight-4-quirks-oob-and-loading-mainwindow-sizeposition/
         </loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://caraulean.com/blog/2010/10/13/multi-targeting-with-project-linker-by-example-castle-core-for-silverlight-4/
         </loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://caraulean.com/blog/2010/10/19/visual-composition-and-extensibility-are-done-right/
         </loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://caraulean.com/blog/2010/11/14/if-your-windows-phone-7-application-suddenly-stopped-working-in-emulator/
         </loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://caraulean.com/blog/2010/11/18/handling-mouse-double-click-event-in-silverlight-with-caliburn-micro/
         </loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2010/11/20/perceived-performance/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://caraulean.com/blog/2010/11/28/mgithub-sample-application-using-caliburn-micro-to-build-windows-phone-7-applications/
         </loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://caraulean.com/blog/2010/12/01/had-a-good-evening-yesterday-at-geneva-jug/
         </loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2010/12/11/teleriks-radtabcontrol-and-caliburn-micro/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://caraulean.com/blog/2011/01/18/the-best-user-group-meeting-ive-attended-so-far-geneva-jug-on-scala-akka/
         </loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2011/02/21/how-we-get-inspiration/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://caraulean.com/blog/2011/03/09/working-with-named-branches-using-tortoisehg-2-0-illustrated-workflow/
         </loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://caraulean.com/blog/2011/04/12/mix11s-first-day-keynote-on-web-platform-my-impressions/
         </loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://caraulean.com/blog/2011/04/13/mix11-day-two-windows-phone-7-announcements/
         </loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2011/04/27/improving-writing-skills/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://caraulean.com/blog/2011/04/28/nostalgy-in-my-early-days-as-a-software-developer/
         </loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://caraulean.com/blog/2011/05/06/me-developerim-done-me-designerwait-a-minute/
         </loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://caraulean.com/blog/2011/05/18/new-day-new-adventures-samsung-omnia-7-and-7392-update-for-wp7/
         </loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://caraulean.com/blog/2011/05/25/quick-tip-if-git-cant-find-your-global-config/
         </loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://caraulean.com/blog/2011/05/31/quick-tip-configure-teamcity-6-5-to-run-a-personal-build-when-youve-committed-to-a-branch/
         </loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://caraulean.com/blog/2011/06/05/integration-of-caliburn-micro-and-teleriks-silverlight-controls/
         </loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2011/06/23/packing-for-vacation-kindle/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://caraulean.com/blog/2011/07/03/why-java-always-feels-unnatural-to-windows/
         </loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://caraulean.com/blog/2011/09/09/tortoisehg-and-jira-integrationthe-lightweight-option/
         </loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://caraulean.com/blog/2011/09/13/how-to-make-caliburn-micro-and-silverlight-resources-in-mergeddictionaries-play-nicely-together/
         </loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2011/09/21/cultural-differences/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2011/11/15/the-life-after-silverlight-5/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2011/11/16/using-wcf-without-configuration-files/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://caraulean.com/blog/2011/12/09/using-wp7s-progressindicator-with-caliburn-micro/
         </loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://caraulean.com/blog/2011/12/13/using-wp7s-secondary-tiles-with-caliburn-micro/
         </loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2011/12/19/so-are-you-going-to-release/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2011/12/19/hitting-the-limits/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://caraulean.com/blog/2012/05/30/greatest-feature-of-tortoisehg-and-github-for-windows-is-missing-it-so-far/
         </loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2012/06/08/new-shiny-windows-azure-taking-the-tour/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://caraulean.com/blog/2012/06/10/new-shiny-windows-azure-publishing-a-website-using-git/
         </loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2012/07/02/packed-for-vacation/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2012/07/18/fearing-about-silverlights-future-dont/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://caraulean.com/blog/2012/07/19/migrating-from-silverlight-to-wpf-a-case-study/
         </loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2012/08/21/on-motivation-a-quote/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2012/08/28/evening-time-time-for-fun/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2012/08/30/visual-studio-2012-dark-theme-tip/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2012/09/30/hello/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2012/10/09/diving-deeper-in-reactive-extensions/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2012/11/15/do-less-and-achieve-more-with-ravendb/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/2012/12/14/book-review-nosql-distilled/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
+    </url>
+    <url>
+        <loc>http://caraulean.com/blog/2013/07/15/using-caliburn-micro-with-async-await/</loc>
+        <lastmod>2013-07-16T00:27:37+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/404.html</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/about/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:23+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/blog/archives/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-16T00:27:37+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-16T00:27:37+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/projects/</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:24+02:00</lastmod>
     </url>
     <url>
         <loc>http://caraulean.com/robots.txt</loc>
-        <lastmod>2013-03-08T23:11:13+01:00</lastmod>
+        <lastmod>2013-07-15T23:32:24+02:00</lastmod>
     </url>
 </urlset>

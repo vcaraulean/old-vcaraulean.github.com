@@ -9,7 +9,7 @@
   <meta name="author" content="Valeriu Caraulean">
 
   
-  <meta name="description" content="NoSQL Distilled: A Brief Guide to the Emerging World of Polyglot Persistence by Martin Fowler and Pramod J. Sadalage. For some time already I&#8217; &hellip;">
+  <meta name="description" content="This post will give an overview of how you can use async/await features from C# 5.0 with Caliburn.Micro (CM). If you&#8217;ve found an error or want &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -49,15 +49,15 @@
   <h1>
     <a href="/">
       <div id="logoLeft">{</div>
-      <div id="logoText"> blog </div>
+		<div id="wrapper">
+			<div id="logoText"> valeriu caraulean </div>
+			
+				<div id="subtitle">keep it simple, it will work...</div>
+			
+		</div>
       <div id="logoRight">}</div>
-      <div>valeriu caraulean</div>
-      <div class="clear"></div>
     </a>
   </h1>
-  
-    <h2>keep it simple, it will work...</h2>
-  
   <div class="clear"></div>
 </hgroup>
 
@@ -86,6 +86,217 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2013/07/15/using-caliburn-micro-with-async-await/">Using Caliburn.Micro With Async/await</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-15T11:21:00+02:00" pubdate data-updated="true">Jul 15<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This post will give an overview of how you can use async/await features from C# 5.0 with <a href="http://caliburnmicro.codeplex.com/">Caliburn.Micro (CM)</a>. If you&#8217;ve found an error or want to complete the content please let me know in the comments. A sample application demonstrating async/await interactions in CM <a href="https://github.com/vcaraulean/CaliburnMicro.AsyncDemo">is available on GitHub</a>.</p>
+
+<h2>Setting it up</h2>
+
+<p>To use Tasks and async/await features you need the latest version of Caliburn.Micro. Support for Tasks was introduced in version 1.5, so you&#8217;ll need a version higher than that. And, of course, you need .NET Framework 4.5 or higher. All examples in this post were tested in a WPF application targeting .NET 4.5 framework. However, same code will be probably valid for Silverlight, WP8 and Windows8 apps.</p>
+
+<h4>Create and configure new project to test the concepts</h4>
+
+<ul>
+<li>Create new WPF 4.5 application</li>
+<li>Install Caliburn.Micro from nuget. You&#8217;d better choose the <code>Caliburn.Micro.Start</code> package as it has everything required to run a Caliburn application (boostrapper, container, main screen)</li>
+<li>Change App.cs to correctly bootstrap with Caliburn, <a href="http://caliburnmicro.codeplex.com/wikipage?title=Nuget">here is how to do it</a></li>
+</ul>
+
+
+<h2>Async Actions</h2>
+
+<p>The syntax for attaching actions in XAML will remain unchanged:</p>
+
+<pre><code>&lt;Button x:Name="RunTask1Async"&gt;
+&lt;Button cal:Message.Attach="RunTask1Async"&gt;
+</code></pre>
+
+<p>When declaring action&#8217;s method we can specify that we want to handle it asynchronously:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>public async void RunTask1Async()
+</span><span class='line'>{
+</span><span class='line'>    Log("RunTask1Async - starting a 4 second task");
+</span><span class='line'>    await Task.Delay(4000);
+</span><span class='line'>    Log("RunTask1Async completed");
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And that&#8217;s all you need to execute an action asynchronously (if you have to execute a Task).</p>
+
+<h2>Async handlers for Screen events and overrides</h2>
+
+<p>CM offers few handy methods that allow to connect to Screen&#8217;s lifetime events. Some method overrides with async signatures:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>protected override async void OnInitialize()
+</span><span class='line'>{
+</span><span class='line'>  Log("OnInitialize - starting a 7 seconds task");
+</span><span class='line'>  await Task.Delay(7000);
+</span><span class='line'>  Log("OnInitialize completed");
+</span><span class='line'>}
+</span><span class='line'>protected override async void OnActivate() { }
+</span><span class='line'>protected override async void OnViewLoaded(object view) { }
+</span><span class='line'>protected override async void OnViewAttached(object view, object context) { }
+</span><span class='line'>...</span></code></pre></td></tr></table></div></figure>
+
+
+<p>To note here that even if the method in base class is not marked <code>async</code>, our overrides declare them with <code>async</code> modifiers and it runs fine.</p>
+
+<p>Similarly, you can handle Screen&#8217;s events the same way how you&#8217;re handling any .NET event in asynchronous way:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{
+</span><span class='line'>  // ...
+</span><span class='line'>  ViewAttached += OnViewAttachedEventHandler;
+</span><span class='line'>}
+</span><span class='line'>private async void OnViewAttachedEventHandler(object sender, ViewAttachedEventArgs args)
+</span><span class='line'>{
+</span><span class='line'>  Log("OnViewAttachedEventHandler- starting a 1 second task");
+</span><span class='line'>  await Task.Delay(1000);
+</span><span class='line'>  Log("OnViewAttachedEventHandler completed");
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>IHandleWithTask interface</h2>
+
+<p>This is a new addition to CM, declared as:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>public interface IHandleWithTask&lt;TMessage&gt; : IHandle
+</span><span class='line'>{
+</span><span class='line'>    Task Handle(TMessage message);
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It&#8217;s extremely useful when you want to handle a particular message using a Task and off-load application&#8217;s main thread.</p>
+
+<p>An example:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>public class Message { }
+</span><span class='line'>
+</span><span class='line'>public class MessageHandler : IHandleWithTask&lt;Message&gt;
+</span><span class='line'>{
+</span><span class='line'>  public MessageHandler(IEventAggregator eventAggregator)
+</span><span class='line'>  {
+</span><span class='line'>      eventAggregator.Subscribe(this);
+</span><span class='line'>  }
+</span><span class='line'>
+</span><span class='line'>  public async Task Handle(Message message)
+</span><span class='line'>  {
+</span><span class='line'>      await Task.Delay(3000);
+</span><span class='line'>  }
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Convert coroutines to Tasks</h2>
+
+<p>This can be done easily by using an extension method:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>public async void WrapIResultInTaskAsync()
+</span><span class='line'>{
+</span><span class='line'>  await new SimpleCoroutine().ExecuteAsync();
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>&#8220;async void&#8221; or &#8220;async Task&#8221;</h2>
+
+<p>A great question will be: should I use <code>async void</code> or <code>async Task</code> as a return value of action methods, screen&#8217;s events and overrides? Since you can do both and the code will compile and run mostly fine, let&#8217;s see what <a href="http://blog.stephencleary.com/">Stephen Cleary</a> writes about it in <a href="http://msdn.microsoft.com/en-us/magazine/jj991977.aspx">Best Practices in Asynchronous Programming</a> article:</p>
+
+<blockquote><p>You should prefer async Task to async void. Async Task methods enable easier error-handling, composability and testability. The exception to this guideline is asynchronous event handlers, which must return void. This exception includes methods that are logically event handlers even if they’re not literally event handlers (for example, ICommand.Execute implementations).</p></blockquote>
+
+
+<p>I will join this recommendation. Actions are event handlers at their core, normally they are executed as &#8220;start and forget&#8221;. If something happens (an exception), it will be handled at application level. For the case when you want to handle any exceptions locally, you may want to create an override which returns an <code>async Task</code>. Also, this will allow calling same method action from another part of the program or write a unit test to verify an asynchronous process.</p>
+
+<h2>References</h2>
+
+<ul>
+<li><a href="http://devlicio.us/blogs/rob_eisenberg/archive/2013/03/18/durandal-1-2-0-and-caliburn-micro-1-5-0-released.aspx">Caliburn.Micro. 1.5.0 release notes</a></li>
+<li><a href="http://msdn.microsoft.com/en-us/magazine/jj991977.aspx">&#8220;Best Practices in Asynchronous Programming&#8221; by Stephen Cleary (MSDN Mag)</a></li>
+<li><a href="http://marcoamendola.wordpress.com/2012/10/16/coroutines-are-dead-long-live-coroutines/">&#8220;Coroutines are dead. Long live Coroutines.&#8221; by Marco Amendola</a></li>
+</ul>
+
+
+<p>This is pretty much it. If you&#8217;ve found an error or may complete this post with additional info, let me know in the comments.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -756,62 +967,6 @@ rake deploy
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2012/07/02/packed-for-vacation/">Packed for Vacation&#8230;</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-07-02T16:28:07+02:00" pubdate data-updated="true">Jul 2<span>nd</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>It’s that happy time again, a (well deserved I think) vacation. Beach, sea, great food &amp; drinks and, of course, lot’s of time to spend with family.</p>
-
-<p>This year, along the phones, iPad &amp; notebook I’ve took a Nook Simple Touch to go trough my ever growing reading list. The first advantage of an ebook reader is that you’re sure that nobody will try to claim the device you’re reading on for playing piano, draw, do puzzles or smash those bad pigs - Nook is genuinely un-interesting for my daughters. As for reading, I enjoy very much the device. E-Ink screen is very easy for the eyes, it’s readable on direct sun and you don’t think about running out of batteries. The other advantage is that it doesn’t have the distractions of the iPad - no twitter, email &amp; browser makes reading sessions much longer and the focus stays longer on content and thinking&#8230;</p>
-
-<h3>Reading list</h3>
-
-<ul>
-<li><a href="http://www.amazon.com/Steve-Jobs-Walter-Isaacson/dp/1451648537/">Steve Jobs by Walter Isaacson</a></li>
-<li><a href="http://www.amazon.com/Dont-Make-Me-Think-Usability/dp/0321344758/">Don&#8217;t Make Me Think: A Common Sense Approach to Web Usability by Steve Krug</a></li>
-<li><a href="http://www.amazon.com/Design-Everyday-Things-Donald-Norman/dp/0465067107/">The Design of Everyday Things by Donald A. Norman</a></li>
-<li>Selected chapters from <a href="http://www.aosabook.org/en/index.html">The Architecture of Open Source Applications</a>.</li>
-</ul>
-
-
-<p>And will be sharing with my wife some novels in French to improve a bit my (still bad in my opinion) French language skills.</p>
-
-<h3>Videos</h3>
-
-<p>Downloaded the torrent with <a href="http://www.ndcoslo.com/Article/News/2012video">videos of all sessions from NDC 2012</a>. 25 GB of goodness, that should keep my entertained some time. Watching videos is much more time consuming action than reading a book (and, usually, less dense in information &amp; message they convey), so I’d be picking only a handful of sessions to go trough&#8230;</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -830,6 +985,10 @@ rake deploy
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/07/15/using-caliburn-micro-with-async-await/">Using Caliburn.Micro with async/await</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/12/14/book-review-nosql-distilled/">Book review - NoSQL Distilled</a>
@@ -865,10 +1024,6 @@ rake deploy
     
       <li class="post">
         <a href="/blog/2012/07/18/fearing-about-silverlights-future-dont/">Fearing about Silverlight&#8217;s future? Don&#8217;t&#8230;</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/07/02/packed-for-vacation/">Packed for vacation&#8230;</a>
       </li>
     
   </ul>

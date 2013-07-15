@@ -9,7 +9,7 @@
   <meta name="author" content="Valeriu Caraulean">
 
   
-  <meta name="description" content="I had to review few tens of CV lately. A very interesting pattern emerged when we looked at the CVs that were taken to next level - preliminary &hellip;">
+  <meta name="description" content="Let’s say you have a third party library that you want to reference from your project. By default platform target in Visual Studio is &#8221;Any &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -49,15 +49,15 @@
   <h1>
     <a href="/">
       <div id="logoLeft">{</div>
-      <div id="logoText"> blog </div>
+		<div id="wrapper">
+			<div id="logoText"> valeriu caraulean </div>
+			
+				<div id="subtitle">keep it simple, it will work...</div>
+			
+		</div>
       <div id="logoRight">}</div>
-      <div>valeriu caraulean</div>
-      <div class="clear"></div>
     </a>
   </h1>
-  
-    <h2>keep it simple, it will work...</h2>
-  
   <div class="clear"></div>
 </hgroup>
 
@@ -86,6 +86,74 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2010/04/12/how-to-reference-platform-specific-x86x64-assemblies-in-visual-studio-projects/">How to Reference Platform Specific (X86/x64) Assemblies in Visual Studio Projects</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-04-12T16:04:24+02:00" pubdate data-updated="true">Apr 12<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Let’s say you have a third party library that you want to reference from your project. By default platform target in Visual Studio is &#8221;<strong>Any CPU</strong>&#8221;. But the library is compiled for specific target – <strong>x86</strong> or <strong>x64</strong>. When you’re working in a team, have a build server and all of them is in different platforms you’ll start to have issues. Like, project with an x64 referenced assembly working ok on your x64 machine and failing on x86 computers and so on.</p>
+
+<p>For us it was the “<strong>System.Data.SQLite</strong>” – the <a href="http://sqlite.phxsoftware.com/">ADO.NET provider for SQLite</a>. It is provided compiled separately for 32 and 64 bit systems. It was not easy to figure out how to manage references to SQLite provider without making too much changes in our projects and build scripts.</p>
+
+<p>I’ve found an elegant solution for it: manually modifying project files that are using it to add a conditional elements to <Project> node. Look at this code:</p>
+
+<pre><code>  &lt;Choose&gt;
+    &lt;When Condition="$(PROCESSOR_ARCHITECTURE) == 'AMD64' Or $(PROCESSOR_ARCHITEW6432) == 'AMD64'"&gt;
+      &lt;ItemGroup&gt;
+        &lt;Reference Include="System.Data.SQLite, Version=1.0.65.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=AMD64"&gt;
+          &lt;SpecificVersion&gt;False&lt;/SpecificVersion&gt;
+          &lt;HintPath&gt;..\Lib\x64\System.Data.SQLite.DLL&lt;/HintPath&gt;
+        &lt;/Reference&gt;
+      &lt;/ItemGroup&gt;
+    &lt;/When&gt;
+    &lt;Otherwise&gt;
+      &lt;ItemGroup&gt;
+        &lt;Reference Include="System.Data.SQLite, Version=1.0.65.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86"&gt;
+          &lt;SpecificVersion&gt;False&lt;/SpecificVersion&gt;
+          &lt;HintPath&gt;..\Lib\x86\System.Data.SQLite.DLL&lt;/HintPath&gt;
+        &lt;/Reference&gt;
+      &lt;/ItemGroup&gt;
+    &lt;/Otherwise&gt;
+  &lt;/Choose&gt;
+</code></pre>
+
+<p><code>&lt;Choose&gt; &lt;When Condition= … /&gt; &lt;Otherwise … /&gt; &lt;/Choose&gt;</code> – it’s fun how people are trying to add “behavior” to a such static thing as XML. Well, it works, sometimes…</p>
+
+<p>Detection of the current platform is based on checking of two environment variables: PROCESSOR_ARCHITECTURE and PROCESSOR_ARCHITEW6432 to detect “bitness” of running OS/processes. Details of this you can find in the post of David Wang <a href="http://blogs.msdn.com/david.wang/archive/2006/03/26/HOWTO-Detect-Process-Bitness.aspx">HOWTO: Detect Process Bitness</a>.</p>
+
+<p>Working like a charm for us.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -585,48 +653,6 @@ public void GroupAddressesByCity()
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2009/07/12/reading-about-wolfram-alfa/">Reading About Wolfram Alfa</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-07-12T23:45:17+02:00" pubdate data-updated="true">Jul 12<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>&#8230; and his &#8220;clever&#8221; UI:</p>
-
-<blockquote><p>The error is that control interfaces must not be intelligent. Briefly, intelligent user interfaces should be limited to applications in which the user does not expect to control the behavior of the product. If the product is used as a tool, its interface should be as unintelligent as possible. Stupid is predictable; predictable is learnable; learnable is usable.</p></blockquote>
-
-<p>Continue reading: <a href="http://unqualified-reservations.blogspot.com/2009/07/wolfram-alpha-and-hubristic-user.html">Wolfram Alpha and hubristic user interfaces</a>.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/8/">&larr; Older</a>
@@ -647,6 +673,10 @@ public void GroupAddressesByCity()
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/07/15/using-caliburn-micro-with-async-await/">Using Caliburn.Micro with async/await</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/12/14/book-review-nosql-distilled/">Book review - NoSQL Distilled</a>
@@ -682,10 +712,6 @@ public void GroupAddressesByCity()
     
       <li class="post">
         <a href="/blog/2012/07/18/fearing-about-silverlights-future-dont/">Fearing about Silverlight&#8217;s future? Don&#8217;t&#8230;</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/07/02/packed-for-vacation/">Packed for vacation&#8230;</a>
       </li>
     
   </ul>

@@ -9,7 +9,7 @@
   <meta name="author" content="Valeriu Caraulean">
 
   
-  <meta name="description" content="There are times when you want to handle a “MouseDoubleClick” event in your code and execute something in your ViewModel as a response to the &hellip;">
+  <meta name="description" content="I’m watching a recording of Windows Phone Design Days, it’s the part about “perceived performance” with Jaime Rodriguez. He put up a nice &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -49,15 +49,15 @@
   <h1>
     <a href="/">
       <div id="logoLeft">{</div>
-      <div id="logoText"> blog </div>
+		<div id="wrapper">
+			<div id="logoText"> valeriu caraulean </div>
+			
+				<div id="subtitle">keep it simple, it will work...</div>
+			
+		</div>
       <div id="logoRight">}</div>
-      <div>valeriu caraulean</div>
-      <div class="clear"></div>
     </a>
   </h1>
-  
-    <h2>keep it simple, it will work...</h2>
-  
   <div class="clear"></div>
 </hgroup>
 
@@ -86,6 +86,94 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2010/11/20/perceived-performance/">Perceived Performance</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-11-20T22:13:21+01:00" pubdate data-updated="true">Nov 20<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I’m watching a recording of Windows Phone Design Days, it’s the part about “perceived performance” with Jaime Rodriguez. He put up a nice table with response times and recommended visual feedback. I’ve seen these recommendations before. I’ve talked about these recommendations with my team. I’m insisting applying them every time when I see in out apps that an action has no visual response within one second after triggering it.</p>
+
+<p>Even if it’s talking in context of User Experience on Windows Phone, I think these numbers are a formal guidance for good user experience on every device, modern gadget or software application.</p>
+
+<p>I’ll make a copy of this table here, just to keep it in a handy place for further reference. It’s so well worth keeping it&#8230;</p>
+
+<table border="1">
+    <tr>
+        <th>system response time</th>
+        <th>duration</th>
+        <th>recommended feedback</th>
+    </tr>
+    <tr>
+        <td>instantaneous response</td>
+        <td>bellow 100 milliseconds</td>
+        <td>built in common controls</td>
+    </tr>
+    <tr>
+        <td>immediate response</td>
+        <td>between 500 milliseconds and 1 second</td>
+        <td>built in common controls</td>
+    </tr>
+    <tr>
+        <td>very short wait</td>
+        <td>2 seconds or less</td>
+        <td>built in common controls</td>
+    </tr>
+    <tr>
+        <td>short wait</td>
+        <td>2 to 5 seconds</td>
+        <td>progress bars</td>
+    </tr>
+    <tr>
+        <td>moderate wait</td>
+        <td>5 to 10 seconds</td>
+        <td>progress bar with details like percentage completition or time remaining</td>
+    </tr>
+    <tr>
+        <td>long wait</td>
+        <td>10 seconds or greater</td>
+        <td>progress bar with details of sub steps. Allow user to move to other tasks</td>
+    </tr>
+    <tr>
+        <td>continuous feedback</td>
+        <td>long process</td>
+        <td>progress bar with details of sub steps. Allow user to move to other tasks</td>
+    </tr>
+</table>
+
+
+<p>Read, remember &amp; <strong>apply!</strong></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -654,48 +742,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2010/08/30/one-of-the-biggest-problem-in-software-development-industry/">One of the Biggest Problem in Software Development Industry</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-08-30T17:14:41+02:00" pubdate data-updated="true">Aug 30<span>th</span>, 2010</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>&#8230; is that developers are often get paid to write code and not to push the product out of the door&#8230;</p>
-
-<p>They don’t have motivation to write good code, finish new feature, think about user’s experience or add one more test – <strong>they don’t need a better product</strong>.</p>
-
-<p><strong>They are paid to write code&#8230;</strong></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/6/">&larr; Older</a>
@@ -716,6 +762,10 @@
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/07/15/using-caliburn-micro-with-async-await/">Using Caliburn.Micro with async/await</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/12/14/book-review-nosql-distilled/">Book review - NoSQL Distilled</a>
@@ -751,10 +801,6 @@
     
       <li class="post">
         <a href="/blog/2012/07/18/fearing-about-silverlights-future-dont/">Fearing about Silverlight&#8217;s future? Don&#8217;t&#8230;</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/07/02/packed-for-vacation/">Packed for vacation&#8230;</a>
       </li>
     
   </ul>

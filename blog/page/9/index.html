@@ -9,7 +9,7 @@
   <meta name="author" content="Valeriu Caraulean">
 
   
-  <meta name="description" content="Until last week I was indifferent to podcasts. Not really indifferent - I knew they exists, a lot of people likes them, they&#8217;re about things &hellip;">
+  <meta name="description" content="Learning There is only one way that can make you better specialist - learning. Continuous learning will continuously improve your skills, change work &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -49,15 +49,15 @@
   <h1>
     <a href="/">
       <div id="logoLeft">{</div>
-      <div id="logoText"> blog </div>
+		<div id="wrapper">
+			<div id="logoText"> valeriu caraulean </div>
+			
+				<div id="subtitle">keep it simple, it will work...</div>
+			
+		</div>
       <div id="logoRight">}</div>
-      <div>valeriu caraulean</div>
-      <div class="clear"></div>
     </a>
   </h1>
-  
-    <h2>keep it simple, it will work...</h2>
-  
   <div class="clear"></div>
 </hgroup>
 
@@ -86,6 +86,61 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2009/03/03/learning-ddd/">Learning DDD</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-03-03T19:00:19+01:00" pubdate data-updated="true">Mar 3<span>rd</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>Learning</h3>
+
+<p>There is only one way that can make you better specialist - learning. Continuous learning will continuously improve your skills, change work perception and increase satisfaction you have doing your daily job. If you want to jump over mediocrity you have no other way than improve yourself. Daily.</p>
+
+<h3>DDD</h3>
+
+<p>Being interested in Domain Driven Design (DDD) lately and writing more and more code this way I found today a <a href="http://devlicio.us/blogs/casey/archive/tags/DDD/default.aspx">nice series of blog posts about DDD</a> done by <a href="http://devlicio.us/blogs/casey/default.aspx">Casey Charlton</a>.</p>
+
+<p>Bringing together other related resources:</p>
+
+<ul>
+<li>Book - <a href="http://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215">Domain-Driven Design: Tackling Complexity in the Heart of Software</a> by Eric Evans, the &#8220;father&#8221; of DDD.</li>
+<li>E-book - <a href="http://www.infoq.com/minibooks/domain-driven-design-quickly">Domain Driven Design Quickly</a>. Free to download.</li>
+<li>Mailing list / discussion group - <a href="http://groups.yahoo.com/group/domaindrivendesign/">DDD Yahoo Group</a>.</li>
+</ul>
+
+
+<p>Have fun. Learn your domain. Express it in code.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -704,62 +759,6 @@ public void When_user_pressed_OK_message_should_be_prepared_and_sent()
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2008/03/27/quick-tips-tricks-resharpers-goodness/">Quick Tips & Tricks. ReSharper&#8217;s Goodness.</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-03-27T16:06:58+01:00" pubdate data-updated="true">Mar 27<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I have shown today few tricks with <a href="http://www.jetbrains.com/resharper/index.html">ReSharper</a> to one of my teammates. I think it worth to be shared/stored in the blog.</p>
-
-<ol>
-<li>View the code used from a referenced assembly</li>
-</ol>
-
-
-<p>Very often you want to see how a referenced assembly is used in your project. We can use dedicated tools to work this out (for example, NDepend) or you can just click on a project in solution explorer, expand &#8220;References&#8221; node, select an assembly, right-click and select &#8221;<strong>Find Dependent Code</strong>&#8221;. You will see a nice &#8220;Find Results&#8221; window with all places where this referenced assembly is used.</p>
-
-<p>Same way, you can analyze project dependencies in a multi-project solution. I think you will be rewarded in future if your presentation assemblies will not depend from a project with database stuff.</p>
-
-<ol>
-<li>Setting a keyboard shortcut to run a unit test</li>
-</ol>
-
-
-<p>I&#8217;m sure that any keyboard ninja knows it. Do you want to learn a bit of kung-fu? Go to keyboard settings configuration in Visual Studio (Tools > Options&#8230; > Environment > Keyboard), find a command named &#8221;<strong>ReSharper.UnitTest_ContextRun</strong>&#8221; and assign a shortcut to it. I hang it to &#8220;Ctrl+1&#8221;.</p>
-
-<p>Now, when you&#8217;re editing a class containing unit tests, you can just press your newly created shortcut and ReSharper will run the tests: if you&#8217;re inside a test method (method marked with [Test]) only the current test will run; if you&#8217;re somewhere in the class, but outside of a test method, R# will run all tests from this class.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/10/">&larr; Older</a>
@@ -780,6 +779,10 @@ public void When_user_pressed_OK_message_should_be_prepared_and_sent()
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/07/15/using-caliburn-micro-with-async-await/">Using Caliburn.Micro with async/await</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/12/14/book-review-nosql-distilled/">Book review - NoSQL Distilled</a>
@@ -815,10 +818,6 @@ public void When_user_pressed_OK_message_should_be_prepared_and_sent()
     
       <li class="post">
         <a href="/blog/2012/07/18/fearing-about-silverlights-future-dont/">Fearing about Silverlight&#8217;s future? Don&#8217;t&#8230;</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/07/02/packed-for-vacation/">Packed for vacation&#8230;</a>
       </li>
     
   </ul>

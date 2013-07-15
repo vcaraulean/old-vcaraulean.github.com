@@ -9,7 +9,7 @@
   <meta name="author" content="Valeriu Caraulean">
 
   
-  <meta name="description" content="Writing is (still) one of the important skills for anybody engaged in IT. I wrote about it more than one year ago when I had to go over a bunch of &hellip;">
+  <meta name="description" content="Something brought up old memories from the days when I’ve been working in Embedded Systems development. I’m third from the left&#8230; The “big &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -49,15 +49,15 @@
   <h1>
     <a href="/">
       <div id="logoLeft">{</div>
-      <div id="logoText"> blog </div>
+		<div id="wrapper">
+			<div id="logoText"> valeriu caraulean </div>
+			
+				<div id="subtitle">keep it simple, it will work...</div>
+			
+		</div>
       <div id="logoRight">}</div>
-      <div>valeriu caraulean</div>
-      <div class="clear"></div>
     </a>
   </h1>
-  
-    <h2>keep it simple, it will work...</h2>
-  
   <div class="clear"></div>
 </hgroup>
 
@@ -86,6 +86,69 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2011/04/28/nostalgy-in-my-early-days-as-a-software-developer/">Nostalgy. My Early Days as a Software Developer &#8230;</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-04-28T02:03:22+02:00" pubdate data-updated="true">Apr 28<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Something brought up old memories from the days when I’ve been working in Embedded Systems development.</p>
+
+<p><img src="/../../../../../images/2011/dsc00984.jpg" alt="alt screenshot" /></p>
+
+<p>I’m third from the left&#8230;</p>
+
+<p>The “big thing” in the back is a Diesel engine stripped from a big ship. Converted to an internal combustion engine working on natural gas and producing 6 Megawatts of Electrical power. Cooling/heating, turbo, oiling, ignition – those are only few subsystems of this complex.</p>
+
+<p>One more picture:</p>
+
+<p><img src="/../../../../../images/2011/dsc00931.jpg" alt="alt screenshot" /></p>
+
+<p>My former employer, <a href="http://rgg.md">Romany Gaz Group</a>, done all the electronics + software. It was a blast to work on. A mix of hardware, microprocessors and software, low level hacking and unforgettable feeling of true Research and Development work:</p>
+
+<ul>
+<li>writing in assembler for mythical Motorola 68HC11, an 8-bit microprocessor with a whopping 64 Kb of program memory and less than 1 Kb of RAM. Then come the HC12 with more memory and C compiler.</li>
+<li>in-house Real-Time Operational System with multi-tasking support.</li>
+<li>“advanced” user interfaces on 20x4 character displays and 5 button keyboards</li>
+<li>homebrew communication protocol spawning into few levels of OSI model</li>
+<li>tens of sensors and digital signals</li>
+<li>tens of output signals, valves, pumps</li>
+<li>a SCADA-like PC application for monitoring and control</li>
+</ul>
+
+
+<p>And a fantastic team of talented engineers that tamed the beast. You have to hear it grumble&#8230;</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -839,94 +902,6 @@ public class UserPivotViewModel : PivotViewModel {
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2010/11/20/perceived-performance/">Perceived Performance</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-11-20T22:13:21+01:00" pubdate data-updated="true">Nov 20<span>th</span>, 2010</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I’m watching a recording of Windows Phone Design Days, it’s the part about “perceived performance” with Jaime Rodriguez. He put up a nice table with response times and recommended visual feedback. I’ve seen these recommendations before. I’ve talked about these recommendations with my team. I’m insisting applying them every time when I see in out apps that an action has no visual response within one second after triggering it.</p>
-
-<p>Even if it’s talking in context of User Experience on Windows Phone, I think these numbers are a formal guidance for good user experience on every device, modern gadget or software application.</p>
-
-<p>I’ll make a copy of this table here, just to keep it in a handy place for further reference. It’s so well worth keeping it&#8230;</p>
-
-<table border="1">
-    <tr>
-        <th>system response time</th>
-        <th>duration</th>
-        <th>recommended feedback</th>
-    </tr>
-    <tr>
-        <td>instantaneous response</td>
-        <td>bellow 100 milliseconds</td>
-        <td>built in common controls</td>
-    </tr>
-    <tr>
-        <td>immediate response</td>
-        <td>between 500 milliseconds and 1 second</td>
-        <td>built in common controls</td>
-    </tr>
-    <tr>
-        <td>very short wait</td>
-        <td>2 seconds or less</td>
-        <td>built in common controls</td>
-    </tr>
-    <tr>
-        <td>short wait</td>
-        <td>2 to 5 seconds</td>
-        <td>progress bars</td>
-    </tr>
-    <tr>
-        <td>moderate wait</td>
-        <td>5 to 10 seconds</td>
-        <td>progress bar with details like percentage completition or time remaining</td>
-    </tr>
-    <tr>
-        <td>long wait</td>
-        <td>10 seconds or greater</td>
-        <td>progress bar with details of sub steps. Allow user to move to other tasks</td>
-    </tr>
-    <tr>
-        <td>continuous feedback</td>
-        <td>long process</td>
-        <td>progress bar with details of sub steps. Allow user to move to other tasks</td>
-    </tr>
-</table>
-
-
-<p>Read, remember &amp; <strong>apply!</strong></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/5/">&larr; Older</a>
@@ -947,6 +922,10 @@ public class UserPivotViewModel : PivotViewModel {
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/07/15/using-caliburn-micro-with-async-await/">Using Caliburn.Micro with async/await</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/12/14/book-review-nosql-distilled/">Book review - NoSQL Distilled</a>
@@ -982,10 +961,6 @@ public class UserPivotViewModel : PivotViewModel {
     
       <li class="post">
         <a href="/blog/2012/07/18/fearing-about-silverlights-future-dont/">Fearing about Silverlight&#8217;s future? Don&#8217;t&#8230;</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/07/02/packed-for-vacation/">Packed for vacation&#8230;</a>
       </li>
     
   </ul>

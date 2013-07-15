@@ -9,7 +9,7 @@
   <meta name="author" content="Valeriu Caraulean">
 
   
-  <meta name="description" content="After taking the tour of Windows Azure, the first thing I wanted to try is the Web Site hosting in Azure. As Microsoft is offering a free trial for &hellip;">
+  <meta name="description" content="It’s that happy time again, a (well deserved I think) vacation. Beach, sea, great food &amp; drinks and, of course, lot’s of time to spend with &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -49,15 +49,15 @@
   <h1>
     <a href="/">
       <div id="logoLeft">{</div>
-      <div id="logoText"> blog </div>
+		<div id="wrapper">
+			<div id="logoText"> valeriu caraulean </div>
+			
+				<div id="subtitle">keep it simple, it will work...</div>
+			
+		</div>
       <div id="logoRight">}</div>
-      <div>valeriu caraulean</div>
-      <div class="clear"></div>
     </a>
   </h1>
-  
-    <h2>keep it simple, it will work...</h2>
-  
   <div class="clear"></div>
 </hgroup>
 
@@ -86,6 +86,62 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2012/07/02/packed-for-vacation/">Packed for Vacation&#8230;</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-02T16:28:07+02:00" pubdate data-updated="true">Jul 2<span>nd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>It’s that happy time again, a (well deserved I think) vacation. Beach, sea, great food &amp; drinks and, of course, lot’s of time to spend with family.</p>
+
+<p>This year, along the phones, iPad &amp; notebook I’ve took a Nook Simple Touch to go trough my ever growing reading list. The first advantage of an ebook reader is that you’re sure that nobody will try to claim the device you’re reading on for playing piano, draw, do puzzles or smash those bad pigs - Nook is genuinely un-interesting for my daughters. As for reading, I enjoy very much the device. E-Ink screen is very easy for the eyes, it’s readable on direct sun and you don’t think about running out of batteries. The other advantage is that it doesn’t have the distractions of the iPad - no twitter, email &amp; browser makes reading sessions much longer and the focus stays longer on content and thinking&#8230;</p>
+
+<h3>Reading list</h3>
+
+<ul>
+<li><a href="http://www.amazon.com/Steve-Jobs-Walter-Isaacson/dp/1451648537/">Steve Jobs by Walter Isaacson</a></li>
+<li><a href="http://www.amazon.com/Dont-Make-Me-Think-Usability/dp/0321344758/">Don&#8217;t Make Me Think: A Common Sense Approach to Web Usability by Steve Krug</a></li>
+<li><a href="http://www.amazon.com/Design-Everyday-Things-Donald-Norman/dp/0465067107/">The Design of Everyday Things by Donald A. Norman</a></li>
+<li>Selected chapters from <a href="http://www.aosabook.org/en/index.html">The Architecture of Open Source Applications</a>.</li>
+</ul>
+
+
+<p>And will be sharing with my wife some novels in French to improve a bit my (still bad in my opinion) French language skills.</p>
+
+<h3>Videos</h3>
+
+<p>Downloaded the torrent with <a href="http://www.ndcoslo.com/Article/News/2012video">videos of all sessions from NDC 2012</a>. 25 GB of goodness, that should keep my entertained some time. Watching videos is much more time consuming action than reading a book (and, usually, less dense in information &amp; message they convey), so I’d be picking only a handful of sessions to go trough&#8230;</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -691,63 +747,6 @@ ShellTile.Create(navigationService.UriFor&lt;MyViewModel&gt;()
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2011/09/21/cultural-differences/">Cultural Differences&#8230;</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-09-21T19:13:10+02:00" pubdate data-updated="true">Sep 21<span>st</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Today I’ve been helping a coworker to bootstrap new project. Nothing fancy: ASP.NET site hosting WCF services, few POCOs and Entity Framework in Code First mode to persist them all.</p>
-
-<p>Interesting moment came when he wanted to see if his service actually works. He quickly created another project (Windows Forms) to try connect to newly created service. When I’ve seen that I’ve suggested that a unit test project would be easier and more useful, he preferred to go his route and added buttons, large text block and some plumbing code to take service’s response to the screen.</p>
-
-<p>I’m not blaming here (as he is rather new to .NET platform), but his approach has few disadvantages versus verifying a service using unit tests:</p>
-
-<ul>
-<li>it’s slower to create a minimally meaningful solution: a crappy screen with a button “connect” and large text box to see results? I’d prefer a test with an assertion and may be some console output</li>
-<li>it’s slower to analyze results: you have to scan the screen to see/analyze replies. I’d prefer that a test assertion would take care of that.</li>
-<li>it’s error prone: you have to rely on human input to test it. I’d prefer an automated approach.</li>
-<li>it’s not repeatable nor scalable: what if you have second service? 10 methods in service?. I’d create new test fixture and refactor existing code, not UI.</li>
-<li>&#8230;</li>
-</ul>
-
-
-<p>&#8230; lot’s of things that are wrong with this approach.</p>
-
-<p>Even if it’s a short living spike, new project, new feature – whatever needs a proof of code in working state – <strong>I’d prefer to write a test for it</strong>. And I’m not talking here about rigorous Test-Driven-Development approach. It’s more like <strong>acceptance testing at service or component boundaries</strong>, only to be sure that it works as expected. And creating an UI just to see that a service works – it sounds wrong to me. But those are “cultural differences”, I think&#8230;</p>
-
-<p>PS: By “cultural differences” I mean past experience, habits, education, professional environment and so on&#8230;</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -768,6 +767,10 @@ ShellTile.Create(navigationService.UriFor&lt;MyViewModel&gt;()
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/07/15/using-caliburn-micro-with-async-await/">Using Caliburn.Micro with async/await</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/12/14/book-review-nosql-distilled/">Book review - NoSQL Distilled</a>
@@ -803,10 +806,6 @@ ShellTile.Create(navigationService.UriFor&lt;MyViewModel&gt;()
     
       <li class="post">
         <a href="/blog/2012/07/18/fearing-about-silverlights-future-dont/">Fearing about Silverlight&#8217;s future? Don&#8217;t&#8230;</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/07/02/packed-for-vacation/">Packed for vacation&#8230;</a>
       </li>
     
   </ul>
