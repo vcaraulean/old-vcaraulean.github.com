@@ -12,7 +12,7 @@ To use Tasks and async/await features you need the latest version of Caliburn.Mi
 
 #### Create and configure new project to test the concepts
  - Create new WPF 4.5 application
- - Install Caliburn.Micro from nuget. You'd better choose the 'Caliburn.Micro.Start' package as it has everything required to run a Caliburn application (boostrapper, container, main screen)
+ - Install Caliburn.Micro from nuget. You'd better choose the `Caliburn.Micro.Start` package as it has everything required to run a Caliburn application (boostrapper, container, main screen)
  - Change App.cs to correctly bootstrap with Caliburn, [here is how to do it](http://caliburnmicro.codeplex.com/wikipage?title=Nuget)
 
 ## Async Actions
@@ -30,7 +30,7 @@ When declaring action's method we can specify that we want to handle it asynchro
     }
 ```
 
-And that's all you need to execute an action asynchronously (if you have a Task to execute).
+And that's all you need to execute an action asynchronously (if you have to execute a Task).
 
 ## Async handlers for Screen events and overrides
 
@@ -87,9 +87,7 @@ An example:
 
 		public async Task Handle(Message message)
 		{
-			ShellViewModel.Log("HandlingMessageWithTask - starting a 3 seconds task");
 			await Task.Delay(3000);
-			ShellViewModel.Log("HandlingMessageWithTask - completed");
 		}
 	}
 ```
