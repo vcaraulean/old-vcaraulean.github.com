@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Caliburn.Micro with async/await"
+title: "Using Caliburn.Micro with async/await"
 date: 2013-07-15 11:21
 comments: true
 categories: 
@@ -21,7 +21,7 @@ The syntax for attaching actions in XAML will remain unchanged:
     <Button cal:Message.Attach="RunTask1Async">
 
 When declaring action's method we can specify that we want to handle it asynchronously:
-```csharp
+```
     public async void RunTask1Async()
     {
         Log("RunTask1Async - starting a 4 second task");
@@ -35,7 +35,7 @@ And that's all you need to execute an action asynchronously (if you have to exec
 ## Async handlers for Screen events and overrides
 
 CM offers few handy methods that allow to connect to Screen's lifetime events. Some method overrides with async signatures:
-```csharp
+```
 	protected override async void OnInitialize()
 	{
 		Log("OnInitialize - starting a 7 seconds task");
@@ -50,7 +50,7 @@ CM offers few handy methods that allow to connect to Screen's lifetime events. S
 To note here that even if the method in base class is not marked `async`, our overrides declare them with `async` modifiers and it runs fine.
 
 Similarly, you can handle Screen's events the same way how you're handling any .NET event in asynchronous way:
-```csharp
+```
 	{
 		// ...
 		ViewAttached += OnViewAttachedEventHandler;
@@ -66,7 +66,7 @@ Similarly, you can handle Screen's events the same way how you're handling any .
 	
 ## IHandleWithTask interface
 This is a new addition to CM, declared as:
-```csharp
+```
     public interface IHandleWithTask<TMessage> : IHandle
     {
         Task Handle(TMessage message);
@@ -75,7 +75,7 @@ This is a new addition to CM, declared as:
 It's extremely useful when you want to handle a particular message using a Task and off-load application's main thread.
 
 An example:
-```csharp
+```
 	public class Message { }
 
 	public class MessageHandler : IHandleWithTask<Message>
@@ -94,14 +94,14 @@ An example:
 
 ## Convert coroutines to Tasks
 This can be done easily by using an extension method:
-```csharp
+```
 	public async void WrapIResultInTaskAsync()
 	{
 		await new SimpleCoroutine().ExecuteAsync();
 	}
 ```
 
-## `async void` or `async Task`
+## "async void" or "async Task"
 A great question will be: should I use `async void` or `async Task` as a return value of action methods, screen's events and overrides? Since you can do both and the code will compile and run mostly fine, let's see what [Stephen Cleary](http://blog.stephencleary.com/) writes about it in [Best Practices in Asynchronous Programming](http://msdn.microsoft.com/en-us/magazine/jj991977.aspx) article:
 
 {% blockquote %}
