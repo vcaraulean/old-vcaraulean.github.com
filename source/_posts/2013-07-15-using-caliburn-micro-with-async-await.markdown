@@ -114,5 +114,6 @@ I will join this recommendation. Actions are event handlers at their core, norma
  - [Caliburn.Micro. 1.5.0 release notes](http://devlicio.us/blogs/rob_eisenberg/archive/2013/03/18/durandal-1-2-0-and-caliburn-micro-1-5-0-released.aspx)
  - ["Best Practices in Asynchronous Programming" by Stephen Cleary (MSDN Mag)](http://msdn.microsoft.com/en-us/magazine/jj991977.aspx)
  - ["Coroutines are dead. Long live Coroutines." by Marco Amendola](http://marcoamendola.wordpress.com/2012/10/16/coroutines-are-dead-long-live-coroutines/)
+ - [Async/Await FAQ](http://blogs.msdn.com/b/pfxteam/archive/2012/04/12/async-await-faq.aspx)
  
 This is pretty much it. If you've found an error or may complete this post with additional info, let me know in the comments.
