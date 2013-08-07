@@ -1,80 +1,59 @@
 
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!DOCTYPE HTML>
+<html>
 <head>
-  <meta charset="utf-8">
-  <title>valeriu caraulean</title>
-  <meta name="author" content="Valeriu Caraulean">
+	<meta charset="utf-8">
+	<title>valeriu caraulean</title>
+	<meta name="author" content="Valeriu Caraulean">
 
-  
-  <meta name="description" content="This post will give an overview of how you can use async/await features from C# 5.0 with Caliburn.Micro (CM). If you&#8217;ve found an error or want &hellip;">
-  
+	
+	<meta name="description" content="Jul 15th, 2013 Using Caliburn.Micro With Async/await This post will give an overview of how you can use async/await features from C# 5.0 with &hellip;">
+	
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  
-  <link rel="canonical" href="http://caraulean.com/">
-  <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="valeriu caraulean" type="application/atom+xml">
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+	<link href="/atom.xml" rel="alternate" title="valeriu caraulean" type="application/atom+xml">
+	
+	<link rel="canonical" href="http://caraulean.com/">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+	<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href='http://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-  
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-21974825-3']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
-
 </head>
 
-<body   >
-  <header role="banner"><hgroup>
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><!-- Don't want the pic in header
+
+<div class="profilepic">
+	<script src="/javascripts/md5.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.profilepic').append("<img src='http://www.gravatar.com/avatar/" + MD5("") + "?s=160' alt='Profile Picture' style='width: 160px;' />");
+		});
+	</script>
+</div>
+
+-->
+
+<hgroup>
   <h1>
-    <a href="/">
-      <div id="logoLeft">{</div>
-		<div id="wrapper">
-			<div id="logoText"> valeriu caraulean </div>
-			
-				<div id="subtitle">keep it simple, it will work...</div>
-			
-		</div>
-      <div id="logoRight">}</div>
-    </a>
+    <a href="/"> valeriu caraulean</a>
   </h1>
-  <div class="clear"></div>
 </hgroup>
 
-</header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:caraulean.com" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
+<p class="subtitle">keep it simple, it will work...</p>
+<nav id="main-nav"><ul class="main-navigation">
   <li><a href="/">Blog</a></li>
   <li><a href="/projects">Projects</a></li>
   <li><a href="/about">About</a></li>
@@ -82,23 +61,42 @@
 </ul>
 
 </nav>
-  <div id="main">
-    <div id="content">
-      <div class="blog-index">
-  
-  
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2013/07/15/using-caliburn-micro-with-async-await/">Using Caliburn.Micro With Async/await</a></h1>
-      
-    
-    
-      <p class="meta">
-        
+<nav id="sub-nav">
+	<div class="social">
+		
+		
+		
+		<a class="twitter" href="http://twitter.com/vcaraulean" title="Twitter">Twitter</a>
+		
+		
+		<a class="github" href="https://github.com/vcaraulean" title="GitHub">GitHub</a>
+		
+		
+		
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+	</div>
+</nav>
+</header>				
+			</div>
+		</div>	
+		<div class="mid-col">
+			
+				
+			
+			<div class="mid-col-container">
+				<div id="content" class="inner">
+<div itemscope itemtype="http://schema.org/Blog">
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
 
 
 
@@ -110,14 +108,15 @@
   
 
 
-<time datetime="2013-07-15T11:21:00+02:00" pubdate data-updated="true">Jul 15<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
+<time datetime="2013-07-15T11:21:00+03:00" data-updated="true" itemprop="datePublished">Jul 15<span>th</span>, 2013</time></div>
+		<div class="tags">
 
-
-  <div class="entry-content"><p>This post will give an overview of how you can use async/await features from C# 5.0 with <a href="http://caliburnmicro.codeplex.com/">Caliburn.Micro (CM)</a>. If you&#8217;ve found an error or want to complete the content please let me know in the comments. A sample application demonstrating async/await interactions in CM <a href="https://github.com/vcaraulean/CaliburnMicro.AsyncDemo">is available on GitHub</a>.</p>
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/07/15/using-caliburn-micro-with-async-await/" itemprop="url">Using Caliburn.Micro With Async/await</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>This post will give an overview of how you can use async/await features from C# 5.0 with <a href="http://caliburnmicro.codeplex.com/">Caliburn.Micro (CM)</a>. If you&#8217;ve found an error or want to complete the content please let me know in the comments. A sample application demonstrating async/await interactions in CM <a href="https://github.com/vcaraulean/CaliburnMicro.AsyncDemo">is available on GitHub</a>.</p>
 
 <h2>Setting it up</h2>
 
@@ -287,48 +286,46 @@
 <li><a href="http://devlicio.us/blogs/rob_eisenberg/archive/2013/03/18/durandal-1-2-0-and-caliburn-micro-1-5-0-released.aspx">Caliburn.Micro. 1.5.0 release notes</a></li>
 <li><a href="http://msdn.microsoft.com/en-us/magazine/jj991977.aspx">&#8220;Best Practices in Asynchronous Programming&#8221; by Stephen Cleary (MSDN Mag)</a></li>
 <li><a href="http://marcoamendola.wordpress.com/2012/10/16/coroutines-are-dead-long-live-coroutines/">&#8220;Coroutines are dead. Long live Coroutines.&#8221; by Marco Amendola</a></li>
+<li><a href="http://blogs.msdn.com/b/pfxteam/archive/2012/04/12/async-await-faq.aspx">Async/Await FAQ</a></li>
 </ul>
 
 
 <p>This is pretty much it. If you&#8217;ve found an error or may complete this post with additional info, let me know in the comments.</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-14T09:38:00+02:00" data-updated="true" itemprop="datePublished">Dec 14<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/books/'>books</a>, <a class='category' href='/blog/categories/nosql/'>nosql</a>
+
+
 </div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2012/12/14/book-review-nosql-distilled/">Book Review - NoSQL Distilled</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-12-14T09:38:00+01:00" pubdate data-updated="true">Dec 14<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.amazon.com/NoSQL-Distilled-Emerging-Persistence-ebook/dp/B0090J3SYW">NoSQL Distilled: A Brief Guide to the Emerging World of Polyglot Persistence</a> by Martin Fowler and Pramod J. Sadalage.</p>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2012/12/14/book-review-nosql-distilled/" itemprop="url">Book Review - NoSQL Distilled</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p><a href="http://www.amazon.com/NoSQL-Distilled-Emerging-Persistence-ebook/dp/B0090J3SYW">NoSQL Distilled: A Brief Guide to the Emerging World of Polyglot Persistence</a> by Martin Fowler and Pramod J. Sadalage.</p>
 
 <p>For some time already I&#8217;ve been keeping an eye on rising popularity of NoSQL. From reading articles and blog posts about various aspects and flavors, I adventured myself and dived more deeply into RavenDb, a NoSQL Document Database. Still, the picture I had in my mind was somewhat blurry and had few areas where I wasn&#8217;t sure that I understand some basic things.</p>
 
@@ -352,44 +349,41 @@
 <p>At the moment when I write this review Amazon places this book as #1 in Databases category and #2 in Databases/SQL, it has 15 reviews with an overall score of 4.5.</p>
 
 <p>Highly recommended.</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-15T09:40:00+02:00" data-updated="true" itemprop="datePublished">Nov 15<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ravendb/'>ravendb</a>
+
+
 </div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2012/11/15/do-less-and-achieve-more-with-ravendb/">Do Less and Achieve More With RavenDb</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-11-15T09:40:00+01:00" pubdate data-updated="true">Nov 15<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>If you&#8217;re after a document database for a .NET application it&#8217;s hard to miss the buzz around <a href="http://ravendb.net">RavenDb</a>. Although there are many other NoSQL databases that are getting much more attention and popularity, RavenDb distinguishes itself by being a native in .NET ecosystem while still offering great value as a generic, technology agnostic data store.</p>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2012/11/15/do-less-and-achieve-more-with-ravendb/" itemprop="url">Do Less and Achieve More With RavenDb</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>If you&#8217;re after a document database for a .NET application it&#8217;s hard to miss the buzz around <a href="http://ravendb.net">RavenDb</a>. Although there are many other NoSQL databases that are getting much more attention and popularity, RavenDb distinguishes itself by being a native in .NET ecosystem while still offering great value as a generic, technology agnostic data store.</p>
 
 <p>Dealing with Relational Databases, SQL and Object-Relational Mapping are probably the most omnipresent skills in any developer&#8217;s career. But take a .NET dev with a good background in modern database technologies and let him play few hours with RavenDb and I guarantee that he&#8217;ll come back impressed.</p>
 
@@ -464,44 +458,41 @@
 <p>Even if you have already some of these subsystems in place and are using &#8220;typical&#8221; architecture with a service layer, ORM and relational database, you should seriously consider RavenDb while you&#8217;re at early stages of your product.</p>
 
 <p>Because with RavenDb you can do less but achieve more by focusing on things that really matter: your domain model, business knowledge and that bizarre wrapper around it, called User Interface.</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-09T22:04:00+03:00" data-updated="true" itemprop="datePublished">Oct 9<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/rx/'>rx</a>, <a class='category' href='/blog/categories/wpf/'>wpf</a>
+
+
 </div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2012/10/09/diving-deeper-in-reactive-extensions/">Diving Deeper in Reactive Extensions, Concurrency</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-09T22:04:00+02:00" pubdate data-updated="true">Oct 9<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I&#8217;ve started using <a href="http://msdn.microsoft.com/en-us/data/gg577609.aspx">Reactive Extensions, Rx</a> library without digging too much in it&#8217;s internals. Had a case where I wanted to filter a stream of events and decided I&#8217;d try something new for me, Rx. But as it always happens with powerful and flexible tools, starting with few superficial articles and examples from the Web without diving deeper in the concepts is a pretty bad idea.</p>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2012/10/09/diving-deeper-in-reactive-extensions/" itemprop="url">Diving Deeper in Reactive Extensions, Concurrency</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>I&#8217;ve started using <a href="http://msdn.microsoft.com/en-us/data/gg577609.aspx">Reactive Extensions, Rx</a> library without digging too much in it&#8217;s internals. Had a case where I wanted to filter a stream of events and decided I&#8217;d try something new for me, Rx. But as it always happens with powerful and flexible tools, starting with few superficial articles and examples from the Web without diving deeper in the concepts is a pretty bad idea.</p>
 
 <p>This time I&#8217;ve been bitten by <em>concurrency</em> issues.</p>
 
@@ -542,44 +533,37 @@
 <hr />
 
 <p>And by the way, on author&#8217;s blog I&#8217;ve found another interesting series of articles: <a href="http://leecampbell.blogspot.co.uk/2009/01/responsive-uis-in-wpf-dispatchers-to.html">Responsive UIs in WPF - Dispatchers to Concurrency to testability</a>. That&#8217;s something I&#8217;d be reading after sorting out concurrency issues from my code.</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-30T15:03:00+03:00" data-updated="true" itemprop="datePublished">Sep 30<span>th</span>, 2012</time></div>
+		<div class="tags">
+
 </div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2012/09/30/hello/">Hello, New Blog!</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-30T15:03:00+02:00" pubdate data-updated="true">Sep 30<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Here I am, running <a href="http://octopress.org">Octopress</a>&#8230;</p>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2012/09/30/hello/" itemprop="url">Hello, New Blog!</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>Here I am, running <a href="http://octopress.org">Octopress</a>&#8230;</p>
 
 <h3>Quick guide for myself on operating Octopress:</h3>
 
@@ -597,48 +581,41 @@ rake deploy
 
 <p><strong>Don&#8217;t forget to commit!</strong></p>
 
+
+		
+		<a href="/blog/2012/09/30/hello/" class="more-link">Read on &rarr;</a>
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-30T23:35:00+03:00" data-updated="true" itemprop="datePublished">Aug 30<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/wpf/'>wpf</a>
+
+
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/09/30/hello/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2012/08/30/visual-studio-2012-dark-theme-tip/">Visual Studio 2012 Dark Theme Tip - Light Up Your UserControl in XAML Designer</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-30T23:35:00+02:00" pubdate data-updated="true">Aug 30<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I really like the new Visual Studio 2012. And the dark theme looks cool and is so much easier for the eyes.</p>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2012/08/30/visual-studio-2012-dark-theme-tip/" itemprop="url">Visual Studio 2012 Dark Theme Tip - Light Up Your UserControl in XAML Designer</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>I really like the new Visual Studio 2012. And the dark theme looks cool and is so much easier for the eyes.</p>
 
 <p>But there is a real problem when you’re working with User Controls in designer. And we have lots of them. What is the problem then? Look at the picture:</p>
 
@@ -684,44 +661,41 @@ rake deploy
 
 
 <p>And a user has even posted a workaround that is mostly the same as above&#8230;</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-29T00:07:18+03:00" data-updated="true" itemprop="datePublished">Aug 29<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/general/'>general</a>
+
+
 </div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2012/08/28/evening-time-time-for-fun/">Evening Time, Time for Fun</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-28T23:07:18+02:00" pubdate data-updated="true">Aug 28<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Or for whatever keeps you entertained&#8230;</p>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2012/08/29/evening-time-time-for-fun/" itemprop="url">Evening Time, Time for Fun</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>Or for whatever keeps you entertained&#8230;</p>
 
 <p>This evening it started when I looked how to make Windows Live Writer store drafts in my SkyDrive. As usual, started with googling it. Found a <a href="http://lehsys.blogspot.ch/2011/04/how-to-change-drafts-and-recent-posts.html">trick with a registry key</a> that should point WLW to any folder I want. Nice trick, except it was not working on my PC.</p>
 
@@ -746,88 +720,78 @@ rake deploy
 <p><strong>It. Worked.</strong></p>
 
 <p>Moral of the story – stupid, evident errors happen all the time. And, sadly, it takes time to recover. You’re lucky if you’re not under pressure, running to deadline or doing a demo. And you’re really lucky if you can learn new things on the way and keep yourself entertained :)</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-22T00:59:50+03:00" data-updated="true" itemprop="datePublished">Aug 22<span>nd</span>, 2012</time></div>
+		<div class="tags">
+
 </div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2012/08/21/on-motivation-a-quote/">On Motivation, a Quote&#8230;</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-21T23:59:50+02:00" pubdate data-updated="true">Aug 21<span>st</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>From “<a href="http://www.amazon.com/Will-Measure-Your-Life-ebook/dp/B006ID0CH4/">How will you measure your life?</a>”:</p>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2012/08/22/on-motivation-a-quote/" itemprop="url">On Motivation, a Quote&#8230;</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>From “<a href="http://www.amazon.com/Will-Measure-Your-Life-ebook/dp/B006ID0CH4/">How will you measure your life?</a>”:</p>
 
 <blockquote><p>The theory of motivation suggests you need to ask yourself a different set of questions than most of us are used to asking. Is this work meaningful to me? Is this job going to give me a chance to develop? Am I going to learn new things? Will I have an opportunity for recognition and achievement? Am I going to be given responsibility? These are the things that will truly motivate you. Once you get this right, the more measurable aspects of your job will fade in importance.</p></blockquote>
 
 <p>After starting reading this book I find myself divided. Sometimes I’m eager to go read it in one go up to the late night. Next day I’m closing it after a chapter or just a paragraph that I want to “process”. A very strange feeling.</p>
 
 <p>But a really great reading&#8230;</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-19T20:06:48+03:00" data-updated="true" itemprop="datePublished">Jul 19<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/silverlight/'>silverlight</a>, <a class='category' href='/blog/categories/wpf/'>wpf</a>
+
+
 </div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2012/07/19/migrating-from-silverlight-to-wpf-a-case-study/">Migrating From Silverlight to WPF, a Case Study</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-07-19T19:06:48+02:00" pubdate data-updated="true">Jul 19<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h4>A case study on porting an application that uses <a href="http://caliburnmicro.codeplex.com/">Caliburn.Micro</a> and <a href="http://www.telerik.com/">Telerik’s visual components</a> from Silverlight to WPF</h4>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2012/07/19/migrating-from-silverlight-to-wpf-a-case-study/" itemprop="url">Migrating From Silverlight to WPF, a Case Study</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<h4>A case study on porting an application that uses <a href="http://caliburnmicro.codeplex.com/">Caliburn.Micro</a> and <a href="http://www.telerik.com/">Telerik’s visual components</a> from Silverlight to WPF</h4>
 
 <p>I wrote that <a href="/blog/2012/07/18/fearing-about-silverlights-future-dont/">nobody should fear an eventual migration from Silverlight to WPF</a>. But I wanted as well to work on a “proof of concept” and try to find what difficulties may arise in a such migration and how easy is to actually do it. And, preferable, do it in a small project before taking on big targets.</p>
 
@@ -874,44 +838,41 @@ rake deploy
 <p>That’s all. I hope my experience will help someone else to go over the fear and burden of porting a Silverlight application to WPF.</p>
 
 <p>PS: you can have a look at final result, get sources and compare both versions on <a href="http://github.com/vcaraulean/Caliburn.Micro.Telerik">GitHub</a>.</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-18T14:26:29+03:00" data-updated="true" itemprop="datePublished">Jul 18<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/development/'>development</a>, <a class='category' href='/blog/categories/silverlight/'>silverlight</a>, <a class='category' href='/blog/categories/wpf/'>wpf</a>
+
+
 </div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2012/07/18/fearing-about-silverlights-future-dont/">Fearing About Silverlight&#8217;s Future? Don&#8217;t&#8230;</a></h1>
-      
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-07-18T13:26:29+02:00" pubdate data-updated="true">Jul 18<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Just accept the facts, prepare &amp; migrate to WPF when ready.</p>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2012/07/18/fearing-about-silverlights-future-dont/" itemprop="url">Fearing About Silverlight&#8217;s Future? Don&#8217;t&#8230;</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>Just accept the facts, prepare &amp; migrate to WPF when ready.</p>
 
 <p>When you have something worrying you, the best way to tackle it is to cut it straight and act on it. That&#8217;s the way to get it out of your head. If not, you&#8217;re left on the mercy of external factors that may change the circumstances and the problem will go away.</p>
 
@@ -960,117 +921,36 @@ rake deploy
 
 
 <p>I&#8217;m not advocating blindly for immediate migration of every Silverlight application to WPF. If your application have reached his first release, doesn&#8217;t have a long lifespan and current users are happy - you&#8217;ll probably be fine sticking with Silverlight. But if you&#8217;re still in active development or the application is a part of company&#8217;s strategic products &amp; directions, you should very seriously consider the move.</p>
+
+		
+		
+	</div>
+
+</article>
+
 </div>
-  
-  
-
-
-    </article>
-  
-  <div class="pagination">
+<nav id="pagenavi">
     
-      <a class="prev" href="/blog/page/2/">&larr; Older</a>
     
-    <a href="/blog/archives">Blog Archives</a>
+        <a href="/blog/page/2/" class="next">Next</a>
     
-  </div>
-</div>
-<aside class="sidebar">
-  
-    <section>
-	<h1>About</h1>
-	<p>I&#8217;m a passionate software developer living in Geneva, Switzerland</p>
-	<p><a href="/about">Read more &#8230;</a></p>
-</section>
-<section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2013/07/15/using-caliburn-micro-with-async-await/">Using Caliburn.Micro with async/await</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/12/14/book-review-nosql-distilled/">Book review - NoSQL Distilled</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/11/15/do-less-and-achieve-more-with-ravendb/">Do less and achieve more with RavenDb</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/09/diving-deeper-in-reactive-extensions/">Diving deeper in Reactive Extensions, concurrency</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/09/30/hello/">Hello, new blog!</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/08/30/visual-studio-2012-dark-theme-tip/">Visual Studio 2012 dark theme tip - light up your UserControl in XAML designer</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/08/28/evening-time-time-for-fun/">Evening time, time for fun</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/08/21/on-motivation-a-quote/">On motivation, a quote&#8230;</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/07/19/migrating-from-silverlight-to-wpf-a-case-study/">Migrating from Silverlight to WPF, a case study</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/07/18/fearing-about-silverlights-future-dont/">Fearing about Silverlight&#8217;s future? Don&#8217;t&#8230;</a>
-      </li>
-    
-  </ul>
-</section>
-
-
-<section>
-  <h1>Latest Tweets</h1>
-  <ul id="tweets">
-    <li class="loading">Status updating&#8230;</li>
-  </ul>
-  <script type="text/javascript">
-    $.domReady(function(){
-      getTwitterFeed("vcaraulean", 5, false);
-    });
-  </script>
-  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
-  
-    <a href="http://twitter.com/vcaraulean" class="twitter-follow-button" data-show-count="false">Follow @vcaraulean</a>
-  
-</section>
-
-
-
-<section class="googleplus googleplus-hidden">
-  <h1>
-    <a href="https://plus.google.com/108353347632139121774?rel=author">
-      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
-      Google+
-    </a>
-  </h1>
-</section>
-
-
-
-  
-</aside>
-
-    </div>
-  </div>
-  <footer role="contentinfo"><p>
+    <div class="center"><a href="/blog/archives">Blog Archives</a></div>
+</nav></div>
+			</div>
+			<footer id="footer" class="inner"><p>
   Copyright &copy; 2013 - Valeriu Caraulean -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
-</footer>
-  
+Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a></footer>
+			<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
 
 <script type="text/javascript">
       var disqus_shortname = 'caraulean';
@@ -1087,23 +967,22 @@ rake deploy
 
 
 
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-21974825-3']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
 
 
 
 
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
-
-
-
-
-
+		</div>
+	</div>
 </body>
 </html>

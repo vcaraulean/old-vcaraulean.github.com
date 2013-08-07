@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ravendb | valeriu caraulean]]></title>
   <link href="http://caraulean.com/blog/categories/ravendb/atom.xml" rel="self"/>
   <link href="http://caraulean.com/"/>
-  <updated>2013-07-16T00:28:46+02:00</updated>
+  <updated>2013-08-07T15:32:00+03:00</updated>
   <id>http://caraulean.com/</id>
   <author>
     <name><![CDATA[Valeriu Caraulean]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Do less and achieve more with RavenDb]]></title>
     <link href="http://caraulean.com/blog/2012/11/15/do-less-and-achieve-more-with-ravendb/"/>
-    <updated>2012-11-15T09:40:00+01:00</updated>
+    <updated>2012-11-15T09:40:00+02:00</updated>
     <id>http://caraulean.com/blog/2012/11/15/do-less-and-achieve-more-with-ravendb</id>
     <content type="html"><![CDATA[<p>If you're after a document database for a .NET application it's hard to miss the buzz around <a href="http://ravendb.net">RavenDb</a>. Although there are many other NoSQL databases that are getting much more attention and popularity, RavenDb distinguishes itself by being a native in .NET ecosystem while still offering great value as a generic, technology agnostic data store.</p>
 

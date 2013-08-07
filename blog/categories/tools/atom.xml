@@ -4,7 +4,7 @@
   <title><![CDATA[Category: tools | valeriu caraulean]]></title>
   <link href="http://caraulean.com/blog/categories/tools/atom.xml" rel="self"/>
   <link href="http://caraulean.com/"/>
-  <updated>2013-07-16T00:28:46+02:00</updated>
+  <updated>2013-08-07T15:32:00+03:00</updated>
   <id>http://caraulean.com/</id>
   <author>
     <name><![CDATA[Valeriu Caraulean]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[New & shiny Windows Azure: publishing a website using Git]]></title>
     <link href="http://caraulean.com/blog/2012/06/10/new-shiny-windows-azure-publishing-a-website-using-git/"/>
-    <updated>2012-06-10T18:02:33+02:00</updated>
+    <updated>2012-06-10T19:02:33+03:00</updated>
     <id>http://caraulean.com/blog/2012/06/10/new-shiny-windows-azure-publishing-a-website-using-git</id>
     <content type="html"><![CDATA[<p>After <a href="/blog/2012/06/08/new-shiny-windows-azure-taking-the-tour/">taking the tour</a> of Windows Azure, the first thing I wanted to try is the <a href="https://www.windowsazure.com/en-us/home/scenarios/web-sites/">Web Site hosting in Azure</a>. As Microsoft is offering a free trial for 90 days and a free extension to 12 months after the trial, you can host up to 10 small web sites for free for more than 1 year! With various options for publishing it makes Azure a no-brainer to host small personal sites and experimental stuff.</p>
 
@@ -73,7 +73,7 @@
   <entry>
     <title type="html"><![CDATA[New & shiny Windows Azure: taking the Tour]]></title>
     <link href="http://caraulean.com/blog/2012/06/08/new-shiny-windows-azure-taking-the-tour/"/>
-    <updated>2012-06-08T20:00:00+02:00</updated>
+    <updated>2012-06-08T21:00:00+03:00</updated>
     <id>http://caraulean.com/blog/2012/06/08/new-shiny-windows-azure-taking-the-tour</id>
     <content type="html"><![CDATA[<p>How there is a lot of buzz in last few days about <a href="http://windowsazure.com">revamped Windows Azure</a>, I cannot resist anymore and I’m giving it a try.</p>
 
@@ -118,7 +118,7 @@
   <entry>
     <title type="html"><![CDATA[Greatest feature of TortoiseHg and GitHub for Windows is still missing it]]></title>
     <link href="http://caraulean.com/blog/2012/05/30/greatest-feature-of-tortoisehg-and-github-for-windows-is-missing-it-so-far/"/>
-    <updated>2012-05-30T18:20:30+02:00</updated>
+    <updated>2012-05-30T19:20:30+03:00</updated>
     <id>http://caraulean.com/blog/2012/05/30/greatest-feature-of-tortoisehg-and-github-for-windows-is-missing-it-so-far</id>
     <content type="html"><![CDATA[<p><a href="http://windows.github.com/">GitHub for Windows</a> was released recently and it’s a huge advancement in usability of <a href="http://git-scm.com/">Git SCM</a> in Windows. Until not so far existent tooling has been giving you the command line integration and hopefully some (crappy) basic UI . <a href="http://code.google.com/p/gitextensions/">Git Extensions</a> has made lately great progress but I still preferred the command line for routine tasks.</p>
 
@@ -144,7 +144,7 @@
   <entry>
     <title type="html"><![CDATA[TortoiseHG and JIRA integration - the lightweight option]]></title>
     <link href="http://caraulean.com/blog/2011/09/09/tortoisehg-and-jira-integrationthe-lightweight-option/"/>
-    <updated>2011-09-09T12:29:08+02:00</updated>
+    <updated>2011-09-09T13:29:08+03:00</updated>
     <id>http://caraulean.com/blog/2011/09/09/tortoisehg-and-jira-integrationthe-lightweight-option</id>
     <content type="html"><![CDATA[<p>You can integrate JIRA and TortoiseHG Workbench at two levels:</p>
 
@@ -186,7 +186,7 @@
   <entry>
     <title type="html"><![CDATA[Integration of Caliburn.Micro and Telerik's Silverlight controls]]></title>
     <link href="http://caraulean.com/blog/2011/06/05/integration-of-caliburn-micro-and-teleriks-silverlight-controls/"/>
-    <updated>2011-06-05T22:51:45+02:00</updated>
+    <updated>2011-06-05T23:51:45+03:00</updated>
     <id>http://caraulean.com/blog/2011/06/05/integration-of-caliburn-micro-and-teleriks-silverlight-controls</id>
     <content type="html"><![CDATA[<p>I’ve wrote already about how to <a href="/blog/2010/12/11/teleriks-radtabcontrol-and-caliburn-micro/">use Telerik’s RadTabControl with Caliburn.Micro</a> and profit from Caliburn’s conventions. That post is still getting considerable attention in my blog and also there are people are asking in Caliburn’s discussion list about such kind of integration. So, I’ve decided to spend some of my time and provide a more coherent experience in this domain. Rob Eisenberg <a href="http://caliburnmicro.codeplex.com/discussions/256418">suggested to create a dedicated project</a> for it and, why not, to create a NuGet package. That sounded very interesting for me as it would allow me to scratch another itch – the <a href="http://nuget.org">NuGet</a> package manager. We’ve been using it in our projects with great success but I have never explored the part with creation and publication of packages.</p>
 

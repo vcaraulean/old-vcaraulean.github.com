@@ -4,7 +4,7 @@
   <title><![CDATA[Category: community | valeriu caraulean]]></title>
   <link href="http://caraulean.com/blog/categories/community/atom.xml" rel="self"/>
   <link href="http://caraulean.com/"/>
-  <updated>2013-07-16T00:28:46+02:00</updated>
+  <updated>2013-08-07T15:32:00+03:00</updated>
   <id>http://caraulean.com/</id>
   <author>
     <name><![CDATA[Valeriu Caraulean]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Integration of Caliburn.Micro and Telerik's Silverlight controls]]></title>
     <link href="http://caraulean.com/blog/2011/06/05/integration-of-caliburn-micro-and-teleriks-silverlight-controls/"/>
-    <updated>2011-06-05T22:51:45+02:00</updated>
+    <updated>2011-06-05T23:51:45+03:00</updated>
     <id>http://caraulean.com/blog/2011/06/05/integration-of-caliburn-micro-and-teleriks-silverlight-controls</id>
     <content type="html"><![CDATA[<p>I’ve wrote already about how to <a href="/blog/2010/12/11/teleriks-radtabcontrol-and-caliburn-micro/">use Telerik’s RadTabControl with Caliburn.Micro</a> and profit from Caliburn’s conventions. That post is still getting considerable attention in my blog and also there are people are asking in Caliburn’s discussion list about such kind of integration. So, I’ve decided to spend some of my time and provide a more coherent experience in this domain. Rob Eisenberg <a href="http://caliburnmicro.codeplex.com/discussions/256418">suggested to create a dedicated project</a> for it and, why not, to create a NuGet package. That sounded very interesting for me as it would allow me to scratch another itch – the <a href="http://nuget.org">NuGet</a> package manager. We’ve been using it in our projects with great success but I have never explored the part with creation and publication of packages.</p>
 
@@ -62,7 +62,7 @@
   <entry>
     <title type="html"><![CDATA[The best User Group meeting I've attended so far - Geneva JUG on Scala & Akka]]></title>
     <link href="http://caraulean.com/blog/2011/01/18/the-best-user-group-meeting-ive-attended-so-far-geneva-jug-on-scala-akka/"/>
-    <updated>2011-01-18T01:47:02+01:00</updated>
+    <updated>2011-01-18T02:47:02+02:00</updated>
     <id>http://caraulean.com/blog/2011/01/18/the-best-user-group-meeting-ive-attended-so-far-geneva-jug-on-scala-akka</id>
     <content type="html"><![CDATA[<p>Today’s meeting of <a href="http://genevajug.ch/">Geneva JUG</a> was the most entertaining User Group meeting I’ve attended. Excellent speakers, great topics, mind-blowing ideas...</p>
 
@@ -77,7 +77,7 @@
   <entry>
     <title type="html"><![CDATA[Had a good evening yesterday at Geneva JUG...]]></title>
     <link href="http://caraulean.com/blog/2010/12/01/had-a-good-evening-yesterday-at-geneva-jug/"/>
-    <updated>2010-12-01T13:08:19+01:00</updated>
+    <updated>2010-12-01T14:08:19+02:00</updated>
     <id>http://caraulean.com/blog/2010/12/01/had-a-good-evening-yesterday-at-geneva-jug</id>
     <content type="html"><![CDATA[<p>The session was truly entertaining. David Gageot (<a href="http://twitter.com/#!/dgageot">@dgageot</a>) talked about Git and Mockito.</p>
 
@@ -91,9 +91,9 @@
   
   <entry>
     <title type="html"><![CDATA[mGitHub Sample Application. Using Caliburn.Micro to build Windows Phone 7 applications]]></title>
-    <link href="http://caraulean.com/blog/2010/11/28/mgithub-sample-application-using-caliburn-micro-to-build-windows-phone-7-applications/"/>
-    <updated>2010-11-28T23:37:11+01:00</updated>
-    <id>http://caraulean.com/blog/2010/11/28/mgithub-sample-application-using-caliburn-micro-to-build-windows-phone-7-applications</id>
+    <link href="http://caraulean.com/blog/2010/11/29/mgithub-sample-application-using-caliburn-micro-to-build-windows-phone-7-applications/"/>
+    <updated>2010-11-29T00:37:11+02:00</updated>
+    <id>http://caraulean.com/blog/2010/11/29/mgithub-sample-application-using-caliburn-micro-to-build-windows-phone-7-applications</id>
     <content type="html"><![CDATA[<h4><a href="https://github.com/vcaraulean/mGitHub.SampleApp">mGitHub.SampleApp on GitHub</a></h4>
 
 <h4><a href="http://gitstation.com">mGitHub - the real app - is available in Marketplace</a></h4>
@@ -249,7 +249,7 @@ public class UserPivotViewModel : PivotViewModel {
   <entry>
     <title type="html"><![CDATA[Flirting with Java community]]></title>
     <link href="http://caraulean.com/blog/2010/09/29/flirting-with-java-community/"/>
-    <updated>2010-09-29T14:16:00+02:00</updated>
+    <updated>2010-09-29T15:16:00+03:00</updated>
     <id>http://caraulean.com/blog/2010/09/29/flirting-with-java-community</id>
     <content type="html"><![CDATA[<p>Despite my <a href="/blog/2009/11/26/alt-net-swiss-community-its-running/">enthusiasm about finding and participating</a> in a regional .NET user group, the <a href="http://www.altnetfr.org/lausanne/">Alt.NET Suisse</a> haven’t got enough traction to keep on rolling and now it’s actually not functioning.</p>
 

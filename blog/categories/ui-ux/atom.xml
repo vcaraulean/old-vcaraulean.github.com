@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ui-ux | valeriu caraulean]]></title>
   <link href="http://caraulean.com/blog/categories/ui-ux/atom.xml" rel="self"/>
   <link href="http://caraulean.com/"/>
-  <updated>2013-07-16T00:28:46+02:00</updated>
+  <updated>2013-08-07T15:32:00+03:00</updated>
   <id>http://caraulean.com/</id>
   <author>
     <name><![CDATA[Valeriu Caraulean]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[New & shiny Windows Azure: taking the Tour]]></title>
     <link href="http://caraulean.com/blog/2012/06/08/new-shiny-windows-azure-taking-the-tour/"/>
-    <updated>2012-06-08T20:00:00+02:00</updated>
+    <updated>2012-06-08T21:00:00+03:00</updated>
     <id>http://caraulean.com/blog/2012/06/08/new-shiny-windows-azure-taking-the-tour</id>
     <content type="html"><![CDATA[<p>How there is a lot of buzz in last few days about <a href="http://windowsazure.com">revamped Windows Azure</a>, I cannot resist anymore and I’m giving it a try.</p>
 
@@ -61,7 +61,7 @@
   <entry>
     <title type="html"><![CDATA[Me developer - "I'm done"; me designer - "wait a minute..."]]></title>
     <link href="http://caraulean.com/blog/2011/05/06/me-developerim-done-me-designerwait-a-minute/"/>
-    <updated>2011-05-06T16:29:07+02:00</updated>
+    <updated>2011-05-06T17:29:07+03:00</updated>
     <id>http://caraulean.com/blog/2011/05/06/me-developerim-done-me-designerwait-a-minute</id>
     <content type="html"><![CDATA[<p>As most of developers working in a small teams or projects I have to work on UI. Should it be a new screen, complete feature with some UI interactions or just a fix of some font/alignment/style issues.</p>
 
@@ -80,7 +80,7 @@
   <entry>
     <title type="html"><![CDATA[How we get inspiration...]]></title>
     <link href="http://caraulean.com/blog/2011/02/21/how-we-get-inspiration/"/>
-    <updated>2011-02-21T16:54:04+01:00</updated>
+    <updated>2011-02-21T17:54:04+02:00</updated>
     <id>http://caraulean.com/blog/2011/02/21/how-we-get-inspiration</id>
     <content type="html"><![CDATA[<p>That’s interesting to observe how we’re getting influenced by things around us. How world we see and experience is determining <strong>what</strong> and <strong>how</strong> we do. Most of the time we’re not sensing the source of our actions and decisions. It’s very subtle. And often the “it feels right” moments are a sign that experience we’ve got, processed and incorporated is applied without realizing what exactly is done right...</p>
 
@@ -96,9 +96,9 @@
   
   <entry>
     <title type="html"><![CDATA[Traditional toolbars and Ribbon bar]]></title>
-    <link href="http://caraulean.com/blog/2010/09/25/traditional-toolbars-and-ribbon-bar/"/>
-    <updated>2010-09-25T23:42:14+02:00</updated>
-    <id>http://caraulean.com/blog/2010/09/25/traditional-toolbars-and-ribbon-bar</id>
+    <link href="http://caraulean.com/blog/2010/09/26/traditional-toolbars-and-ribbon-bar/"/>
+    <updated>2010-09-26T00:42:14+03:00</updated>
+    <id>http://caraulean.com/blog/2010/09/26/traditional-toolbars-and-ribbon-bar</id>
     <content type="html"><![CDATA[<p>Dmitry Fadeyev is writing about <a href="http://www.usabilitypost.com/2010/09/24/false-simplicity/">icons in UI and the false sense of simplicity</a> icons are giving us.</p>
 
 <p>While he is talking about it in the context of concrete application, it remembered me transition from “traditional” toolbars to Ribbon bar, particularly in Office apps. Still, lots of people didn’t get the sense of the Ribbon, but I consider it as an improvement. The biggest advantage is <strong>feature discoverability</strong>.</p>
@@ -131,7 +131,7 @@
   <entry>
     <title type="html"><![CDATA[Intro to Usability]]></title>
     <link href="http://caraulean.com/blog/2010/01/25/intro-to-usability/"/>
-    <updated>2010-01-25T22:52:21+01:00</updated>
+    <updated>2010-01-25T23:52:21+02:00</updated>
     <id>http://caraulean.com/blog/2010/01/25/intro-to-usability</id>
     <content type="html"><![CDATA[<p>I just finished watching a <a href="http://blip.tv/file/1557737">video about basics of Usability</a>. Before, I’ve read few articles and blog posts on the topic , but this video gives a nice introduction in Usability basics and Usability Testing so that I’ll save it in the blog. The speaker is Steve Krug, author of “Don’t make me think”, book sitting in my “to be read” list and just moved higher in the queue.</p>
 
