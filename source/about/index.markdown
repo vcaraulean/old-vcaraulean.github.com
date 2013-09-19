@@ -22,8 +22,8 @@ My online presence:
 
 - [@vcaraulean in Twitter](http://twitter.com/vcaraulean)
 - [GitHub profile](http://github.com/vcaraulean)
-- [LinkedIn profile](http://ch.linkedin.com/in/vcaraulean)
+- [LinkedIn profile](http://ch.linkedin.com/in/vcaraulean) with the summary of my professional experience and expertise.
 
-If you want to contact me, [write me](mailto:valeriu@caraulean.com) an email.
+If you want to contact me, [write me](http://www.google.com/recaptcha/mailhide/d?k=01cF2fQCfG5KEJrgjvDCJ09A==&c=K2TmolNNZMRm4QqPdLzo-UxtUJwZrmaXZNAAvkVvsSA=) an email.
 
-**Disclaimer:** Thought and opinions expressed on this site are my own and don't represent in any way my employer's positions, strategies, or opinions.
+**Disclaimer:** The content on this site are my own personal opinions and thoughts and does not reflect those of my employer in any way.
