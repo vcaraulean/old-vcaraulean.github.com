@@ -4,7 +4,7 @@
   <title><![CDATA[Category: wpf | valeriu caraulean]]></title>
   <link href="http://caraulean.com/blog/categories/wpf/atom.xml" rel="self"/>
   <link href="http://caraulean.com/"/>
-  <updated>2013-08-07T15:32:00+03:00</updated>
+  <updated>2013-09-19T22:51:49+02:00</updated>
   <id>http://caraulean.com/</id>
   <author>
     <name><![CDATA[Valeriu Caraulean]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Diving deeper in Reactive Extensions, concurrency]]></title>
     <link href="http://caraulean.com/blog/2012/10/09/diving-deeper-in-reactive-extensions/"/>
-    <updated>2012-10-09T22:04:00+03:00</updated>
+    <updated>2012-10-09T22:04:00+02:00</updated>
     <id>http://caraulean.com/blog/2012/10/09/diving-deeper-in-reactive-extensions</id>
     <content type="html"><![CDATA[<p>I've started using <a href="http://msdn.microsoft.com/en-us/data/gg577609.aspx">Reactive Extensions, Rx</a> library without digging too much in it's internals. Had a case where I wanted to filter a stream of events and decided I'd try something new for me, Rx. But as it always happens with powerful and flexible tools, starting with few superficial articles and examples from the Web without diving deeper in the concepts is a pretty bad idea.</p>
 
@@ -65,7 +65,7 @@
   <entry>
     <title type="html"><![CDATA[Visual Studio 2012 dark theme tip - light up your UserControl in XAML designer]]></title>
     <link href="http://caraulean.com/blog/2012/08/30/visual-studio-2012-dark-theme-tip/"/>
-    <updated>2012-08-30T23:35:00+03:00</updated>
+    <updated>2012-08-30T23:35:00+02:00</updated>
     <id>http://caraulean.com/blog/2012/08/30/visual-studio-2012-dark-theme-tip</id>
     <content type="html"><![CDATA[<p>I really like the new Visual Studio 2012. And the dark theme looks cool and is so much easier for the eyes.</p>
 
@@ -104,7 +104,7 @@
   <entry>
     <title type="html"><![CDATA[Migrating from Silverlight to WPF, a case study]]></title>
     <link href="http://caraulean.com/blog/2012/07/19/migrating-from-silverlight-to-wpf-a-case-study/"/>
-    <updated>2012-07-19T20:06:48+03:00</updated>
+    <updated>2012-07-19T19:06:48+02:00</updated>
     <id>http://caraulean.com/blog/2012/07/19/migrating-from-silverlight-to-wpf-a-case-study</id>
     <content type="html"><![CDATA[<h4>A case study on porting an application that uses <a href="http://caliburnmicro.codeplex.com/">Caliburn.Micro</a> and <a href="http://www.telerik.com/">Telerik’s visual components</a> from Silverlight to WPF</h4>
 
@@ -159,7 +159,7 @@
   <entry>
     <title type="html"><![CDATA[Fearing about Silverlight's future? Don't...]]></title>
     <link href="http://caraulean.com/blog/2012/07/18/fearing-about-silverlights-future-dont/"/>
-    <updated>2012-07-18T14:26:29+03:00</updated>
+    <updated>2012-07-18T13:26:29+02:00</updated>
     <id>http://caraulean.com/blog/2012/07/18/fearing-about-silverlights-future-dont</id>
     <content type="html"><![CDATA[<p>Just accept the facts, prepare &amp; migrate to WPF when ready.</p>
 
@@ -216,7 +216,7 @@
   <entry>
     <title type="html"><![CDATA[Fluent Ribbon and Prism]]></title>
     <link href="http://caraulean.com/blog/2010/06/14/fluent-ribbon-and-prism/"/>
-    <updated>2010-06-14T17:59:53+03:00</updated>
+    <updated>2010-06-14T16:59:53+02:00</updated>
     <id>http://caraulean.com/blog/2010/06/14/fluent-ribbon-and-prism</id>
     <content type="html"><![CDATA[<p>I would like to show an example of application that is about how to use <a href="http://fluent.codeplex.com">Fluent Ribbon</a> control together with <a href="http://compositewpf.codeplex.com">Prism (aka Composite WPF)</a>. Our team is using this combination for some time already; although, with various degrees of success: the Fluent Ribbon is not enough mature (but pretty stable) and my personal relation with Prism is kind of love/hate. The <a href="http://www.castleproject.org/container/">Castle Winsor</a> is starring as IoC Container of choice.</p>
 

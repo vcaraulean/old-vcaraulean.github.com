@@ -4,7 +4,7 @@
   <title><![CDATA[Category: development | valeriu caraulean]]></title>
   <link href="http://caraulean.com/blog/categories/development/atom.xml" rel="self"/>
   <link href="http://caraulean.com/"/>
-  <updated>2013-08-07T15:32:00+03:00</updated>
+  <updated>2013-09-19T22:51:49+02:00</updated>
   <id>http://caraulean.com/</id>
   <author>
     <name><![CDATA[Valeriu Caraulean]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Fearing about Silverlight's future? Don't...]]></title>
     <link href="http://caraulean.com/blog/2012/07/18/fearing-about-silverlights-future-dont/"/>
-    <updated>2012-07-18T14:26:29+03:00</updated>
+    <updated>2012-07-18T13:26:29+02:00</updated>
     <id>http://caraulean.com/blog/2012/07/18/fearing-about-silverlights-future-dont</id>
     <content type="html"><![CDATA[<p>Just accept the facts, prepare &amp; migrate to WPF when ready.</p>
 
@@ -73,7 +73,7 @@
   <entry>
     <title type="html"><![CDATA[Using WCF without configuration files]]></title>
     <link href="http://caraulean.com/blog/2011/11/16/using-wcf-without-configuration-files/"/>
-    <updated>2011-11-16T02:14:59+02:00</updated>
+    <updated>2011-11-16T01:14:59+01:00</updated>
     <id>http://caraulean.com/blog/2011/11/16/using-wcf-without-configuration-files</id>
     <content type="html"><![CDATA[<p>I have recently published new project on GitHub, <a href="http://github.com/vcaraulean/WcfWithoutConfigFile">WcfWithoutConfigFile</a>. This post is intended as a ‘readme’ file for this repository.</p>
 
@@ -101,7 +101,7 @@
   <entry>
     <title type="html"><![CDATA[The Life After Silverlight 5]]></title>
     <link href="http://caraulean.com/blog/2011/11/15/the-life-after-silverlight-5/"/>
-    <updated>2011-11-15T14:28:07+02:00</updated>
+    <updated>2011-11-15T13:28:07+01:00</updated>
     <id>http://caraulean.com/blog/2011/11/15/the-life-after-silverlight-5</id>
     <content type="html"><![CDATA[<p>There is a lot of panic in Microsoft eco-system caused by some <a href="http://www.zdnet.com/blog/microsoft/will-there-be-a-silverlight-6-and-does-it-matter/11180">rumors that Silverlight 5 will be the last of the family</a>. Developers are crying about skills being buried and managers fearing about the future of in-house enterprise apps.</p>
 
@@ -139,7 +139,7 @@
   <entry>
     <title type="html"><![CDATA[Cultural differences...]]></title>
     <link href="http://caraulean.com/blog/2011/09/21/cultural-differences/"/>
-    <updated>2011-09-21T20:13:10+03:00</updated>
+    <updated>2011-09-21T19:13:10+02:00</updated>
     <id>http://caraulean.com/blog/2011/09/21/cultural-differences</id>
     <content type="html"><![CDATA[<p>Today I’ve been helping a coworker to bootstrap new project. Nothing fancy: ASP.NET site hosting WCF services, few POCOs and Entity Framework in Code First mode to persist them all.</p>
 
@@ -166,9 +166,9 @@
   
   <entry>
     <title type="html"><![CDATA[How to make Caliburn.Micro and Silverlight resources in MergedDictionaries play nicely together]]></title>
-    <link href="http://caraulean.com/blog/2011/09/14/how-to-make-caliburn-micro-and-silverlight-resources-in-mergeddictionaries-play-nicely-together/"/>
-    <updated>2011-09-14T00:43:00+03:00</updated>
-    <id>http://caraulean.com/blog/2011/09/14/how-to-make-caliburn-micro-and-silverlight-resources-in-mergeddictionaries-play-nicely-together</id>
+    <link href="http://caraulean.com/blog/2011/09/13/how-to-make-caliburn-micro-and-silverlight-resources-in-mergeddictionaries-play-nicely-together/"/>
+    <updated>2011-09-13T23:43:00+02:00</updated>
+    <id>http://caraulean.com/blog/2011/09/13/how-to-make-caliburn-micro-and-silverlight-resources-in-mergeddictionaries-play-nicely-together</id>
     <content type="html"><![CDATA[<p>I’ve fixed an error in our codebase that prevented Caliburn’s bootstrapper and application resources to live happily together. That was manifesting like warnings in xaml about missing resources and styles, no right styles in Visual Studio designer and so on.</p>
 
 <p>Now, to reproduce the problem we have to follow Caliburn’s guidelines then make few changes:</p>

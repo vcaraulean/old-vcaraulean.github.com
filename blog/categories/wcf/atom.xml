@@ -4,7 +4,7 @@
   <title><![CDATA[Category: wcf | valeriu caraulean]]></title>
   <link href="http://caraulean.com/blog/categories/wcf/atom.xml" rel="self"/>
   <link href="http://caraulean.com/"/>
-  <updated>2013-08-07T15:32:00+03:00</updated>
+  <updated>2013-09-19T22:51:49+02:00</updated>
   <id>http://caraulean.com/</id>
   <author>
     <name><![CDATA[Valeriu Caraulean]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Using WCF without configuration files]]></title>
     <link href="http://caraulean.com/blog/2011/11/16/using-wcf-without-configuration-files/"/>
-    <updated>2011-11-16T02:14:59+02:00</updated>
+    <updated>2011-11-16T01:14:59+01:00</updated>
     <id>http://caraulean.com/blog/2011/11/16/using-wcf-without-configuration-files</id>
     <content type="html"><![CDATA[<p>I have recently published new project on GitHub, <a href="http://github.com/vcaraulean/WcfWithoutConfigFile">WcfWithoutConfigFile</a>. This post is intended as a ‘readme’ file for this repository.</p>
 
@@ -44,7 +44,7 @@
   <entry>
     <title type="html"><![CDATA[WCF Security Guidance]]></title>
     <link href="http://caraulean.com/blog/2008/03/28/wcf-security-guidance/"/>
-    <updated>2008-03-28T11:44:31+02:00</updated>
+    <updated>2008-03-28T10:44:31+01:00</updated>
     <id>http://caraulean.com/blog/2008/03/28/wcf-security-guidance</id>
     <content type="html"><![CDATA[<p>It seems to be that Patterns &amp; Practices team continues to do what they do the best - creating guidance within different development areas.</p>
 
@@ -61,7 +61,7 @@
   <entry>
     <title type="html"><![CDATA[HttpContext idiom for Windows Communication Foundation.]]></title>
     <link href="http://caraulean.com/blog/2008/02/13/httpcontext-idiom-for-windows-communication-foundation/"/>
-    <updated>2008-02-13T16:13:37+02:00</updated>
+    <updated>2008-02-13T15:13:37+01:00</updated>
     <id>http://caraulean.com/blog/2008/02/13/httpcontext-idiom-for-windows-communication-foundation</id>
     <content type="html"><![CDATA[<p>WCF infrastructure allows you to store context sensitive data in InstanceContext of the service instance. For that you should implement from IExtension<InstanceContext> and plug that class into WCF's infrastructure in any of available ways.</p>
 

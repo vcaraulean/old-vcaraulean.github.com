@@ -4,7 +4,7 @@
   <title><![CDATA[Category: wp7 | valeriu caraulean]]></title>
   <link href="http://caraulean.com/blog/categories/wp7/atom.xml" rel="self"/>
   <link href="http://caraulean.com/"/>
-  <updated>2013-08-07T15:32:00+03:00</updated>
+  <updated>2013-09-19T22:51:49+02:00</updated>
   <id>http://caraulean.com/</id>
   <author>
     <name><![CDATA[Valeriu Caraulean]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Perceived performance]]></title>
     <link href="http://caraulean.com/blog/2010/11/20/perceived-performance/"/>
-    <updated>2010-11-20T23:13:21+02:00</updated>
+    <updated>2010-11-20T22:13:21+01:00</updated>
     <id>http://caraulean.com/blog/2010/11/20/perceived-performance</id>
     <content type="html"><![CDATA[<p>I’m watching a recording of Windows Phone Design Days, it’s the part about “perceived performance” with Jaime Rodriguez. He put up a nice table with response times and recommended visual feedback. I’ve seen these recommendations before. I’ve talked about these recommendations with my team. I’m insisting applying them every time when I see in out apps that an action has no visual response within one second after triggering it.</p>
 
@@ -75,7 +75,7 @@
   <entry>
     <title type="html"><![CDATA[If your Windows Phone 7 application suddenly stopped working in emulator...]]></title>
     <link href="http://caraulean.com/blog/2010/11/14/if-your-windows-phone-7-application-suddenly-stopped-working-in-emulator/"/>
-    <updated>2010-11-14T23:36:56+02:00</updated>
+    <updated>2010-11-14T22:36:56+01:00</updated>
     <id>http://caraulean.com/blog/2010/11/14/if-your-windows-phone-7-application-suddenly-stopped-working-in-emulator</id>
     <content type="html"><![CDATA[<p>... so it isn’t launching anymore and displaying splash screen infinitely, or application launches then stops, and you have done only “usual” development, be cool... Wp7 is a new platform. We, early adopters, are here to catch them, report and hope it’ll be fixed in vnext.</p>
 

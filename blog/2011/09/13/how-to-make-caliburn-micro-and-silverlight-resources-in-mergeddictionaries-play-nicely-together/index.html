@@ -1,0 +1,234 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>How to make Caliburn.Micro and Silverlight resources in MergedDictionaries play nicely together - valeriu caraulean</title>
+	<meta name="author" content="Valeriu Caraulean">
+
+	
+	<meta name="description" content="How to Make Caliburn.Micro and Silverlight Resources in MergedDictionaries Play Nicely Together I’ve fixed an error in our codebase that prevented &hellip;">
+	
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="valeriu caraulean" type="application/atom+xml">
+	
+	<link rel="canonical" href="http://caraulean.com/blog/2011/09/13/how-to-make-caliburn-micro-and-silverlight-resources-in-mergeddictionaries-play-nicely-together/">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+	<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><!-- Don't want the pic in header
+
+<div class="profilepic">
+	<script src="/javascripts/md5.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.profilepic').append("<img src='http://www.gravatar.com/avatar/" + MD5("") + "?s=160' alt='Profile Picture' style='width: 160px;' />");
+		});
+	</script>
+</div>
+
+-->
+
+<hgroup>
+  <h1>
+    <a href="/"> valeriu caraulean</a>
+  </h1>
+</hgroup>
+
+<p class="subtitle">keep it simple, it will work...</p>
+<nav id="main-nav"><ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/projects">Projects</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+<nav id="sub-nav">
+	<div class="social">
+		
+		
+		
+		<a class="twitter" href="http://twitter.com/vcaraulean" title="Twitter">Twitter</a>
+		
+		
+		<a class="github" href="https://github.com/vcaraulean" title="GitHub">GitHub</a>
+		
+		
+		
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+	</div>
+</nav>
+</header>				
+			</div>
+		</div>	
+		<div class="mid-col">
+			
+				
+			
+			<div class="mid-col-container">
+				<div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name">How to Make Caliburn.Micro and Silverlight Resources in MergedDictionaries Play Nicely Together</h1>
+	<div class="entry-content" itemprop="articleBody"><p>I’ve fixed an error in our codebase that prevented Caliburn’s bootstrapper and application resources to live happily together. That was manifesting like warnings in xaml about missing resources and styles, no right styles in Visual Studio designer and so on.</p>
+
+<p>Now, to reproduce the problem we have to follow Caliburn’s guidelines then make few changes:</p>
+
+<ul>
+<li>Create new Silverlight 4 application</li>
+<li>Add Caliburn.Micro NuGet package</li>
+<li><a href="http://caliburnmicro.codeplex.com/wikipage?title=Nuget">Configure your application</a> to bootstrap Caliburn</li>
+<li>Add new Resource Dictionary to host your common styles/brushes/whatever</li>
+<li>Include your dictionary in MergedDictionaries section</li>
+<li>Add a fancy color brush and use it in ShellView.xaml by referencing it as a static resource</li>
+<li>Build your app</li>
+</ul>
+
+
+<p>Your application will compile and run fine. However, you can spot few <strong>issues</strong> with your code:</p>
+
+<ul>
+<li>ShellView.xaml:
+
+<ul>
+<li>Xaml editor displaying warning: “The resource could not be resolved”</li>
+<li>VS Designer will not use your resource on design surface</li>
+</ul>
+</li>
+<li>App.xaml
+
+<ul>
+<li>Xaml editor displaying warning: “The designer does not support loading dictionaries that mix &#8216;ResourceDictionary&#8217; items without a key and other items in the same collection. Please ensure that the &#8216;Resources&#8217; property does not contain &#8216;ResourceDictionary&#8217; items without a key, or that the &#8216;ResourceDictionary&#8217; item is the only element in the collection.”</li>
+</ul>
+</li>
+</ul>
+
+
+<p>To solve this problem you have to modify your App.xaml.</p>
+
+<p>The original App.xaml fragment, as by following recommendations:</p>
+
+<pre><code>&lt;Application.Resources&gt;
+    &lt;ResourceDictionary&gt;
+        &lt;ResourceDictionary.MergedDictionaries&gt;
+            &lt;ResourceDictionary Source="Themes/Generic.xaml" /&gt;
+        &lt;/ResourceDictionary.MergedDictionaries&gt;
+    &lt;/ResourceDictionary&gt;
+    &lt;local:AppBootstrapper x:Key="bootstrapper" /&gt;
+&lt;/Application.Resources&gt;
+</code></pre>
+
+<p>Now, the <strong>corrected version</strong> that removes all issues I’ve described earlier:</p>
+
+<pre><code>&lt;Application.Resources&gt;
+    &lt;ResourceDictionary&gt;
+        &lt;ResourceDictionary.MergedDictionaries&gt;
+            &lt;ResourceDictionary Source="Themes/Generic.xaml" /&gt;
+            &lt;ResourceDictionary&gt;
+                &lt;local:AppBootstrapper x:Key="bootstrapper" /&gt;
+            &lt;/ResourceDictionary&gt;
+        &lt;/ResourceDictionary.MergedDictionaries&gt;
+    &lt;/ResourceDictionary&gt;
+&lt;/Application.Resources&gt;
+</code></pre>
+
+<p>Actually, this fragment is the <strong>recommended way of instantiating boostrapper for WPF</strong> version of Caliburn.Micro. Why it isn’t recommended also for Silverlight? I don’t know. For our rather large project I haven’t seen any downgrades and issues using this approach. Just few annoying bugs were gone&#8230;</p>
+</div>
+
+</article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_counter addthis_pill_style"></a>
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+
+<section id="comment">
+    <h1 class="title">Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+			</div>
+			<footer id="footer" class="inner"><p>
+  Copyright &copy; 2013 - Valeriu Caraulean -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a></footer>
+			<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'caraulean';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://caraulean.com/blog/2011/09/13/how-to-make-caliburn-micro-and-silverlight-resources-in-mergeddictionaries-play-nicely-together/';
+        var disqus_url = 'http://caraulean.com/blog/2011/09/13/how-to-make-caliburn-micro-and-silverlight-resources-in-mergeddictionaries-play-nicely-together/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-21974825-3']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+
+		</div>
+	</div>
+</body>
+</html>

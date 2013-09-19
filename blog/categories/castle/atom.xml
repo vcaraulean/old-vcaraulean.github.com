@@ -4,7 +4,7 @@
   <title><![CDATA[Category: castle | valeriu caraulean]]></title>
   <link href="http://caraulean.com/blog/categories/castle/atom.xml" rel="self"/>
   <link href="http://caraulean.com/"/>
-  <updated>2013-08-07T15:32:00+03:00</updated>
+  <updated>2013-09-19T22:51:49+02:00</updated>
   <id>http://caraulean.com/</id>
   <author>
     <name><![CDATA[Valeriu Caraulean]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Multi-targeting with Project Linker by example: Castle.Core for Silverlight 4]]></title>
     <link href="http://caraulean.com/blog/2010/10/13/multi-targeting-with-project-linker-by-example-castle-core-for-silverlight-4/"/>
-    <updated>2010-10-13T18:37:54+03:00</updated>
+    <updated>2010-10-13T17:37:54+02:00</updated>
     <id>http://caraulean.com/blog/2010/10/13/multi-targeting-with-project-linker-by-example-castle-core-for-silverlight-4</id>
     <content type="html"><![CDATA[<p>In this post I would try to explore multi-targeting of a .NET project/solution using <a href="http://msdn.microsoft.com/en-us/library/ff921108(PandP.20">Project Linker</a>.aspx) tool. My main driver is desire to target one of our internal projects to Silverlight. I’ve picked <a href="http://github.com/castleproject/Castle.Core">Castle.Core</a> to serve as an example, since his Silverlight build is now broken and (from what I’ve seen) there is no convenient way to work with this project in Visual Studio while targeting Silverlight.</p>
 
@@ -50,7 +50,7 @@
   <entry>
     <title type="html"><![CDATA[Unit tests with Automatic Transaction Management]]></title>
     <link href="http://caraulean.com/blog/2008/10/03/unit-tests-with-automatic-transaction-management/"/>
-    <updated>2008-10-03T19:18:43+03:00</updated>
+    <updated>2008-10-03T18:18:43+02:00</updated>
     <id>http://caraulean.com/blog/2008/10/03/unit-tests-with-automatic-transaction-management</id>
     <content type="html"><![CDATA[<p>In our projects we're using Castle's Automatic Transaction Management facility (ATM). This facility allows to declaratively define transaction boundaries: by marking a method by a specific attribute the call to this method will be wrapped in a transaction, so that a transaction will be opened before calling the method and committed right after finishing method execution.</p>
 
@@ -136,7 +136,7 @@ public class Foo
   <entry>
     <title type="html"><![CDATA[What integration tests should you write first]]></title>
     <link href="http://caraulean.com/blog/2008/06/18/what-integration-tests-should-you-write-first/"/>
-    <updated>2008-06-18T13:18:10+03:00</updated>
+    <updated>2008-06-18T12:18:10+02:00</updated>
     <id>http://caraulean.com/blog/2008/06/18/what-integration-tests-should-you-write-first</id>
     <content type="html"><![CDATA[<p>Generally, the goal of integration tests is to verify that different application parts are glued well together and interacts as expected. Thus, they are a bit different thing from unit tests that tends to test how a small, separate part is acting. Below are two tests that I can't classify to be pure integration tests because they touch a sensible part of application/infrastructure configuration like Windsor's configuration files and NHibernate's mappings. These simple tests can save a lot of time at very initial development stage when application bits are changed frequently and later, as a guarantee that you've not broken something in a recent refactoring.</p>
 
