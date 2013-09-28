@@ -10,6 +10,8 @@ If you're after a document database for a .NET application it's hard to miss the
 
 Dealing with Relational Databases, SQL and Object-Relational Mapping are probably the most omnipresent skills in any developer's career. But take a .NET dev with a good background in modern database technologies and let him play few hours with RavenDb and I guarantee that he'll come back impressed.
 
+<!-- more -->
+
 And there is a good reason for that. One of the most impressive things is how easy it to define a class, fill it with data then just throw it in the store. Then load it back an put it on the screen or send over the wires. All this without any object-to-database mappings, no transformations, no base classes; with only few lines of configuration and initialization code. It's fascinating when you're an ORM veteran and experience it for the first time...
 
 I won't go over all of the features of RavenDb. I will just touch few points that, in my opinion, can drastically reduce the amount of infrastructure code of almost any application, be it a client-server "enterprise-grade" system, web site / service or even a rich desktop application.

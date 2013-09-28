@@ -9,7 +9,7 @@ categories: [books, nosql]
 [NoSQL Distilled: A Brief Guide to the Emerging World of Polyglot Persistence](http://www.amazon.com/NoSQL-Distilled-Emerging-Persistence-ebook/dp/B0090J3SYW) by Martin Fowler and Pramod J. Sadalage.
 
 For some time already I've been keeping an eye on rising popularity of NoSQL. From reading articles and blog posts about various aspects and flavors, I adventured myself and dived more deeply into RavenDb, a NoSQL Document Database. Still, the picture I had in my mind was somewhat blurry and had few areas where I wasn't sure that I understand some basic things.
-
+<!-- more -->
 This book is a very good starting point into NoSQL world. It starts with explaining the rise of popularity of NoSQL solutions for multiple domains and modern data storage requirements. Then it explains important concepts around NoSQL data stores like aggregation and distribution models, consistency, versioning and Map-Reduce. The second part of the book takes a look at each family of NoSQL flavors and analyzes their features, data modeling challenges and applicability of concrete database in various domains. Key-Value databases are presented by [Riak](http://basho.com/products/riak-overview/), Document Databases by [MongoDB](http://www.mongodb.org/) with few mentions of [RavenDb](http://ravendb.net/), [Cassandra](http://cassandra.apache.org/) represents the Column-Family store type, and, final group, the Graph databases are explained using [Neo4J](http://www.neo4j.org/). Last chapters of the book talk about schema migrations, data storage options outside of NoSQL area and what you should consider when choosing a database.
 
 One of the ideas frequently discussed trough the whole book is why people are choosing NoSQL solutions: 

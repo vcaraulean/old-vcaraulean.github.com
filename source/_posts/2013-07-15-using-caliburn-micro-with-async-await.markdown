@@ -10,6 +10,8 @@ This post will give an overview of how you can use async/await features from C# 
 ## Setting it up
 To use Tasks and async/await features you need the latest version of Caliburn.Micro. Support for Tasks was introduced in version 1.5, so you'll need a version higher than that. And, of course, you need .NET Framework 4.5 or higher. All examples in this post were tested in a WPF application targeting .NET 4.5 framework. However, same code will be probably valid for Silverlight, WP8 and Windows8 apps.
 
+<!-- more -->
+
 #### Create and configure new project to test the concepts
  - Create new WPF 4.5 application
  - Install Caliburn.Micro from nuget. You'd better choose the `Caliburn.Micro.Start` package as it has everything required to run a Caliburn application (boostrapper, container, main screen)

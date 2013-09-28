@@ -8,7 +8,7 @@ categories: [rx, wpf]
 I've started using [Reactive Extensions, Rx](http://msdn.microsoft.com/en-us/data/gg577609.aspx) library without digging too much in it's internals. Had a case where I wanted to filter a stream of events and decided I'd try something new for me, Rx. But as it always happens with powerful and flexible tools, starting with few superficial articles and examples from the Web without diving deeper in the concepts is a pretty bad idea.
 
 This time I've been bitten by *concurrency* issues.
-
+<!-- more -->
 And the best resource I've found so far is the [Introduction to Rx](http://www.introtorx.com/) ebook by [Lee Campbell](http://leecampbell.blogspot.co.uk/). It costs only around a buck on Amazon and it's available for free from the site.
 
 I've jumped straight to the [Chapter 4, Concurrency](http://www.introtorx.com/Content/v1.0.10621.0/15_SchedulingAndThreading.html) and for surely will pass without a hurry over the rest of the book. This chapter has an nice check list about best threading options for some scenarios:
