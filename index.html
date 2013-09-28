@@ -122,178 +122,9 @@
 
 <p>To use Tasks and async/await features you need the latest version of Caliburn.Micro. Support for Tasks was introduced in version 1.5, so you&#8217;ll need a version higher than that. And, of course, you need .NET Framework 4.5 or higher. All examples in this post were tested in a WPF application targeting .NET 4.5 framework. However, same code will be probably valid for Silverlight, WP8 and Windows8 apps.</p>
 
-<h4>Create and configure new project to test the concepts</h4>
-
-<ul>
-<li>Create new WPF 4.5 application</li>
-<li>Install Caliburn.Micro from nuget. You&#8217;d better choose the <code>Caliburn.Micro.Start</code> package as it has everything required to run a Caliburn application (boostrapper, container, main screen)</li>
-<li>Change App.cs to correctly bootstrap with Caliburn, <a href="http://caliburnmicro.codeplex.com/wikipage?title=Nuget">here is how to do it</a></li>
-</ul>
-
-
-<h2>Async Actions</h2>
-
-<p>The syntax for attaching actions in XAML will remain unchanged:</p>
-
-<pre><code>&lt;Button x:Name="RunTask1Async"&gt;
-&lt;Button cal:Message.Attach="RunTask1Async"&gt;
-</code></pre>
-
-<p>When declaring action&#8217;s method we can specify that we want to handle it asynchronously:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>public async void RunTask1Async()
-</span><span class='line'>{
-</span><span class='line'>    Log("RunTask1Async - starting a 4 second task");
-</span><span class='line'>    await Task.Delay(4000);
-</span><span class='line'>    Log("RunTask1Async completed");
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
-
-
-<p>And that&#8217;s all you need to execute an action asynchronously (if you have to execute a Task).</p>
-
-<h2>Async handlers for Screen events and overrides</h2>
-
-<p>CM offers few handy methods that allow to connect to Screen&#8217;s lifetime events. Some method overrides with async signatures:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>protected override async void OnInitialize()
-</span><span class='line'>{
-</span><span class='line'>  Log("OnInitialize - starting a 7 seconds task");
-</span><span class='line'>  await Task.Delay(7000);
-</span><span class='line'>  Log("OnInitialize completed");
-</span><span class='line'>}
-</span><span class='line'>protected override async void OnActivate() { }
-</span><span class='line'>protected override async void OnViewLoaded(object view) { }
-</span><span class='line'>protected override async void OnViewAttached(object view, object context) { }
-</span><span class='line'>...</span></code></pre></td></tr></table></div></figure>
-
-
-<p>To note here that even if the method in base class is not marked <code>async</code>, our overrides declare them with <code>async</code> modifiers and it runs fine.</p>
-
-<p>Similarly, you can handle Screen&#8217;s events the same way how you&#8217;re handling any .NET event in asynchronous way:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>{
-</span><span class='line'>  // ...
-</span><span class='line'>  ViewAttached += OnViewAttachedEventHandler;
-</span><span class='line'>}
-</span><span class='line'>private async void OnViewAttachedEventHandler(object sender, ViewAttachedEventArgs args)
-</span><span class='line'>{
-</span><span class='line'>  Log("OnViewAttachedEventHandler- starting a 1 second task");
-</span><span class='line'>  await Task.Delay(1000);
-</span><span class='line'>  Log("OnViewAttachedEventHandler completed");
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>IHandleWithTask interface</h2>
-
-<p>This is a new addition to CM, declared as:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>public interface IHandleWithTask&lt;TMessage&gt; : IHandle
-</span><span class='line'>{
-</span><span class='line'>    Task Handle(TMessage message);
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
-
-
-<p>It&#8217;s extremely useful when you want to handle a particular message using a Task and off-load application&#8217;s main thread.</p>
-
-<p>An example:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>public class Message { }
-</span><span class='line'>
-</span><span class='line'>public class MessageHandler : IHandleWithTask&lt;Message&gt;
-</span><span class='line'>{
-</span><span class='line'>  public MessageHandler(IEventAggregator eventAggregator)
-</span><span class='line'>  {
-</span><span class='line'>      eventAggregator.Subscribe(this);
-</span><span class='line'>  }
-</span><span class='line'>
-</span><span class='line'>  public async Task Handle(Message message)
-</span><span class='line'>  {
-</span><span class='line'>      await Task.Delay(3000);
-</span><span class='line'>  }
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>Convert coroutines to Tasks</h2>
-
-<p>This can be done easily by using an extension method:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>public async void WrapIResultInTaskAsync()
-</span><span class='line'>{
-</span><span class='line'>  await new SimpleCoroutine().ExecuteAsync();
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>&#8220;async void&#8221; or &#8220;async Task&#8221;</h2>
-
-<p>A great question will be: should I use <code>async void</code> or <code>async Task</code> as a return value of action methods, screen&#8217;s events and overrides? Since you can do both and the code will compile and run mostly fine, let&#8217;s see what <a href="http://blog.stephencleary.com/">Stephen Cleary</a> writes about it in <a href="http://msdn.microsoft.com/en-us/magazine/jj991977.aspx">Best Practices in Asynchronous Programming</a> article:</p>
-
-<blockquote><p>You should prefer async Task to async void. Async Task methods enable easier error-handling, composability and testability. The exception to this guideline is asynchronous event handlers, which must return void. This exception includes methods that are logically event handlers even if they’re not literally event handlers (for example, ICommand.Execute implementations).</p></blockquote>
-
-
-<p>I will join this recommendation. Actions are event handlers at their core, normally they are executed as &#8220;start and forget&#8221;. If something happens (an exception), it will be handled at application level. For the case when you want to handle any exceptions locally, you may want to create an override which returns an <code>async Task</code>. Also, this will allow calling same method action from another part of the program or write a unit test to verify an asynchronous process.</p>
-
-<h2>References</h2>
-
-<ul>
-<li><a href="http://devlicio.us/blogs/rob_eisenberg/archive/2013/03/18/durandal-1-2-0-and-caliburn-micro-1-5-0-released.aspx">Caliburn.Micro. 1.5.0 release notes</a></li>
-<li><a href="http://msdn.microsoft.com/en-us/magazine/jj991977.aspx">&#8220;Best Practices in Asynchronous Programming&#8221; by Stephen Cleary (MSDN Mag)</a></li>
-<li><a href="http://marcoamendola.wordpress.com/2012/10/16/coroutines-are-dead-long-live-coroutines/">&#8220;Coroutines are dead. Long live Coroutines.&#8221; by Marco Amendola</a></li>
-<li><a href="http://blogs.msdn.com/b/pfxteam/archive/2012/04/12/async-await-faq.aspx">Async/Await FAQ</a></li>
-</ul>
-
-
-<p>This is pretty much it. If you&#8217;ve found an error or may complete this post with additional info, let me know in the comments.</p>
 
 		
-		
+		<a href="/blog/2013/07/15/using-caliburn-micro-with-async-await/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>
@@ -329,29 +160,9 @@
 
 <p>For some time already I&#8217;ve been keeping an eye on rising popularity of NoSQL. From reading articles and blog posts about various aspects and flavors, I adventured myself and dived more deeply into RavenDb, a NoSQL Document Database. Still, the picture I had in my mind was somewhat blurry and had few areas where I wasn&#8217;t sure that I understand some basic things.</p>
 
-<p>This book is a very good starting point into NoSQL world. It starts with explaining the rise of popularity of NoSQL solutions for multiple domains and modern data storage requirements. Then it explains important concepts around NoSQL data stores like aggregation and distribution models, consistency, versioning and Map-Reduce. The second part of the book takes a look at each family of NoSQL flavors and analyzes their features, data modeling challenges and applicability of concrete database in various domains. Key-Value databases are presented by <a href="http://basho.com/products/riak-overview/">Riak</a>, Document Databases by <a href="http://www.mongodb.org/">MongoDB</a> with few mentions of <a href="http://ravendb.net/">RavenDb</a>, <a href="http://cassandra.apache.org/">Cassandra</a> represents the Column-Family store type, and, final group, the Graph databases are explained using <a href="http://www.neo4j.org/">Neo4J</a>. Last chapters of the book talk about schema migrations, data storage options outside of NoSQL area and what you should consider when choosing a database.</p>
-
-<p>One of the ideas frequently discussed trough the whole book is why people are choosing NoSQL solutions:</p>
-
-<blockquote><p>There are two primary reasons for considering NoSQL. One is to handle data access with sizes and performance that demand a cluster; the other is to improve the productivity of application development by using a more convenient data interaction style.</p></blockquote>
-
-
-<p>Most often when you speak about NoSQL with somebody the reaction looks like &#8220;ah, that thing that Google and Amazon runs on thousands of servers&#8221;. And nobody who only have heard of NoSQL is sensing the second great advantage of these systems: improving productivity and flexibility of your development team and make the life of application developer easier.</p>
-
-<p>NoSQL doesn&#8217;t means a complete schema-less data storage. Instead of having rigid definitions of schema and relationships as in the world of Relational Database, the shape of data is defined by application itself. That is, application is defining how it wants to store and access the data. No more you have to fight the impedance mismatch between relational model and in-memory data structures. Forget the performance penalization of an ORM, limitations of relational model in querying, aggregating and shaping data. Instead, your application defines the aggregate model and naturally persist it. Then it has reach options to slice and dice stored data, perform flexible Map-Reduce transformations and offers reach analytical capabilities. This allows development teams to be more flexible and productive when building complex systems. When your data storage is a simple commodity, easy to access and manipulate, you will have much more time to work on your domain, business logic or User Interface.</p>
-
-<p>Each kind of NoSQL implementation offers it&#8217;s own advantages and has it&#8217;s weak points. For me the most interesting are the Document Databases like MongoDB and RavenDb. They will suit a very broad range of applications because of the notion of a Document - something with properties and values aggregated in one entity stored as a simple JSON document. This will give you ability to index documents, write rich document based queries and much more.</p>
-
-<h3>Summary</h3>
-
-<p>A great overview of existent NoSQL technologies, their characteristics and applicability of each of them in various domains. The book is short as it was really meant as an overview, not a deep dive in these technologies.</p>
-
-<p>At the moment when I write this review Amazon places this book as #1 in Databases category and #2 in Databases/SQL, it has 15 reviews with an overall score of 4.5.</p>
-
-<p>Highly recommended.</p>
 
 		
-		
+		<a href="/blog/2012/12/14/book-review-nosql-distilled/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>
@@ -387,80 +198,9 @@
 
 <p>Dealing with Relational Databases, SQL and Object-Relational Mapping are probably the most omnipresent skills in any developer&#8217;s career. But take a .NET dev with a good background in modern database technologies and let him play few hours with RavenDb and I guarantee that he&#8217;ll come back impressed.</p>
 
-<p>And there is a good reason for that. One of the most impressive things is how easy it to define a class, fill it with data then just throw it in the store. Then load it back an put it on the screen or send over the wires. All this without any object-to-database mappings, no transformations, no base classes; with only few lines of configuration and initialization code. It&#8217;s fascinating when you&#8217;re an ORM veteran and experience it for the first time&#8230;</p>
-
-<p>I won&#8217;t go over all of the features of RavenDb. I will just touch few points that, in my opinion, can drastically reduce the amount of infrastructure code of almost any application, be it a client-server &#8220;enterprise-grade&#8221; system, web site / service or even a rich desktop application.</p>
-
-<p>Disclaimer: YMMV. I&#8217;m writing about things I&#8217;ve seen or experienced myself.</p>
-
-<h2>Reduce your mapping layers</h2>
-
-<p>Things you probably (or certainly) will not need with RavenDb:</p>
-
-<ul>
-<li>Maintain a mapping layer to fit your domain model in a relational database with it&#8217;s rules and constraints</li>
-<li>Keep on the eternal fight with lazy relations</li>
-<li>Map your domain to DTOs and backwards when you&#8217;re talking over the wires (especially using WCF)</li>
-<li>Map the DTOs to client side models and view models</li>
-</ul>
-
-
-<p>All this stuff is code. Code to be written, tested and maintained. Take this code and throw it away. Feel better now? I&#8217;m glad for you&#8230;</p>
-
-<p>Of course you&#8217;ll have some mapping code. As example you&#8217;ll probably have to shape your documents to display them on the screen or create static indexes. But I&#8217;d consider it as a business/domain concern and not just plumbing code to please your communication layer or mapping framework.</p>
-
-<h2>Cut through your infrastructure</h2>
-
-<p>What I love in RavenDb is that it&#8217;s not a mere data store. It comes with a bunch of features and bundles that aren&#8217;t directly related to persist and query data, but are much more like functional or business components for your application covering real feature requirements. Examples?</p>
-
-<h4>Search</h4>
-
-<p>Any reasonably sized and feature rich application that is manipulating data records is incomplete without an embedded search feature. In .NET world the choice is extremely limited. You&#8217;ll probably choose the Lucene.NET, write code to sync your search indexes with database/domain changes, then, run scary with the hope to never have to touch that code again. If you&#8217;ve worked with Lucene.NET, you know what I&#8217;m talking about&#8230;</p>
-
-<p>Much of the RavenDb powers are based on Lucene.NET. But you&#8217;ll barely observe it hidden behind a friendly API and the &#8220;usual suspect&#8221;, LINQ.</p>
-
-<h4>Security</h4>
-
-<p>You never meet a stakeholder or client obsessed about security? Move on to the next point&#8230;</p>
-
-<p>Authorization is hard: Users, Roles, Operations, Permissions. Then add row level security. Oh my, it&#8217;s really hard. And it&#8217;s even harder to get it working properly and with minimal penalization on performance. I think because it&#8217;s a tough challenge there aren&#8217;t many generic solutions for this problem.</p>
-
-<p>RavenDb comes with <a href="http://ravendb.net/docs/server/bundles/authorization">Authorization Bundle</a>. The only thing you have to do is to define your rules and (when required) add additional checks for constraints in your business or domain logic.</p>
-
-<h4>Client notifications</h4>
-
-<p>It&#8217;s called <a href="http://ayende.com/blog/157121/awesome-feature-of-the-day-ravendb-changes-api">Changes API</a>, it let&#8217;s your client know when a document changes on the server. I&#8217;ve been there, done that:</p>
-
-<ul>
-<li>Whenever NHibernate detects a change, send a message about it to a queue.</li>
-<li>Have a service listening to that queue.</li>
-<li>When there&#8217;s a message, notify all interested subscribers about it.</li>
-<li>Over WCF. Duplex channel. Silverlight&#8230;</li>
-</ul>
-
-
-<p>And I still have known bugs in that subsystem.</p>
-
-<p>Now take all this stuff and throw it away. Using RavenDb&#8217;s client API you can subscribe to change events of a single document, a document type or index. An the awesome part - it implements IObservable from <a href="http://www.introtorx.com/">Reactive Extensions</a>. Ditto.</p>
-
-<h4>Versioning/Audit</h4>
-
-<p>With <a href="http://ravendb.net/docs/server/bundles/versioning">Versioning Bundle</a> RavenDb will keep the history of changes made to a document. With the audit trail you&#8217;ll be able to find who changed what and when. Depending on your architecture it may be very simple to implement basic audit infrastructure. But it&#8217;s a much more challenging task to keep around modifications and with relational model is very hard to revert changes when your records were stored in database. With Versioning Bundle it&#8217;s easy to plug in and know everything.</p>
-
-<hr />
-
-<p>To refrain: all this stuff is code. Code to be written, tested, maintained.</p>
-
-<p>And one more thing. All this components are written by the authors of RavenDb. While I&#8217;m confident in my skills, I know my limits. I wouldn&#8217;t be able to do a better job integrating with a third-party system than the people who wrote it from scratch.</p>
-
-<p>I&#8217;ve highlighted only some of typical parts of a reasonably complex software system but there are more, of course. With RavenDb you already have functional blocks ready for integration and use. This is a point to consider when time-to-marked is critical or you care about your product. And less of a concern when you&#8217;re only after your monthly paycheck.</p>
-
-<p>Even if you have already some of these subsystems in place and are using &#8220;typical&#8221; architecture with a service layer, ORM and relational database, you should seriously consider RavenDb while you&#8217;re at early stages of your product.</p>
-
-<p>Because with RavenDb you can do less but achieve more by focusing on things that really matter: your domain model, business knowledge and that bizarre wrapper around it, called User Interface.</p>
 
 		
-		
+		<a href="/blog/2012/11/15/do-less-and-achieve-more-with-ravendb/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>
@@ -496,46 +236,9 @@
 
 <p>This time I&#8217;ve been bitten by <em>concurrency</em> issues.</p>
 
-<p>And the best resource I&#8217;ve found so far is the <a href="http://www.introtorx.com/">Introduction to Rx</a> ebook by <a href="http://leecampbell.blogspot.co.uk/">Lee Campbell</a>. It costs only around a buck on Amazon and it&#8217;s available for free from the site.</p>
-
-<p>I&#8217;ve jumped straight to the <a href="http://www.introtorx.com/Content/v1.0.10621.0/15_SchedulingAndThreading.html">Chapter 4, Concurrency</a> and for surely will pass without a hurry over the rest of the book. This chapter has an nice check list about best threading options for some scenarios:</p>
-
-<h3>UI Applications</h3>
-
-<ul>
-<li>The final subscriber is normally the presentation layer and should control the scheduling.</li>
-<li>Observe on the DispatcherScheduler to allow updating of ViewModels</li>
-<li>Subscribe on a background thread to prevent the UI from becoming unresponsive
-
-<ul>
-<li>If the subscription will not block for more than 50ms then
-
-<ul>
-<li>Use the TaskPoolScheduler if available, or</li>
-<li>Use the ThreadPoolScheduler</li>
-</ul>
-</li>
-<li>If any part of the subscription could block for longer than 50ms, then you should use the NewThreadScheduler.</li>
-</ul>
-</li>
-</ul>
-
-
-<h3>Service layer</h3>
-
-<ul>
-<li>If your service is reading data from a queue of some sort, consider using a dedicated EventLoopScheduler. This way, you can preserve order of events</li>
-<li>If processing an item is expensive (>50ms or requires I/O), then consider using a NewThreadScheduler</li>
-<li>If you just need the scheduler for a timer, e.g. for Observable.Interval or Observable.Timer, then favor the TaskPool. Use the ThreadPool if the TaskPool is not available for your platform.</li>
-</ul>
-
-
-<hr />
-
-<p>And by the way, on author&#8217;s blog I&#8217;ve found another interesting series of articles: <a href="http://leecampbell.blogspot.co.uk/2009/01/responsive-uis-in-wpf-dispatchers-to.html">Responsive UIs in WPF - Dispatchers to Concurrency to testability</a>. That&#8217;s something I&#8217;d be reading after sorting out concurrency issues from my code.</p>
 
 		
-		
+		<a href="/blog/2012/10/09/diving-deeper-in-reactive-extensions/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>
@@ -941,8 +644,7 @@ rake deploy
   Copyright &copy; 2013 - Valeriu Caraulean -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
-
-Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a></footer>
+</footer>
 			<script src="/javascripts/slash.js"></script>
 <script src="/javascripts/jquery.fancybox.pack.js"></script>
 <script type="text/javascript">

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ravendb | valeriu caraulean]]></title>
   <link href="http://caraulean.com/blog/categories/ravendb/atom.xml" rel="self"/>
   <link href="http://caraulean.com/"/>
-  <updated>2013-09-19T22:51:49+02:00</updated>
+  <updated>2013-09-29T01:20:05+02:00</updated>
   <id>http://caraulean.com/</id>
   <author>
     <name><![CDATA[Valeriu Caraulean]]></name>
@@ -21,6 +21,9 @@
     <content type="html"><![CDATA[<p>If you're after a document database for a .NET application it's hard to miss the buzz around <a href="http://ravendb.net">RavenDb</a>. Although there are many other NoSQL databases that are getting much more attention and popularity, RavenDb distinguishes itself by being a native in .NET ecosystem while still offering great value as a generic, technology agnostic data store.</p>
 
 <p>Dealing with Relational Databases, SQL and Object-Relational Mapping are probably the most omnipresent skills in any developer's career. But take a .NET dev with a good background in modern database technologies and let him play few hours with RavenDb and I guarantee that he'll come back impressed.</p>
+
+<!-- more -->
+
 
 <p>And there is a good reason for that. One of the most impressive things is how easy it to define a class, fill it with data then just throw it in the store. Then load it back an put it on the screen or send over the wires. All this without any object-to-database mappings, no transformations, no base classes; with only few lines of configuration and initialization code. It's fascinating when you're an ORM veteran and experience it for the first time...</p>
 

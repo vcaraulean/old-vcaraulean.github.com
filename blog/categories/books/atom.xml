@@ -4,7 +4,7 @@
   <title><![CDATA[Category: books | valeriu caraulean]]></title>
   <link href="http://caraulean.com/blog/categories/books/atom.xml" rel="self"/>
   <link href="http://caraulean.com/"/>
-  <updated>2013-09-19T22:51:49+02:00</updated>
+  <updated>2013-09-29T01:20:05+02:00</updated>
   <id>http://caraulean.com/</id>
   <author>
     <name><![CDATA[Valeriu Caraulean]]></name>
@@ -21,6 +21,9 @@
     <content type="html"><![CDATA[<p><a href="http://www.amazon.com/NoSQL-Distilled-Emerging-Persistence-ebook/dp/B0090J3SYW">NoSQL Distilled: A Brief Guide to the Emerging World of Polyglot Persistence</a> by Martin Fowler and Pramod J. Sadalage.</p>
 
 <p>For some time already I've been keeping an eye on rising popularity of NoSQL. From reading articles and blog posts about various aspects and flavors, I adventured myself and dived more deeply into RavenDb, a NoSQL Document Database. Still, the picture I had in my mind was somewhat blurry and had few areas where I wasn't sure that I understand some basic things.</p>
+
+<!-- more -->
+
 
 <p>This book is a very good starting point into NoSQL world. It starts with explaining the rise of popularity of NoSQL solutions for multiple domains and modern data storage requirements. Then it explains important concepts around NoSQL data stores like aggregation and distribution models, consistency, versioning and Map-Reduce. The second part of the book takes a look at each family of NoSQL flavors and analyzes their features, data modeling challenges and applicability of concrete database in various domains. Key-Value databases are presented by <a href="http://basho.com/products/riak-overview/">Riak</a>, Document Databases by <a href="http://www.mongodb.org/">MongoDB</a> with few mentions of <a href="http://ravendb.net/">RavenDb</a>, <a href="http://cassandra.apache.org/">Cassandra</a> represents the Column-Family store type, and, final group, the Graph databases are explained using <a href="http://www.neo4j.org/">Neo4J</a>. Last chapters of the book talk about schema migrations, data storage options outside of NoSQL area and what you should consider when choosing a database.</p>
 

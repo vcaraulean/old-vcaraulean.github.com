@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rx | valeriu caraulean]]></title>
   <link href="http://caraulean.com/blog/categories/rx/atom.xml" rel="self"/>
   <link href="http://caraulean.com/"/>
-  <updated>2013-09-19T22:51:49+02:00</updated>
+  <updated>2013-09-29T01:20:05+02:00</updated>
   <id>http://caraulean.com/</id>
   <author>
     <name><![CDATA[Valeriu Caraulean]]></name>
@@ -21,6 +21,9 @@
     <content type="html"><![CDATA[<p>I've started using <a href="http://msdn.microsoft.com/en-us/data/gg577609.aspx">Reactive Extensions, Rx</a> library without digging too much in it's internals. Had a case where I wanted to filter a stream of events and decided I'd try something new for me, Rx. But as it always happens with powerful and flexible tools, starting with few superficial articles and examples from the Web without diving deeper in the concepts is a pretty bad idea.</p>
 
 <p>This time I've been bitten by <em>concurrency</em> issues.</p>
+
+<!-- more -->
+
 
 <p>And the best resource I've found so far is the <a href="http://www.introtorx.com/">Introduction to Rx</a> ebook by <a href="http://leecampbell.blogspot.co.uk/">Lee Campbell</a>. It costs only around a buck on Amazon and it's available for free from the site.</p>
 
